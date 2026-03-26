@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Print</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #E8501A;
+      --dark: #1a1a1a;
+      --light: #f5f4f0;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--dark); }
+
+    /* ── TOGGLE ── */
+    
+    .toggle-section { 
+      margin-top: 130px;
+      display: flex;
+      align-items: left;
+      justify-content: left;
+      padding: 3rem 2rem 1rem;
+      padding: 0 4vw;
+    }
+
+    .toggle-track {
+      position: relative;
+      display: flex;
+      background: var(--light);
+      border-radius: 999px;
+      padding: 5px;
+      border: 1.5px solid rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .toggle-option {
+      position: relative;
+      z-index: 2;
+      padding: 0.55rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #ff6600;
+      transition: color 0.35s ease;
+      border-radius: 999px;
+    }
+
+    .toggle-option.active {
+      color: var(--white);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      height: calc(100% - 10px);
+      border-radius: 999px;
+      background: var(--dark);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease;
+      z-index: 1;
+    }
+
+    /* ── TITRES (C'est ce qui manquait) ── */
+    .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900; margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-top: 2rem; }
+    .arrow-deco { color: var(--orange); font-size: 1.2rem; animation: bounce 1.8s ease-in-out infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    .section-subtitle { text-align: center; color: #888; font-size: 1.1rem; margin-bottom: 3rem; font-weight: 300; }
+
+    /* ── SECTION PROJETS ── */
+    .projects-section { padding: 0 3rem 5rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+
+    /* ── CARTE ── */
+    .project-card { 
+      border-radius: 20px; 
+      overflow: hidden; 
+      background-color: var(--light); 
+      background-size: cover; 
+      background-position: center; 
+      position: relative; 
+      display: flex; 
+      align-items: stretch; 
+      min-height: 450px; 
+      transition: transform 0.35s ease; 
+    }
+    
+    .project-card:hover { 
+      transform: translateY(-4px); 
+    }
+
+    .project-card.has-image::before { 
+      content: ''; 
+      position: absolute; 
+      inset: 0; 
+      border-radius: 20px; 
+      z-index: 1; 
+      background: linear-gradient(to right, var(--overlay-color, rgba(255, 241, 197, 0.9)) 0%, transparent 100%); }
+   
+    .project-card-content { 
+      position: relative; 
+      z-index: 2; 
+      flex: 0 0 50%; 
+      max-width: 50%; 
+      padding: 2.6rem 2.8rem 2.4rem; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+    }
+    
+  .project-card-content h3 { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 2rem; 
+    margin-bottom: 0.8rem; 
+    white-space: nowrap;
+    
+  }
+
+    .project-card-content p { font-size: 0.88rem; color: #555; line-height: 1.65; margin-bottom: 2rem; }
+    .stat-row { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      padding: 0.5rem 0; 
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+      font-size: 0.85rem; }
+    
+    .stat-label { font-weight: 500; color: var(--dark); }
+
+    .project-btn { 
+      display: inline-flex; 
+      width: fit-content !important;
+      align-items: center; 
+      gap: 0.45rem; 
+      background: var(--orange); 
+      color: rgb(0, 0, 0); 
+      border-radius: 999px; 
+      padding: 0.58rem 1.4rem; 
+      font-size: 0.82rem; 
+      text-decoration: none; 
+      transition: background 0.2s; }
+
+    .project-btn:hover { background: var(--dark); color: #ffffff; 
+    }
+
+        .project-card.has-image .project-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(4px);
+    }
+
+    .project-card.has-image .project-btn:hover {
+      background: #ff6600;
+      border-color: #ff6600;
+    }
+
+    /* ── BOOKMARK ── */
+    .bookmark-wrap { position: absolute; top: 0; right: 2rem; z-index: 10; filter: url(#shadow-bookmark); }
+    .bookmark-body { background: #ff6600; color: transparent; width: 52px; height: 28px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% calc(100% - 12px), 0% 100%); transition: all 0.4s; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+    .project-card:hover .bookmark-body { height: 60px; color: white; align-items: flex-end; padding-bottom: 18px; }
+
+    footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #bbb; }
+  
+@media (max-width: 768px) {
+
+      nav {
+        padding: 1rem 1.4rem;
+      }
+
+      .toggle-section {
+        margin-top: 140px;
+        padding: 0 1.2rem;
+      }
+
+      .projects-section {
+        padding: 2rem 1.2rem 4rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      /* Colonne unique */
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-card {
+        min-height: 340px;
+        align-items: stretch;
+      }
+
+      /* Overlay clair de gauche à droite, comme le desktop */
+.project-card.has-image::before {
+    /* Le dégradé part de TA couleur et devient transparent à droite */
+    background: linear-gradient(to top, 
+      var(--overlay-color) 00%, 
+      var(--overlay-color) 40%, 
+      transparent 100%) !important;
+    z-index: 1;
+    border-radius: 20px; /* Pour bien suivre l'arrondi de ta carte */
+  }
+
+  /* Pour être sûr que le texte reste lisible sur ta couleur */
+  .project-card-content {
+    z-index: 2;
+    position: relative;
+  }
+      /* Contenu pleine largeur */
+      .project-card-content {
+        flex: unset;
+        max-width: 100%;
+        padding: 1.8rem 1.6rem;
+      }
+
+      /* Texte sombre */
+      .project-card-content h3 {
+        font-size: 1.5rem;
+        white-space: normal;
+        margin-bottom: 15px;
+        color: var(--dark) !important;
+      }
+
+      .project-card-content p {
+        max-width: 60% !important;
+        color: #555 !important;
+      }
+
+      .stat-label {
+        color: var(--dark) !important;
+      }
+
+      .stat-value {
+        color: #000 !important;
+      }
+
+      .stat-row,
+      .stat-row:first-child {
+        border-color: rgba(0, 0, 0, 0.1) !important;
+      }
+
+      .stat-row,
+.stat-row:first-child {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  margin-bottom: 5px;
+}
+
+/* 2. On cache les lignes 2 et 3 (Partenaire et Outils) */
+.stat-row:nth-child(3) {
+  display: none !important;
+}
+
+      /* Bouton orange standard */
+.project-card.has-image .project-btn {
+  background: #ff6600 !important; /* On force le style transparent/blur */
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  backdrop-filter: blur(4px) !important;
+  color: #ffffff !important;
+  }
+  }
+
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute;">
+    <filter id="shadow-bookmark" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-opacity="0.2" />
+    </filter>
+  </svg>
+
+  <nav><div id="header-placeholder"></div></nav>
+
+  <div class="toggle-section">
+    <div class="toggle-track" id="toggleTrack">
+      <button class="toggle-option" id="btnPrint" onclick="window.location.href='index.html'">Digital</button>
+      <button class="toggle-option active" id="btnPhysique" onclick="window.location.href='print.html'">Print</button>
+      <div class="toggle-thumb" id="toggleThumb"></div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <span class="arrow-deco">↓</span> Projets sélectionnés <span class="arrow-deco">↓</span>
+  </div>
+  <p class="section-subtitle">édition · identité visuelle · typographie</p>
+
+    <!-- COLLECTION DE MOTIFS-->
+<section class="projects-section">
+  <div class="projects-grid">
+
+    <!-- Collection de motifs -->
+    <div class="project-card has-image" style="background-image: url('cover-patterpolypap.webp'); --overlay-color: rgba(255, 145, 249, 0.5);">
+      <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
+      <div class="project-card-content">
+        <div>
+          <h3>Collection de motifs</h3>
+          <p>Création d'une gamme de motifs sur le thème de la St-Valentin et de la fête des Mères. Impression puis vente aux fleuristes partenaires.</p>
+          <div class="project-stats">
+            <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2025</span></div>
+            <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">Polypap</span></div>
+            <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator · InDesign</span></div>
+          </div>
+        </div>
+        <a href="patterns.html" class="project-btn">→ Voir le projet</a>
+      </div>
+    </div>
+
+    <!-- calendars -->
+    <div class="project-card has-image" style="background-image: url('cover-calendar.webp'); --overlay-color: rgba(185, 255, 189, 0.5);">
+      <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
+      <div class="project-card-content">
+        <div>
+          <h3>Conception de calendriers</h3>
+          <p>Création d'une trentaine de calendriers, puis pré-sélection et impression, vente en gros aux fleuristes partenaires.</p>
+          <div class="project-stats">
+            <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2024-26</span></div>
+            <div class="stat-row"><span class="stat-label">Format</span><span class="stat-value">Edition</span></div>
+            <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator · InDesign</span></div>
+          </div>
+        </div>
+        <a href="calendar.html" class="project-btn">→ Voir le projet</a>
+      </div>
+    </div>
+
+    <!-- Création de spécimen -->
+    <div class="project-card has-image" style="background-image: url('cover-specimen.webp'); --overlay-color: rgba(255, 255, 255, 0.5);">
+      <div class="bookmark-wrap"><div class="bookmark-body">Sco</div></div>
+      <div class="project-card-content">
+        <div>
+          <h3>Compagnon de route</h3>
+          <p>Création et mise en page d'un spécimen (livret présentant une typographie), sur la police Compagnon.</p>
+          <div class="project-stats">
+            <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2024</span></div>
+            <div class="stat-row"><span class="stat-label">Format</span><span class="stat-value">Edition</span></div>
+            <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">InDesign</span></div>
+          </div>
+        </div>
+        <a href="specimen.html" class="project-btn">→ Voir le projet</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <footer><p>Alexane &mdash; <span id="year"></span></p></footer>
+  <script src="./main.js"></script>
+
+<script src="./main.js"></script>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const thumb = document.getElementById('toggleThumb');
+  const btnPrint = document.getElementById('btnPrint');
+  const btnPhysique = document.getElementById('btnPhysique');
+
+  function updateToggle() {
+    const currentPage = window.location.pathname.split("/").pop();
+    if (currentPage === 'print.html' || currentPage.includes('print')) {
+      thumb.style.transform = `translateX(${btnPrint.offsetWidth}px)`;
+      thumb.style.width = btnPhysique.offsetWidth + 'px';
+    }
+  }
+
+  window.addEventListener('load', updateToggle);
+  window.addEventListener('resize', updateToggle);
+</script>
+
+
+
+</body>
+</html>
