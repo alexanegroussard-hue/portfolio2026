@@ -70,7 +70,7 @@
 
     /* ── TITRES (C'est ce qui manquait) ── */
     .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900; margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-top: 2rem; }
-    .arrow-deco { color: var(--orange); font-size: 1.2rem; animation: bounce 1.8s ease-in-out infinite; }
+    .arrow-deco { animation: bounce 1.8s infinite; }
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
     .section-subtitle { text-align: center; color: #888; font-size: 1.1rem; margin-bottom: 3rem; font-weight: 300; }
 
@@ -289,7 +289,9 @@
   </div>
 
   <div class="section-title">
-    <span class="arrow-deco">↓</span> Projets sélectionnés <span class="arrow-deco">↓</span>
+<img src="fleche.png" alt="" class="arrow-deco" style="height:60px; width:auto;">
+Projets sélectionnés
+<img src="fleche.png" alt="" class="arrow-deco" style="height:60px; width:auto;">
   </div>
   <p class="section-subtitle">édition · identité visuelle · typographie</p>
 
@@ -298,12 +300,12 @@
   <div class="projects-grid">
 
     <!-- Collection de motifs -->
-    <div class="project-card has-image" style="background-image: url('cover-patterpolypap.webp'); --overlay-color: rgba(255, 145, 249, 0.5);">
+    <div class="project-card has-image" style="background-image: url('cover-patterpolypap.webp'); --overlay-color: rgb(211, 14, 106);">
       <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
       <div class="project-card-content">
         <div>
           <h3>Collection de motifs</h3>
-          <p>Création d'une gamme de motifs sur le thème de la St-Valentin et de la fête des Mères. Impression puis vente aux fleuristes partenaires.</p>
+          <p>Création d'une gamme de motifs sur le thème de la St-Valentin et de la fête des Mères.</p>
           <div class="project-stats">
             <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2025</span></div>
             <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">Polypap</span></div>
@@ -314,8 +316,8 @@
       </div>
     </div>
 
-    <!-- calendars -->
-    <div class="project-card has-image" style="background-image: url('cover-calendar.webp'); --overlay-color: rgba(185, 255, 189, 0.5);">
+    <!-- Calendriers -->
+    <div class="project-card has-image" style="background-image: url('cover-calendar.webp'); --overlay-color: rgb(0, 172, 143);">
       <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
       <div class="project-card-content">
         <div>
@@ -332,7 +334,7 @@
     </div>
 
     <!-- Création de spécimen -->
-    <div class="project-card has-image" style="background-image: url('cover-specimen.webp'); --overlay-color: rgba(255, 255, 255, 0.5);">
+    <div class="project-card has-image" style="background-image: url('cover-specimen.webp'); --overlay-color: rgba(255, 255, 255, 0.2);">
       <div class="bookmark-wrap"><div class="bookmark-body">Sco</div></div>
       <div class="project-card-content">
         <div>
