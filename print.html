@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --orange: #E8501A;
+      --orange: #ff6600;
       --dark: #1a1a1a;
       --light: #f5f4f0;
       --white: #ffffff;
@@ -163,8 +163,8 @@
 
     /* ── BOOKMARK ── */
     .bookmark-wrap { position: absolute; top: 0; right: 2rem; z-index: 10; filter: url(#shadow-bookmark); }
-    .bookmark-body { background: #ff6600; color: transparent; width: 52px; height: 28px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% calc(100% - 12px), 0% 100%); transition: all 0.4s; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
-    .project-card:hover .bookmark-body { height: 60px; color: white; align-items: flex-end; padding-bottom: 18px; }
+    .bookmark-body { background: #ffffff; color: transparent; width: 52px; height: 28px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% calc(100% - 12px), 0% 100%); transition: all 0.4s; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+    .project-card:hover .bookmark-body { height: 60px; color: rgb(0, 0, 0); align-items: flex-end; padding-bottom: 18px; }
 
     footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #bbb; }
   
@@ -283,7 +283,7 @@
   <div class="toggle-section">
     <div class="toggle-track" id="toggleTrack">
       <button class="toggle-option" id="btnPrint" onclick="window.location.href='index.html'">Digital</button>
-      <button class="toggle-option active" id="btnPhysique" onclick="window.location.href='print.html'">Print</button>
+      <button class="toggle-option active" id="btnPhysique" onclick="window.location.href='print.html'">Impression</button>
       <div class="toggle-thumb" id="toggleThumb"></div>
     </div>
   </div>
