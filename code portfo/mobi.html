@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Troc en stock | Alexane</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── VARIABLES ── */
+    :root {
+      --orange: #ff6600;
+      --dark: #1a1a1a;
+      --light: #ffffff;
+      --rule: rgba(26,26,26,0.1);
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(245,244,240,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 100px;
+      padding: 5vh 6vw 4vh;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4vw;
+      align-items: end;
+    }
+
+    .hero-image {
+      height: clamp(8rem, 14vw, 13rem);
+      width: auto;
+      display: block;
+      align-self: end;
+    }
+
+    .hero-content { display: flex; flex-direction: column; gap: 1.6rem; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .hero-tag::before { content: ''; width: 18px; height: 1px; background: var(--orange); }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 0.92;
+    }
+
+    .hero-title em { font-style: italic; font-weight: 700; color: var(--orange); }
+
+    .hero-meta {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      padding-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding-right: 2.5rem;
+      border-right: 1px solid var(--rule);
+      margin-right: 2.5rem;
+    }
+
+    .meta-item:last-child { border-right: none; margin-right: 0; }
+
+    .meta-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #888; }
+    .meta-value { font-size: 0.9rem; font-weight: 500; }
+
+    /* ── INTRO ── */
+    .intro-section {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      padding: 5vh 6vw;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .intro-left { display: flex; flex-direction: column; gap: 1.2rem; }
+    .intro-role { font-size: 0.8rem; color: #000; line-height: 1.8; }
+    .intro-right { display: flex; flex-direction: column; gap: 2rem; }
+    .intro-body { font-size: clamp(1rem, 1.6vw, 1.25rem); line-height: 1.7; font-weight: 300; max-width: 900px; }
+
+    .visit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.8rem;
+      background: var(--dark);
+      color: var(--light);
+      text-decoration: none;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid var(--dark);
+      transition: all 0.3s ease;
+      align-self: flex-start;
+      margin-top: 1rem;
+    }
+
+    .visit-btn:hover { background: transparent; color: var(--dark); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+    /* ── SECTION SPLIT-SCROLL (VIDÉO + GALERIE) ── */
+    .split-scroll-section {
+      display: grid;
+      grid-template-columns: 1fr 2fr; /* 1 part vidéo, 2 parts galerie */
+    
+      background: var(--light);
+    }
+
+/* 1. On prépare la colonne pour qu'elle centre tout parfaitement */
+.split-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center; /* Centre verticalement */
+  justify-content: center; /* Centre horizontalement */
+  background: #ffffff; /* Fond noir pour "gommer" les bords si besoin */
+  overflow: hidden;
+  padding: 60px 20px; /* Sécurité pour ne pas toucher le menu ou le bas */
+}
+
+/* 2. On définit la zone de la vidéo (le téléphone virtuel) */
+.video-mockup-container {
+  width: 100%;
+  height: 100%;
+  max-width: 350px; /* Largeur max d'un smartphone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3. La vidéo elle-même */
+.proto-video {
+  width: 100%;
+  height: auto;
+  max-height: 80vh; /* Elle ne dépassera JAMAIS 80% de la hauteur de l'écran */
+  object-fit: contain; /* On voit toute la vidéo, sans rien couper */
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* Ombre pour donner du relief */
+}
+
+    .split-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sticky-wrapper {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .gallery-label {
+      position: absolute;
+      left: 1.5rem;
+      bottom: 2rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      z-index: 10;
+    }
+
+    .horizontal-gallery {
+      display: flex;
+      align-items: center;
+      gap: 3vw;
+      padding: 0 5vw;
+      will-change: transform;
+    }
+
+    .master-art { height: 75vh; width: auto; border-radius: 12px; }
+    .gallery-img { height: 60vh; width: auto; border-radius: 12px; }
+
+    /* ── CONTEXTE ── */
+    .context-section { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--rule); }
+    .context-block { padding: 5vh 3.5vw; border-right: 1px solid var(--rule); }
+    .context-block:last-child { border-right: none; }
+    .context-block h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.9rem; }
+    .context-block p { font-size: 1.1rem; line-height: 1.75; color: #555; }
+
+    /* ── CITATION & FOOTER ── */
+    .quote-section { padding: 8vh 6vw; border-bottom: 1px solid var(--rule); display: flex; justify-content: center; }
+    .quote { max-width: 700px; text-align: center; display: flex; flex-direction: column; gap: 1.3rem; }
+    .quote-text { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 2.4vw, 1.4rem); font-style: italic; line-height: 1.5; }
+    .quote-author { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: #4a4a4a; }
+
+    a.next-project { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 5vh 6vw; background: var(--dark); color: var(--light); text-decoration: none; transition: 0.35s; }
+    a.next-project:hover { background: var(--orange); }
+    .next-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1; }
+
+    footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #bbb; border-top: 1px solid var(--rule); }
+
+    /* ── REVEAL ANIM ── */
+    .reveal { opacity: 0; transform: translateY(20px); animation: revealUp 0.6s ease forwards; }
+    .reveal-1 { animation-delay: 0.05s; }
+    .reveal-2 { animation-delay: 0.18s; }
+    .reveal-3 { animation-delay: 0.32s; }
+    @keyframes revealUp { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      .hero, .intro-section, .context-section, .split-scroll-section { grid-template-columns: 1fr; }
+      .split-left { height: 60vh; position: relative; }
+      .hero-image { display: none; }
+    }
+  </style>
+
+<link rel="icon" type="image/png" href="logo.png">
+
+</head>
+<body>
+
+  <nav>
+    <div id="header-placeholder"></div>
+  </nav>
+
+  <header class="hero">
+    <img src="mobi-logo-vignette.webp" class="hero-image reveal reveal-1" alt="Logo Mobi">
+    <div class="hero-content">
+      <span class="hero-tag reveal reveal-1">UX/UI Service Design</span>
+      <h1 class="hero-title reveal reveal-2">Troc<br><em>en stock</em></h1>
+      <div class="hero-meta reveal reveal-3">
+        <div class="meta-item"><span class="meta-label">Année</span><span class="meta-value">2025</span></div>
+        <div class="meta-item"><span class="meta-label">Partenaire</span><span class="meta-value">CNP Assurance</span></div>
+        <div class="meta-item"><span class="meta-label">Outils</span><span class="meta-value">Figma · Illustrator</span></div>
+        <div class="meta-item"><span class="meta-label">Cadre</span><span class="meta-value">Académique · Groupe</span></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="intro-section">
+    <div class="intro-left">
+      <span class="intro-label">Contexte</span>
+      <p class="intro-role"><strong>Mon rôle : </strong><br> Testeuse d'UX, gestion du pitch et de la présentation, 
+        assistance au Figma, recherches, veilles et participation à la direction artistique.</p>
+    </div>
+    <div class="intro-right">
+      <p class="intro-body">
+    Nous avons collaboré avec CNP Assurances pour faciliter l'accès au logement des 18–30 ans, 
+    souvent freinés par le manque de garant ou l'instabilité de leurs revenus. 
+    Notre équipe a conçu une application de troc d'appartements et de meubles basée sur un système de points, 
+    permettant de déménager à moindre coût tout en assurant chaque échange via la CNP. 
+    Le projet a abouti à une direction artistique affirmée et une maquette interactive sur Figma, 
+    testée pour garantir une prise en main simple et efficace.
+      </p>
+      <a href="https://vimeo.com/..." class="visit-btn">Lancer l'expérience ↗</a>
+    </div>
+  </section>
+
+  <div class="split-scroll-section">
+    <div class="split-left">
+      <div class="video-mockup-container">
+        <video controls playsinline poster="mobi-logo.webp" class="proto-video">
+          <source src="mobi-video.mov" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <div class="split-right">
+      <div class="sticky-wrapper">
+        <span class="gallery-label">Galerie du projet</span>
+        <div id="gallery" class="horizontal-gallery">
+          <img src="gallerie-mobi.webp" class="master-art" alt="Mobi Screens">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="context-section">
+    <div class="context-block">
+      <h3>Problématique</h3>
+      <p>Comment sécuriser la mobilité résidentielle des jeunes sans les garanties financières classiques ?</p>
+    </div>
+    <div class="context-block">
+      <h3>Intérêt Assureur</h3>
+      <p>L'enjeu pour CNP Assurances est de sécuriser le parcours résidentiel des jeunes. En proposant un système de troc de meubles et d'appartements certifié, l'assureur se positionne comme un tiers de confiance qui réduit les risques de dégradation et facilite la mobilité sans barrière financière. <br> 
+        Elle permet aussi un cadre sécuritaire pour comprendre le principe des assurances, et ainsi faire un pont vers l'univers de CNP, qui peut être au premier abord intimidant.</p>
+    </div>
+    <div class="context-block">
+      <h3>Résultat</h3>
+      <p>Un concept complet, à l'univers affirmé, présenté devant les intervenants de CNP, illustré par une maquette Figma interactive et une animation dont le but serait la communication du projet. 
+        <br>
+        En revanche, les renseignements sur les assurances et le type de suivis proposés par la CNP n'ont pas été assez exploité dans l'application ; il aurait fallut garder la plus-value du partenaire en tête jusqu'à la fin du projet.
+        
+        <br><br><strong>Merci à Amanda, Elodie, Alice, Julie et Emma.</strong></p>
+    </div>
+  </section>
+
+  <a href="autre-projet.html" class="next-project">
+    <div><span class="next-label">Projet suivant</span><div class="next-title">Le Chemin</div></div>
+    <div class="next-arrow">→</div>
+  </a>
+
+  <footer><p>Alexane &mdash; <span id="year"></span></p></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<script>
+  // Année dynamique
+  const yearEl = document.getElementById('year');
+  if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Injection du Header
+  fetch('./includes/header.html')
+    .then(res => res.text())
+    .then(data => {
+      const placeholder = document.getElementById('header-placeholder');
+      if(placeholder) {
+        placeholder.innerHTML = data;
+        if (typeof initBurger === 'function') initBurger();
+      }
+    })
+    .catch(err => console.error('Erreur Header :', err));
+
+  // Animation Galerie GSAP
+  gsap.registerPlugin(ScrollTrigger);
+  
+  const gallery = document.getElementById('gallery');
+
+  // On vérifie que la galerie existe bien avant de lancer l'anim
+  if (gallery) {
+    gsap.to(gallery, {
+      x: () => -(gallery.scrollWidth - (window.innerWidth * 0.66)),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.split-scroll-section',
+        start: 'top top',
+        end: () => `+=${gallery.scrollWidth}`,
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

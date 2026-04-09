@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créations de calendriers| Alexane</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --orange: #ff6600;
+      --dark: #1a1a1a;
+      --light: #ffffff;
+      --white: #ffffff;
+      --rule: rgba(26,26,26,0.1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV identique à index ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(245,244,240,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .logo {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--dark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 1rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--orange); }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 100px;
+      padding: 5vh 6vw 4vh;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4vw;
+      align-items: end;
+    }
+
+    /* grand numéro en filigrane à gauche */
+    .hero-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(26,26,26,0.1);
+      line-height: 1;
+      user-select: none;
+      padding-bottom: 0.1em;
+    }
+
+    .hero-content { display: flex; flex-direction: column; gap: 1.6rem; }
+
+    /* tag catégorie — même style que les stat-label de index */
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    /* titre principal — même famille que les h3 de index */
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 0.92;
+    }
+
+    /* le mot en italique orange */
+    .hero-title em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    /* métadonnées — même style que les stat-row de index */
+    .hero-meta {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      padding-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding-right: 2.5rem;
+      border-right: 1px solid var(--rule);
+      margin-right: 2.5rem;
+    }
+
+    .meta-item:last-child { border-right: none; margin-right: 0; }
+
+    .meta-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    .meta-value {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* ── INTRO ── */
+    .intro-section {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      padding: 5vh 6vw;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .intro-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #888;
+      padding-top: 0.3rem;
+    }
+
+    .intro-body {
+      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 600px;
+    }
+
+    .intro-body strong { font-weight: 500; }
+
+    /* ── GALERIE HORIZONTALE GSAP ── */
+    .scroll-container { width: 100%; position: relative; }
+
+    .sticky-wrapper {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    /* label vertical identique au style éditorial */
+    .gallery-label {
+      position: absolute;
+      left: 2rem;
+      bottom: 2rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      z-index: 10;
+    }
+
+    .horizontal-gallery {
+      display: flex;
+      align-items: center;
+      gap: 2vw;
+      padding: 0 10vw 0 8vw;
+      height: 100%;
+      will-change: transform;
+    }
+
+    /* image principale légèrement inclinée */
+    .master-art {
+      height: 68vh;
+      width: auto;
+      display: block;
+      border-radius: 12px;
+      transform: rotate(-0.6deg);
+    }
+
+    .gallery-img {
+      height: 52vh;
+      width: auto;
+      display: block;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    .gallery-img:nth-child(even) {
+      transform: rotate(0.4deg);
+      height: 40vh;
+    }
+
+    /* ── CONTEXTE 3 COLONNES ── */
+    .context-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .context-block {
+      padding: 5vh 3.5vw;
+      border-right: 1px solid var(--rule);
+    }
+
+    .context-block:last-child { border-right: none; }
+
+    /* titre de bloc — cohérent avec la typo index */
+    .context-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+    }
+
+    .context-block p {
+      font-size: 0.87rem;
+      line-height: 1.75;
+      color: #555;
+    }
+
+    /* ── PROJET SUIVANT ── */
+    /* fond sombre avec passage à l'orange au hover — comme le bouton project-btn */
+    a.next-project {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 5vh 6vw;
+      background: var(--dark);
+      color: var(--light);
+      text-decoration: none;
+      transition: background 0.35s ease;
+    }
+
+    a.next-project:hover { background: var(--orange); }
+
+    .next-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(245,244,240,0.4);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .next-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .next-arrow {
+      font-size: 2.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    a.next-project:hover .next-arrow { transform: translateX(10px); }
+
+    /* ── FOOTER identique à index ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #bbb;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── ANIMATIONS ENTRÉE ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: revealUp 0.6s ease forwards;
+    }
+
+    .reveal-1 { animation-delay: 0.05s; }
+    .reveal-2 { animation-delay: 0.18s; }
+    .reveal-3 { animation-delay: 0.32s; }
+
+    @keyframes revealUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.4rem; }
+      .hero { grid-template-columns: 1fr; padding: 12vh 5vw 4vh; }
+      .hero-number { display: none; }
+      .hero-meta { gap: 1rem; }
+      .meta-item { border-right: none; margin-right: 0; padding-right: 0; }
+      .intro-section { grid-template-columns: 1fr; gap: 1.2rem; }
+      .context-section { grid-template-columns: 1fr; }
+      .context-block { border-right: none; border-bottom: 1px solid var(--rule); }
+      a.next-project { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body>
+
+  <!-- NAV identique à index -->
+<nav>
+  <div id="header-placeholder"></div>
+</nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-number reveal reveal-1">01</div>
+    <div class="hero-content">
+      <span class="hero-tag reveal reveal-1">Graphisme Web</span>
+      <h1 class="hero-title reveal reveal-2">Conception<br><em>de Calendriers</em></h1>
+      <div class="hero-meta reveal reveal-3">
+        <div class="meta-item">
+          <span class="meta-label">Année</span>
+          <span class="meta-value">2026</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Partenaire</span>
+          <span class="meta-value">Vivant Le Média</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Outils</span>
+          <span class="meta-value">Figma · Illustrator</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Cadre</span>
+          <span class="meta-value">Académique · Groupe</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <span class="intro-label">Contexte</span>
+    <p class="intro-body">
+      Refonte de la carte d'un média de proximité écologique, <strong>Le Vivant</strong> —
+      comment mettre en avant des données géolocalisées sans passer par une carte traditionnelle,
+      tout en restant lisible et engageant pour un lectorat non-spécialiste.
+    </p>
+  </section>
+
+  <!-- GALERIE GSAP -->
+  <div class="scroll-container">
+    <div class="sticky-wrapper">
+      <span class="gallery-label">Galerie du projet</span>
+      <div id="gallery" class="horizontal-gallery">
+        <img src="gallerie-le-chemin.webp" class="master-art" alt="Galerie Le Chemin">
+        <!-- ajoute d'autres images ici -->
+        <!-- <img src="detail-1.webp" class="gallery-img" alt="Détail 1"> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEXTE -->
+  <section class="context-section">
+    <div class="context-block">
+      <h3>Problématique</h3>
+      <p>Un média local écologique avec des données riches et géolocalisées, mais une carte classique trop froide pour son lectorat. Comment rendre ces données désirables ?</p>
+    </div>
+    <div class="context-block">
+      <h3>Démarche</h3>
+      <p>Partir des trajets réels pour construire une narration visuelle. L'itinéraire devient un fil conducteur qui guide la lecture sans imposer une logique cartographique.</p>
+    </div>
+    <div class="context-block">
+      <h3>Résultat</h3>
+      <p>Une infographie éditoriale en double page, pensée pour la lecture lente, qui traduit des données complexes en expérience de promenade visuelle.</p>
+    </div>
+  </section>
+
+  <!-- PROJET SUIVANT -->
+  <a href="autre-projet.html" class="next-project">
+    <div>
+      <span class="next-label">Projet suivant</span>
+      <div class="next-title">Nom du<br>projet suivant</div>
+    </div>
+    <div class="next-arrow">→</div>
+  </a>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Alexane &mdash; <span id="year"></span></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="./main.js"></script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    fetch('./includes/header.html')
+    .then(res => res.text())
+    .then(data => { 
+      document.getElementById('header-placeholder').innerHTML = data; 
+      initBurger();
+    })
+    .catch(err => console.error("Erreur Header:", err));
+
+    gsap.registerPlugin(ScrollTrigger);
+    const gallery = document.getElementById("gallery");
+
+    gsap.to(gallery, {
+      x: () => -(gallery.scrollWidth - window.innerWidth + window.innerWidth * 0.2),
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".scroll-container",
+        start: "top top",
+        end: () => `+=${gallery.scrollWidth}`,
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+  </script>
+
+
+
+</body>
+</html>
