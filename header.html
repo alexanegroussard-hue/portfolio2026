@@ -1,0 +1,124 @@
+<link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  /* --- CONFIGURATION PC --- */
+  nav {
+    height: 120px;
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 0 4vw;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #f0f0f0;
+    font-family: 'Averia Serif Libre', serif;
+  }
+
+  .logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #000; }
+  .logo-img { height: 60px !important; width: auto !important; }
+  .brand-name { font-weight: 900; font-size: 2.5rem; }
+
+  .nav-right-group { display: flex; align-items: center; gap: 30px; margin-left: auto; }
+  .social-links-header { display: flex; gap: 15px; align-items: center; }
+  .social-links-header a { color: #000; display: flex; }
+
+  .nav-links { display: flex; gap: 30px; }
+  .nav-links a { text-decoration: none; color: #000; font-size: 2rem; font-weight: 600; }
+
+  .burger { display: none; }
+  .mobile-menu { display: none; } /* Caché par défaut sur PC */
+
+  /* --- CONFIGURATION MOBILE --- */
+  @media (max-width: 768px) {
+    nav { height: 70px; padding: 0 5vw; }
+    .brand-name { font-size: 1.5rem; }
+    .logo-img { height: 40px !important; }
+
+    .nav-links { display: none !important; }
+
+    .burger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 24px;
+      height: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 0;
+    }
+
+    .burger span { display: block; height: 2px; width: 100%; background: #000; transition: 0.3s; }
+
+    .mobile-menu {
+      position: fixed;
+      top: 70px; left: 0; right: 0; bottom: 0;
+      background: white;
+      flex-direction: column;
+      padding: 2rem 5vw;
+      gap: 1.5rem;
+      z-index: 1000;
+      display: none; /* Reste caché tant qu'on n'a pas .open */
+    }
+
+    .mobile-menu.open { display: flex !important; }
+    .mobile-menu a { text-decoration: none; color: #000; font-size: 1.5rem; font-weight: 600; }
+
+    /* Animation Croix */
+    .burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  }
+</style>
+
+<nav>
+  <a href="index.html" class="logo-group">
+    <img src="./logo.png" class="logo-img" alt="Logo">
+    <span class="brand-name">alexane</span>
+  </a>
+
+  <div class="nav-right-group">
+    <div class="social-links-header">
+      <a href="#" target="_blank"><img src="./instagram.svg" width="22" height="22" alt="Instagram"></a>
+      <a href="#" target="_blank"><img src="./linkedin.svg" width="22" height="22" alt="LinkedIn"></a>
+    </div>
+
+    <div class="nav-links">
+      <a href="profil.html">Prezentation</a>
+      <a href="contact.html">Allo ?</a>
+    </div>
+
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="profil.html">Prezentation</a>
+  <a href="contact.html">Allo ?</a>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="profil.html">Prezentation</a>
+  <a href="contact.html">Allo ?</a>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (burger && mobileMenu) {
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        
+        // Bonus : empêche le scroll du site derrière quand le menu est ouvert
+        document.body.style.overflow = burger.classList.contains('open') ? 'hidden' : 'auto';
+      });
+    }
+  });
+</script>
