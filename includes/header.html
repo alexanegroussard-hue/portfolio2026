@@ -1,13 +1,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-  /* --- 1. CONFIGURATION PC (Par défaut) --- */
   nav {
     height: 120px;
     background: white;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 4vw;
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -16,65 +14,52 @@
     font-family: 'Averia Serif Libre', serif;
   }
 
-  .logo-group {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    color: #000;
-  }
+  .logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #000; }
+  .logo-img { height: 60px !important; width: auto !important; }
+  .brand-name { font-weight: 900; font-size: 2.5rem; }
 
-  .logo-img {
-    height: 60px !important;
-    width: auto !important;
-  }
+  .nav-right-group { display: flex; align-items: center; gap: 30px; margin-left: auto; }
+  .social-links-header { display: flex; gap: 15px; align-items: center; }
+  .social-links-header a { color: #000; display: flex; }
 
-  .brand-name {
-    font-weight: 900;
-    font-size: 2.5rem;
-  }
+  .nav-links { display: flex; gap: 30px; }
+  .nav-links a { text-decoration: none; color: #000; font-size: 2rem; font-weight: 600; }
 
-  .nav-right {
-    display: flex; /* Visible sur PC */
-    align-items: center;
-    gap: 35px;
-  }
+  .burger { display: none; }
 
-  .nav-links {
-    display: flex;
-    gap: 30px;
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 70px; 
+    left: 0; 
+    right: 0;
+    height: auto;
+    background: white;
+    flex-direction: column;
+    padding: 2rem 5vw;
+    gap: 1.5rem;
+    z-index: 1000;
   }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { text-decoration: none; color: #000; font-size: 1.5rem; font-weight: 600; }
 
-  .nav-links a {
-    text-decoration: none;
-    color: #000;
-    font-size: 2rem;
-    font-weight: 600;
-  }
-
-  .burger {
-    display: none; /* CACHÉ SUR PC */
-  }
-
-  /* --- 2. CONFIGURATION MOBILE (Uniquement sous 768px) --- */
   @media (max-width: 768px) {
-    nav {
-      height: 70px;
-      padding: 0 5vw;
-    }
-
+    nav { height: 70px; padding: 0 5vw; }
     .brand-name { font-size: 1.5rem; }
     .logo-img { height: 40px !important; }
+    .nav-links { display: none !important; }
 
     .burger {
-      display: flex; /* APPARAÎT SUR MOBILE */
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
       width: 24px;
-      height: 16px;
+      height: 18px;
       background: none;
       border: none;
       cursor: pointer;
+      z-index: 1001;
+      padding: 0;
     }
 
     .burger span {
@@ -82,56 +67,61 @@
       height: 2px;
       width: 100%;
       background: #000;
-      transition: 0.3s;
+      transition: transform 0.3s, opacity 0.3s;
+      /* ✅ transform-origin centré pour que la croix s'anime correctement */
+      transform-origin: center;
     }
 
-    .nav-right {
-      display: none; /* CACHÉ SUR MOBILE PAR DÉFAUT */
-      position: absolute;
-      top: 70px; left: 0; right: 0;
-      background: white;
-      flex-direction: column;
-      padding: 1.5rem 5vw;
-      border-bottom: 1px solid #f0f0f0;
-      align-items: flex-start !important;
-    }
-
-    .nav-right.open {
-      display: flex !important; /* S'AFFICHE QUAND ON CLIQUE */
-    }
-
-    .nav-links {
-      flex-direction: column;
-      gap: 1.2rem;
-      align-items: flex-start; 
-    width: 100%;
-    }
-
-    .nav-links a { font-size: 1.2rem; }
-
-    /* Animation de la croix */
-    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .burger.open span:nth-child(2) { opacity: 0; }
-    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
   }
 </style>
 
 <nav>
   <a href="index.html" class="logo-group">
-    <img src="./logo.png" class="logo-img">
+    <img src="./logo.png" class="logo-img" alt="Logo">
     <span class="brand-name">alexane</span>
   </a>
 
-  <button class="burger" id="burger" aria-label="Menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-
-  <div class="nav-right" id="nav-right">
-    <div class="nav-links">
-      <a href="profil.html">profil</a>
-      <a href="contact.html">contact</a>
+  <div class="nav-right-group">
+    <div class="social-links-header">
+      <a href="#" target="_blank"><img src="./instagram.svg" width="22" height="22" alt="Instagram"></a>
+      <a href="#" target="_blank"><img src="./linkedin.svg" width="22" height="22" alt="LinkedIn"></a>
     </div>
+
+    <div class="nav-links">
+      <a href="profil.html">Prezentation</a>
+      <a href="contact.html">Allo ?</a>
+    </div>
+
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- ✅ Un seul mobile-menu, sans le duplicate -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="profil.html">Prezentation</a>
+  <a href="contact.html">Allo ?</a>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (burger && mobileMenu) {
+      // ✅ Gère à la fois les clics souris et les taps tactiles
+      ['click', 'touchstart'].forEach(eventType => {
+        burger.addEventListener(eventType, (e) => {
+          e.preventDefault(); // Évite le double-déclenchement click + touchstart
+          burger.classList.toggle('open');
+          mobileMenu.classList.toggle('open');
+          document.body.style.overflow = burger.classList.contains('open') ? 'hidden' : 'auto';
+        });
+      });
+    }
+  });
+</script>
