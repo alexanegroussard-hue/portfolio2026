@@ -428,47 +428,84 @@
        RESPONSIVE
     ════════════════════════════════ */
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.4rem; }
+  nav { padding: 1rem 1.4rem; }
 
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 12vh 5vw 4vh;
-      }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 12vh 5vw 4vh;
+  }
 
-      .hero-image { display: none; }
+  .hero-image { display: none; }
 
-      .hero-meta { gap: 1rem; }
+  .hero-meta { gap: 1rem; }
 
-      .meta-item {
-        border-right: none;
-        margin-right: 0;
-        padding-right: 0;
-      }
+  .meta-item {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
 
-      .intro-section { grid-template-columns: 1fr; gap: 1.2rem; }
+  .intro-section {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
 
-      .sticky-wrapper {
-        flex-direction: column;
-        height: auto;
-      }
+  /* ── Galerie mobile : plus de pin, scroll vertical simple ── */
+  .scroll-container {
+    overflow: visible;
+  }
 
-      .project-legend {
-        width: 100%;
-        min-width: unset;
-        border-right: none;
-        border-bottom: 1px solid var(--rule);
-        padding: 2rem;
-      }
+  .sticky-wrapper {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
 
-      .gallery-track img {
-        height: 40vh;
-      }
+  .project-legend {
+    position: relative; /* plus de absolute */
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    padding: 2rem 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
 
-      a.next-project {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-    }
+  .legend-block {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .gallery-clip {
+    position: relative; /* plus de absolute */
+    left: 0;
+    width: 100%;
+    height: auto;
+    overflow-x: auto; /* scroll horizontal natif sur mobile */
+    -webkit-overflow-scrolling: touch;
+    padding: 2rem 5vw;
+  }
+
+  .gallery-track {
+    width: max-content;
+    height: auto;
+    padding: 0;
+  }
+
+  .gallery-track img {
+    height: 55vw;
+    border-radius: 8px;
+  }
+
+  .gallery-label { display: none; }
+
+  a.next-project {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
 
   </style>
 
