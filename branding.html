@@ -489,13 +489,14 @@
   }
 
   .gallery-track {
-    width: max-content;
+    width: 100%;
     height: auto;
     padding: 0;
   }
 
   .gallery-track img {
-    height: 55vw;
+    height: 75vw;
+    width: auto;
     border-radius: 8px;
   }
 
@@ -703,92 +704,68 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="./main.js"></script>
 
-  <script>
-
+<script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
     fetch('./includes/header.html')
       .then(res => res.text())
       .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        initBurger();
-      })
-      .catch(err => console.error('Erreur Header :', err));
-
-
-    /* ════════════════════════════════
-       GALERIES HORIZONTALES
-    ════════════════════════════════ */
-    gsap.registerPlugin(ScrollTrigger);
-
-    document.querySelectorAll('.scroll-container').forEach((container) => {
-
-      /*
-        On cible le .gallery-track à l'intérieur de CE container.
-        Chaque container a son propre track — pas de confusion entre les trois.
-      */
-      const track = container.querySelector('.gallery-track');
-      const legend = container.querySelector('.project-legend');
-
-      /*
-        scrollAmount = largeur totale de l'image
-                     - (largeur de l'écran - largeur de la légende)
-        C'est la distance exacte que l'image doit parcourir pour
-        que son bord droit arrive au bord droit de l'écran.
-      */
-      const getScrollAmount = () => {
-        // La légende fait 30vw — on soustrait sa largeur de la zone visible
-        const legendWidth = container.querySelector('.project-legend').offsetWidth;
-        return Math.max(track.scrollWidth - (window.innerWidth - legendWidth) + 80, 0);
-      };
-
-      gsap.to(track, {
-        x: () => -getScrollAmount(),
-        /*
-          ease:"none" = vitesse constante, pas d'accélération.
-          C'est obligatoire pour un scroll horizontal lié au scroll
-          vertical — sinon la vitesse de défilement perçue est erratique.
-        */
-        ease: "none",
-
-        scrollTrigger: {
-          trigger: container,
-          /*
-            start:"top top" = le pin se déclenche quand le haut
-            du container touche le haut de l'écran.
-          */
-          start: "top top",
-          /*
-            end est calculé dynamiquement avec une fonction.
-            "+=" signifie "ajoute X pixels de scroll supplémentaires
-            avant de débrouiller le pin".
-            On utilise getScrollAmount() pour que la durée du scroll
-            soit exactement proportionnelle à la largeur de l'image.
-          */
-          end: () => "+=" + getScrollAmount(),
-          /*
-            pin:true = épingle le container (il ne défile plus)
-            pendant toute la durée de l'animation.
-          */
-          pin: true,
-          /*
-            scrub:1 = lie l'animation au scroll avec un léger
-            lissage d'1 seconde. Sans scrub, l'animation joue
-            en entier d'un coup. Avec scrub:0 c'est collé au scroll
-            mais saccadé. 1 est le bon équilibre.
-          */
-          scrub: 1,
-          /*
-            invalidateOnRefresh:true = recalcule toutes les
-            dimensions si la fenêtre est redimensionnée.
-          */
-          invalidateOnRefresh: true,
+        const placeholder = document.getElementById('header-placeholder');
+        if (placeholder) {
+          placeholder.innerHTML = data;
+          if (typeof initBurger === 'function') initBurger();
         }
+        // Force GSAP à recalculer une fois le header injecté
+        ScrollTrigger.refresh();
       });
 
-    });
+    gsap.registerPlugin(ScrollTrigger);
+    const galleries = document.querySelectorAll('.scroll-container');
 
-  </script>
+    galleries.forEach((container) => {
+      const track = container.querySelector('.gallery-track');
+      const clip = container.querySelector('.gallery-clip');
+      
+      let mm = gsap.matchMedia();
+
+      // ── VERSION ORDINATEUR (Vitesse normale 1:1) ──
+      mm.add("(min-width: 769px)", () => {
+        const getScrollAmount = () => -(track.scrollWidth - clip.offsetWidth);
+
+        gsap.to(track, {
+          x: getScrollAmount,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top top',
+            end: () => `+=${track.scrollWidth - clip.offsetWidth}`,
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          }
+        });
+      });
+
+      // ── VERSION MOBILE (Vitesse accélérée pour éviter de trop mouliner) ──
+      mm.add("(max-width: 768px)", () => {
+        const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+        const duration = (track.scrollWidth - window.innerWidth) * 0.6; // On réduit la durée de 40%
+
+        gsap.to(track, {
+          x: getScrollAmount,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: clip, // On trigger sur l'image pour que le texte soit passé
+            start: 'top top',
+            end: () => `+=${duration}`, // Le scroll vertical est plus court
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+          }
+        });
+      });
+    });
+</script>
 
 </body>
 </html>
