@@ -102,7 +102,7 @@
       inset: 0; 
       border-radius: 20px; 
       z-index: 1; 
-      background: linear-gradient(to right, var(--overlay-color, rgba(255, 241, 197, 0.9)) 0%, transparent 100%); }
+      background: linear-gradient(to bottom, var(--overlay-color, rgba(255, 241, 197, 0.9)) 0%, transparent 100%); }
    
     .project-card-content { 
       position: relative; 
@@ -120,10 +120,11 @@
     font-size: 2rem; 
     margin-bottom: 0.8rem; 
     white-space: nowrap;
+    color: #ffffff
     
   }
 
-    .project-card-content p { font-size: 0.88rem; color: #555; line-height: 1.65; margin-bottom: 2rem; }
+    .project-card-content p { font-size: 0.88rem; color: #353535; line-height: 1.65; margin-bottom: 2rem; }
     .stat-row { 
       display: flex; 
       align-items: center; 
@@ -183,9 +184,23 @@
         padding: 2rem 1.2rem 4rem;
       }
 
-      .section-title {
-        font-size: 1.8rem;
-      }
+.section-title {
+    /* On permet au titre de revenir sur deux lignes si besoin pour ne pas pousser les flèches dehors */
+    white-space: normal !important; 
+    /* On ajoute de l'espace sur les côtés pour que les flèches ne touchent pas le bord de l'écran */
+    padding: 0 15px;
+    /* On réduit un peu l'écart entre les flèches et le texte pour gagner de la place */
+    gap: 0.7rem !important; 
+    font-size: 1.6rem; /* Optionnel : réduit légèrement la taille du texte pour aider */
+}
+
+.arrow-deco {
+    /* On réduit la taille des flèches en mobile pour qu'elles respirent */
+    height: 60px !important; 
+    width: auto;
+    /* On s'assure qu'elles ne rétrécissent pas */
+    flex-shrink: 0;
+}
 
       /* Colonne unique */
       .projects-grid {
@@ -200,7 +215,7 @@
       /* Overlay clair de gauche à droite, comme le desktop */
 .project-card.has-image::before {
     /* Le dégradé part de TA couleur et devient transparent à droite */
-    background: linear-gradient(to top, 
+    background: linear-gradient(to bottom, 
       var(--overlay-color) 00%, 
       var(--overlay-color) 40%, 
       transparent 100%) !important;
@@ -225,12 +240,12 @@
         font-size: 1.5rem;
         white-space: normal;
         margin-bottom: 15px;
-        color: var(--dark) !important;
+        color: var(--white) !important;
       }
 
       .project-card-content p {
         max-width: 60% !important;
-        color: #555 !important;
+        color: #000000 !important;
       }
 
       .stat-label {
@@ -259,10 +274,17 @@
 
       /* Bouton orange standard */
 .project-card.has-image .project-btn {
-  background: #ff6600 !important; /* On force le style transparent/blur */
-  border: 1px solid rgba(255, 255, 255, 0.28) !important;
-  backdrop-filter: blur(4px) !important;
-  color: #ffffff !important;
+    display: inline-flex;
+    width: fit-content !important; /* Force la largeur courte */
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: 0.3s ease;
+    background: rgba(255, 255, 255, 0.3) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: blur(8px);
+    color: #000 !important;
   }
   }
 
@@ -295,29 +317,12 @@ Projets sélectionnés
   </div>
   <p class="section-subtitle">édition · identité visuelle · typographie</p>
 
-    <!-- COLLECTION DE MOTIFS-->
-<section class="projects-section">
+  <section class="projects-section">
   <div class="projects-grid">
-
-    <!-- Collection de motifs -->
-    <div class="project-card has-image" style="background-image: url('cover-patterpolypap.webp'); --overlay-color: rgb(211, 14, 106);">
-      <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
-      <div class="project-card-content">
-        <div>
-          <h3>Collection de motifs</h3>
-          <p>Création d'une gamme de motifs sur le thème de la St-Valentin et de la fête des Mères.</p>
-          <div class="project-stats">
-            <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2025</span></div>
-            <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">Polypap</span></div>
-            <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator · InDesign</span></div>
-          </div>
-        </div>
-        <a href="patterns.html" class="project-btn">→ Voir le projet</a>
-      </div>
-    </div>
+    <!-- COLLECTION DE MOTIFS-->
 
     <!-- Calendriers -->
-    <div class="project-card has-image" style="background-image: url('cover-calendar.webp'); --overlay-color: rgb(0, 172, 143);">
+    <div class="project-card has-image" style="background-image: url('cover-calendar.webp'); --overlay-color: rgba(0, 174, 255, 0.7);">
       <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
       <div class="project-card-content">
         <div>
@@ -333,8 +338,44 @@ Projets sélectionnés
       </div>
     </div>
 
+
+
+    <!-- Collection de motifs -->
+    <div class="project-card has-image" style="background-image: url('cover-patterpolypap.webp'); --overlay-color: rgba(255, 0, 255, 0.671);">
+      <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
+      <div class="project-card-content">
+        <div>
+          <h3>Collection de motifs</h3>
+          <p>Création d'une gamme de motifs sur le thème de la St-Valentin et de la fête des Mères.</p>
+          <div class="project-stats">
+            <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2025</span></div>
+            <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">Polypap</span></div>
+            <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator · InDesign</span></div>
+          </div>
+        </div>
+        <a href="patterns.html" class="project-btn">→ Voir le projet</a>
+      </div>
+    </div>
+
     <!-- Création de spécimen -->
-    <div class="project-card has-image" style="background-image: url('cover-specimen.webp'); --overlay-color: rgba(255, 255, 255, 0.2);">
+    <div class="project-card has-image" style="background-image: url('cover-specimen.webp'); --overlay-color: rgb(255, 217, 0);">
+      <div class="bookmark-wrap"><div class="bookmark-body">Sco</div></div>
+      <div class="project-card-content">
+        <div>
+          <h3>Compagnon de route</h3>
+          <p>Création et mise en page d'un spécimen (livret présentant une typographie), sur la police Compagnon.</p>
+          <div class="project-stats">
+            <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2024</span></div>
+            <div class="stat-row"><span class="stat-label">Format</span><span class="stat-value">Edition</span></div>
+            <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">InDesign</span></div>
+          </div>
+        </div>
+        <a href="specimen.html" class="project-btn">→ Voir le projet</a>
+      </div>
+    </div>
+
+    <!-- Création de spécimen -->
+    <div class="project-card has-image" style="background-image: url('cover-specimen.webp'); --overlay-color: rgba(0, 0, 0, 0.7);">
       <div class="bookmark-wrap"><div class="bookmark-body">Sco</div></div>
       <div class="project-card-content">
         <div>
