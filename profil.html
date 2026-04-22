@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  
+  <link rel="icon" type="image/png" href="logo.png">
 
   <style>
 
@@ -118,6 +118,17 @@
       border-color: var(--dark);
     }
 
+    .profile-link.social {
+  background: var(--orange);
+  color: var(--light);
+  border-color: var(--orange);
+}
+
+.profile-link.social:hover {
+  background: var(--dark);
+  border-color: var(--dark);
+}
+
     /* icône texte dans le bouton */
     .link-icon {
       font-size: 1rem;
@@ -152,7 +163,7 @@
   flex-direction: row; /* Ça les met côte à côte */
   gap: 10px;           /* L'espace entre les deux */
   margin-top: 15px;
-  color: var(--orange)
+  color: var(--dark)
 }
 
     .profile-link.cv:hover {
@@ -329,7 +340,6 @@
     }
 
   </style>
-<link rel="icon" type="image/png" href="assets/images/logo.png">
 </head>
 <body>
 
@@ -356,12 +366,12 @@
         <div class="links-divider"></div>
 
         <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/alexane-groussard-a2aa34236" target="_blank" rel="noopener" class="profile-link">
+        <a href="https://www.linkedin.com/in/alexane-groussard-a2aa34236" target="_blank" rel="noopener" class="profile-link social">
           <span class="link-icon">in</span> LinkedIn
         </a>
 
         <!-- Instagram -->
-        <a href="https://www.instagram.com/made.throughh/" target="_blank" rel="noopener" class="profile-link">
+        <a href="https://www.instagram.com/made.throughh/" target="_blank" rel="noopener" class="profile-link social">
           <span class="link-icon">@</span> Instagram
         </a>
 
