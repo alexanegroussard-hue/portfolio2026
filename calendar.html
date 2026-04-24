@@ -163,24 +163,36 @@
     .intro-section {
       display: grid;
       grid-template-columns: 1fr 2fr;
-      gap: 4rem;
+      gap: 3rem;
       padding: 5vh 6vw;
       border-bottom: 1px solid var(--rule);
     }
 
-    .intro-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #888;
-      padding-top: 0.3rem;
+.intro-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-top: 0.3rem;
+}
+
+.intro-role {
+  font-size: 0.8rem;
+  color: #000000;
+  line-height: 1.8;
+}
+
+    /* colonne droite : texte + bouton */
+    .intro-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
 
     .intro-body {
       font-size: clamp(1rem, 1.6vw, 1.25rem);
       line-height: 1.7;
       font-weight: 300;
-      max-width: 600px;
+      max-width: 900px;
     }
 
     .intro-body strong { font-weight: 500; }
@@ -377,16 +389,16 @@
           <span class="meta-value">2026</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Partenaire</span>
-          <span class="meta-value">Vivant Le Média</span>
+          <span class="meta-label">Entreprise</span>
+          <span class="meta-value">Polypap</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Outils</span>
-          <span class="meta-value">Figma · Illustrator</span>
+          <span class="meta-value">Indesign · Photoshop</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Cadre</span>
-          <span class="meta-value">Académique · Groupe</span>
+          <span class="meta-value">Professionnel · Solo </span>
         </div>
       </div>
     </div>
@@ -394,12 +406,20 @@
 
   <!-- INTRO -->
   <section class="intro-section">
+    <div class="intro-left">
     <span class="intro-label">Contexte</span>
+    <p class="intro-role">
+      <strong>Mon rôle : </strong><br> Cheffe de projet de la partie EDNA de l'équipe, mise en cohérence, gestion centralisée des ressources.
+    </p>
+  </div>
+
+  <div class="intro-right">
     <p class="intro-body">
       Création d'une collection de calendriers, pour <strong>Polypap</strong> qui les proposera par la suite à des fleuristes.
       Il y a environ une cinquantaine de calendriers créés sur une échelle de 3 mois à temps plein, puis une pré-sélection et une sélection finale.
       L'univers des fleuristes est très codifé, floral et traditionnel, mais il faut savoir rester créatif et original ; vous retrouverez en-dessous un échantillon des essais de 2027, ainsi que l'un des calendriers retenus en 2026.
     </p>
+  </div>
   </section>
 
   <!-- GALERIE GSAP -->
@@ -428,12 +448,12 @@
       <p>Un média local écologique avec des données riches et géolocalisées, mais une carte classique trop froide pour son lectorat. Comment rendre ces données désirables ?</p>
     </div>
     <div class="context-block">
-      <h3>Démarche</h3>
-      <p>Partir des trajets réels pour construire une narration visuelle. L'itinéraire devient un fil conducteur qui guide la lecture sans imposer une logique cartographique.</p>
+      <h3>Processus</h3>
+      <p>Mise en place d'un gabarit avec les dates, les fêtes et les vacances mises à jour ; inspiration puis conception. Finalement, à la place du logo Polypap est mis celui du fleuriste, et c'est imprimé puis envoyé au destinataire.</p>
     </div>
     <div class="context-block">
       <h3>Résultat</h3>
-      <p>Une infographie éditoriale en double page, pensée pour la lecture lente, qui traduit des données complexes en expérience de promenade visuelle.</p>
+      <p>1 modèle sélectionné sur 50 pour une commercialisation en série (250 exemplaires/lot, 240€) — contribution à une gamme de 10 modèles ayant généré 45 000€ de chiffre d'affaires en 2025 (180 lots vendus). Les modèles présentés ci-dessus sont des créations 2027, dans la continuité de ce travail.</p>
     </div>
   </section>
 
