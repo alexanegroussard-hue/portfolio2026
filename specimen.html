@@ -109,14 +109,12 @@
       font-size: 0.65rem; letter-spacing: 0.2em;
       text-transform: uppercase; color: #888; align-self: flex-start;
     }
-
     .book-wrapper {
       position: relative;
       width: min(820px, 90vw);
       display: flex; flex-direction: column;
       align-items: center; gap: 1.8rem;
     }
-
     .book {
       width: 100%;
       display: grid;
@@ -126,8 +124,6 @@
       overflow: hidden;
       position: relative;
     }
-
-    /* reliure centrale */
     .book::after {
       content: '';
       position: absolute;
@@ -142,7 +138,6 @@
       pointer-events: none;
       z-index: 2;
     }
-
     .page {
       aspect-ratio: 3/4;
       position: relative;
@@ -152,111 +147,6 @@
     .page-left  { background: #e8e4de; }
     .page-right { background: #fff; }
 
-    /* ── Contenus des spreads ── */
-    .p-inner {
-      width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      padding: 8%;
-    }
-
-    .p-label {
-      font-size: 0.55rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: #aaa; margin-bottom: 0.8rem;
-    }
-
-    .p-img {
-      flex: 1;
-      background: #d8d3cc;
-      border-radius: 4px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 0.4rem; color: #999;
-      font-size: 0.58rem; letter-spacing: 0.08em;
-      text-transform: uppercase; text-align: center;
-    }
-    .p-img svg { opacity: 0.4; }
-
-    .p-caption {
-      font-size: 0.58rem; color: #999;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      margin-top: 0.6rem; line-height: 1.5;
-    }
-
-    /* couverture damier */
-    .cover-wrap {
-      width: 100%; height: 100%;
-      background: var(--dark);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 0.8rem; padding: 10%;
-    }
-    .c-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 3px; width: 100%; margin-bottom: 1rem;
-    }
-    .c-cell {
-      aspect-ratio: 1;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(1rem, 2.8vw, 1.8rem);
-    }
-    .c-cell.d { background: #1a1a1a; color: #fff; }
-    .c-cell.l { background: #f0ede8; color: #1a1a1a; }
-    .c-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(0.6rem, 1.6vw, 1rem);
-      font-weight: 900; letter-spacing: 0.22em;
-      text-transform: uppercase; color: #fff; text-align: center;
-    }
-    .c-sub {
-      font-size: clamp(0.45rem, 0.8vw, 0.6rem);
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: rgba(255,255,255,0.35); text-align: center;
-    }
-
-    /* page dos de couverture */
-    .backcover-wrap {
-      width: 100%; height: 100%;
-      background: #f0ede8;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 0.8rem; padding: 12%;
-    }
-    .backcover-wrap .c-title { color: #1a1a1a; }
-
-    /* page rouge */
-    .red-wrap {
-      width: 100%; height: 100%;
-      background: #e8392a;
-      display: flex; flex-direction: column;
-      padding: 8%; gap: 0.8rem;
-    }
-    .red-wrap .p-label { color: rgba(255,255,255,0.45); }
-    .red-wrap .p-img { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.55); }
-    .red-wrap .p-caption { color: rgba(255,255,255,0.4); }
-
-    /* page texte specimen */
-    .spec-wrap {
-      width: 100%; height: 100%;
-      padding: 8%; padding-top: 10%;
-      display: flex; flex-direction: column; gap: 0.3rem;
-      background: #fff;
-    }
-    .spec-wrap .p-label { margin-bottom: 0.6rem; }
-    .spec-row {
-      font-family: 'Playfair Display', serif;
-      color: #2a2a2a; line-height: 1.35;
-    }
-    .spec-divider { height: 1px; background: var(--rule); margin: 0.5rem 0; }
-    .spec-body {
-      font-size: clamp(0.58rem, 0.9vw, 0.72rem);
-      line-height: 1.85; color: #555; font-weight: 300;
-      margin-top: 0.4rem;
-    }
-    .spec-body em { font-style: italic; }
-
-    /* Navigation */
     .flipbook-nav {
       display: flex; align-items: center; gap: 1.5rem;
     }
@@ -415,20 +305,30 @@
 </section>
 
 
-<!-- ── FLIPBOOK ── -->
+<!-- ── FLIPBOOK PDF ── -->
 <section class="flipbook-section">
   <p class="section-label">Feuilleter le spécimen</p>
 
   <div class="book-wrapper">
-    <div class="book" id="book">
-      <div class="page page-left"  id="pageLeft"></div>
-      <div class="page page-right" id="pageRight"></div>
+
+    <div id="flipLoading" style="
+      width: min(820px, 90vw);
+      aspect-ratio: 3/2;
+      display: flex; align-items: center; justify-content: center;
+      background: #f0ede8; border-radius: 4px;
+      font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #aaa;
+    ">Chargement du spécimen…</div>
+
+    <div class="book" id="book" style="display:none;">
+      <div class="page page-left"  id="pageLeft"  style="background:#fff;"></div>
+      <div class="page page-right" id="pageRight" style="background:#fff;"></div>
     </div>
 
     <div class="flipbook-nav">
-      <button class="flip-btn" id="btnPrev" onclick="flipPage(-1)" disabled>←</button>
-      <span class="flip-counter" id="flipCounter">Couverture</span>
-      <button class="flip-btn" id="btnNext" onclick="flipPage(1)">→</button>
+      <button class="flip-btn" id="btnPrev" disabled>←</button>
+      <span class="flip-counter" id="flipCounter">—</span>
+      <button class="flip-btn" id="btnNext" disabled>→</button>
     </div>
     <span class="flip-hint">Flèches · clavier · swipe</span>
   </div>
@@ -490,176 +390,116 @@
     .catch(() => {});
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-// ─────────────────────────────────────────────
-//  FLIPBOOK ENGINE
-// ─────────────────────────────────────────────
-const PH_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>`;
+(function () {
+  // ── À MODIFIER ──────────────────────────────────────────
+  const PDF_URL = 'assets/pdf/specimen-compagnon.pdf';
+  // ────────────────────────────────────────────────────────
 
-// Chaque spread = [HTML page gauche, HTML page droite]
-const spreads = [
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-  // 0 — Couverture + page de garde
-  [
-    `<div class="cover-wrap">
-      <div class="c-grid">
-        <div class="c-cell d">C</div><div class="c-cell l">O</div>
-        <div class="c-cell l">M</div><div class="c-cell d">P</div>
-      </div>
-      <div class="c-title">Compagnon</div>
-      <div class="c-sub">Spécimen typographique &middot; 2024</div>
-    </div>`,
+  let pdfDoc     = null;
+  let current    = 0;
+  let numSpreads = 0;
 
-    `<div class="p-inner" style="justify-content:center; align-items:center; gap:1rem;">
-      <div class="p-img" style="flex:none; width:70%; aspect-ratio:1; border-radius:50%;">
-        ${PH_ICON}<span>Photo spécimen</span>
-      </div>
-      <div style="font-size:0.58rem; letter-spacing:0.12em; text-transform:uppercase; color:#bbb; text-align:center; margin-top:0.4rem;">Page de garde</div>
-    </div>`
-  ],
+  const bookEl    = document.getElementById('book');
+  const loadingEl = document.getElementById('flipLoading');
+  const pL        = document.getElementById('pageLeft');
+  const pR        = document.getElementById('pageRight');
+  const counter   = document.getElementById('flipCounter');
+  const btnPrev   = document.getElementById('btnPrev');
+  const btnNext   = document.getElementById('btnNext');
 
-  // 1 — Introduction
-  [
-    `<div class="p-inner">
-      <div class="p-label">Introduction</div>
-      <div class="p-img">${PH_ICON}<span>Illustration d'ouverture</span></div>
-      <div class="p-caption">Procreate &middot; composition libre</div>
-    </div>`,
+  async function renderPage(pageNum) {
+    const page     = await pdfDoc.getPage(pageNum);
+    const viewport = page.getViewport({ scale: 1 });
+    const containerW = bookEl.offsetWidth / 2;
+    const scale      = containerW / viewport.width;
+    const vp         = page.getViewport({ scale });
 
-    `<div class="spec-wrap">
-      <div class="p-label">À propos de Compagnon</div>
-      <div class="spec-row" style="font-size:clamp(1.4rem,3.5vw,2.2rem); font-style:italic; margin-bottom:0.8rem;">Compagnon</div>
-      <div style="font-size:clamp(0.6rem,0.9vw,0.74rem); line-height:1.85; color:#666; font-weight:300;">
-        Une nouvelle famille de polices, estimement variée, née de la collaboration de cinq designers.<br><br>
-        Juliette Duhé &middot; Léa Pradine<br>
-        Valentin Papon &middot; Chloé Lozano<br>
-        Sébastien Sanfilippo
-      </div>
-    </div>`
-  ],
+    const canvas = document.createElement('canvas');
+    canvas.width  = vp.width;
+    canvas.height = vp.height;
+    canvas.style.cssText = 'width:100%; height:100%; object-fit:contain; display:block;';
 
-  // 2 — Alphabet
-  [
-    `<div class="p-inner">
-      <div class="p-label">Glyphes — fonte italique</div>
-      <div class="p-img" style="background:#1a1a1a; color:#555;">${PH_ICON}<span>Planche glyphes<br>italique</span></div>
-      <div class="p-caption">Qq Rr Ss Tt Uu Vv Yy Jj</div>
-    </div>`,
+    await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+    return canvas;
+  }
 
-    `<div class="spec-wrap">
-      <div class="p-label">Alphabet complet</div>
-      <div class="spec-row" style="font-size:clamp(0.72rem,1.1vw,0.9rem); line-height:2; letter-spacing:0.1em;">Aa Bb Cc Dd Ee Ff Gg</div>
-      <div class="spec-row" style="font-size:clamp(0.72rem,1.1vw,0.9rem); line-height:2; letter-spacing:0.1em;">Hh Ii Jj Kk Ll Mm Nn</div>
-      <div class="spec-row" style="font-size:clamp(0.72rem,1.1vw,0.9rem); line-height:2; letter-spacing:0.1em;">Oo Pp Qq Rr Ss Tt Uu</div>
-      <div class="spec-row" style="font-size:clamp(0.72rem,1.1vw,0.9rem); line-height:2; letter-spacing:0.1em;">Vv Ww Xx Yy Zz</div>
-      <div class="spec-divider"></div>
-      <div class="spec-row" style="font-size:clamp(0.72rem,1.1vw,0.9rem); line-height:2; letter-spacing:0.18em;">1 2 3 4 5 6 7 8 9 0</div>
-      <div class="spec-row" style="font-size:clamp(0.72rem,1.1vw,0.9rem); line-height:2; letter-spacing:0.1em;">? ; : ! ( ) [ ] &amp; @</div>
-    </div>`
-  ],
+  async function showSpread(idx, dir = 0) {
+    pL.style.opacity = pR.style.opacity = '0';
+    pL.style.transform = pR.style.transform =
+      dir > 0 ? 'translateX(6px)' : dir < 0 ? 'translateX(-6px)' : 'none';
 
-  // 3 — Illustration rouge + graisses
-  [
-    `<div class="red-wrap">
-      <div class="p-label">Illustration</div>
-      <div class="p-img">${PH_ICON}<span>Tracés blancs<br>sur fond rouge</span></div>
-      <div class="p-caption">Procreate &middot; lettre construite</div>
-    </div>`,
+    const leftNum  = idx * 2 + 1;
+    const rightNum = idx * 2 + 2;
+    const total    = pdfDoc.numPages;
 
-    `<div class="spec-wrap" style="justify-content:center; gap:0.5rem;">
-      <div class="p-label">Variations de graisse</div>
-      <div class="spec-row" style="font-size:clamp(1rem,2.2vw,1.5rem); font-weight:300; font-style:italic;">Light Italic</div>
-      <div class="spec-row" style="font-size:clamp(1rem,2.2vw,1.5rem); font-weight:400; font-style:italic;">Regular Italic</div>
-      <div class="spec-row" style="font-size:clamp(1rem,2.2vw,1.5rem); font-weight:700; font-style:italic;">Bold Italic</div>
-      <div class="spec-divider"></div>
-      <div class="spec-row" style="font-size:clamp(1rem,2.2vw,1.5rem); font-weight:300;">Light</div>
-      <div class="spec-row" style="font-size:clamp(1rem,2.2vw,1.5rem); font-weight:400;">Regular</div>
-      <div class="spec-row" style="font-size:clamp(1rem,2.2vw,1.5rem); font-weight:700;">Bold</div>
-    </div>`
-  ],
+    const [cL, cR] = await Promise.all([
+      leftNum  <= total ? renderPage(leftNum)  : Promise.resolve(null),
+      rightNum <= total ? renderPage(rightNum) : Promise.resolve(null),
+    ]);
 
-  // 4 — Mise en situation
-  [
-    `<div class="p-inner">
-      <div class="p-label">Mise en situation</div>
-      <div class="p-img">${PH_ICON}<span>Page intérieure<br>mise en page</span></div>
-      <div class="p-caption">InDesign &middot; composition typographique</div>
-    </div>`,
+    pL.innerHTML = '';
+    pR.innerHTML = '';
+    if (cL) pL.appendChild(cL);
+    if (cR) pR.appendChild(cR);
 
-    `<div class="spec-wrap" style="justify-content:center;">
-      <div class="p-label">Extrait de texte</div>
-      <div class="spec-body">
-        Medium à cette dernière, car aspect précis, symétrique, fin. Medium est grave mais neutre, avec la rigueur de la voix vive d'un rapport informationnel.<br><br>
-        <em>Italic droit d'un roman de science-fiction. Je ne peux pas ce que j'avance : socio-politique, réalité virtuelle et traction alien, les idées fusent déjà !</em>
-      </div>
-    </div>`
-  ],
+    if (idx === 0) {
+      counter.textContent = 'Couverture';
+    } else if (rightNum > total) {
+      counter.textContent = `Page ${leftNum}`;
+    } else {
+      counter.textContent = `${leftNum} — ${rightNum}`;
+    }
 
-  // 5 — Fin & 4e de couverture
-  [
-    `<div class="p-inner">
-      <div class="p-label">Détail impression</div>
-      <div class="p-img">${PH_ICON}<span>Détail papier<br>&amp; reliure</span></div>
-      <div class="p-caption">Impression numérique &middot; reliure cousue</div>
-    </div>`,
+    setTimeout(() => {
+      pL.style.transition = pR.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+      pL.style.opacity = pR.style.opacity = '1';
+      pL.style.transform = pR.style.transform = 'translateX(0)';
+    }, 30);
 
-    `<div class="backcover-wrap">
-      <div style="width:28px; height:1px; background:#1a1a1a; margin-bottom:1rem;"></div>
-      <div class="c-title" style="color:#1a1a1a;">Compagnon</div>
-      <div style="font-size:clamp(0.45rem,0.75vw,0.58rem); letter-spacing:0.14em; text-transform:uppercase; color:#aaa; text-align:center; margin-top:0.4rem;">Spécimen typographique<br>EDNA &middot; 2024</div>
-    </div>`
-  ]
-];
+    btnPrev.disabled = idx === 0;
+    btnNext.disabled = idx >= numSpreads - 1;
+  }
 
-const LABELS = ['Couverture', '1 — 2', '3 — 4', '5 — 6', '7 — 8', 'Fin'];
+  function flipPage(dir) {
+    const next = Math.max(0, Math.min(numSpreads - 1, current + dir));
+    if (next === current) return;
+    current = next;
+    showSpread(current, dir);
+  }
 
-let current = 0;
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') flipPage(1);
+    if (e.key === 'ArrowLeft')  flipPage(-1);
+  });
 
-function renderSpread(idx, dir = 0) {
-  const L = document.getElementById('pageLeft');
-  const R = document.getElementById('pageRight');
-  const counter = document.getElementById('flipCounter');
+  let tx0 = 0;
+  bookEl.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
+  bookEl.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tx0;
+    if (Math.abs(dx) > 40) flipPage(dx < 0 ? 1 : -1);
+  });
 
-  // petit fade
-  L.style.opacity = R.style.opacity = '0';
-  L.style.transform = R.style.transform = dir > 0 ? 'translateX(6px)' : dir < 0 ? 'translateX(-6px)' : 'none';
+  btnPrev.onclick = () => flipPage(-1);
+  btnNext.onclick = () => flipPage(1);
 
-  setTimeout(() => {
-    L.innerHTML = spreads[idx][0];
-    R.innerHTML = spreads[idx][1];
-    L.style.transition = R.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
-    L.style.opacity = R.style.opacity = '1';
-    L.style.transform = R.style.transform = 'translateX(0)';
-  }, 160);
-
-  counter.textContent = LABELS[idx] ?? `${idx*2-1} — ${idx*2}`;
-  document.getElementById('btnPrev').disabled = idx === 0;
-  document.getElementById('btnNext').disabled = idx === spreads.length - 1;
-}
-
-function flipPage(dir) {
-  const next = Math.max(0, Math.min(spreads.length - 1, current + dir));
-  if (next === current) return;
-  current = next;
-  renderSpread(current, dir);
-}
-
-// Clavier
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight') flipPage(1);
-  if (e.key === 'ArrowLeft')  flipPage(-1);
-});
-
-// Swipe tactile
-let tx0 = 0;
-const bookEl = document.getElementById('book');
-bookEl.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
-bookEl.addEventListener('touchend',   e => {
-  const dx = e.changedTouches[0].clientX - tx0;
-  if (Math.abs(dx) > 40) flipPage(dx < 0 ? 1 : -1);
-});
-
-renderSpread(0);
+  pdfjsLib.getDocument(PDF_URL).promise.then(pdf => {
+    pdfDoc     = pdf;
+    numSpreads = Math.ceil(pdf.numPages / 2);
+    loadingEl.style.display = 'none';
+    bookEl.style.display    = 'grid';
+    btnPrev.disabled = false;
+    btnNext.disabled = false;
+    showSpread(0);
+  }).catch(err => {
+    loadingEl.textContent = 'Impossible de charger le PDF.';
+    console.error(err);
+  });
+})();
 </script>
 
 </body>
