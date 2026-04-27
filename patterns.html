@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Création de collection | Alexane</title>
+  <title>Motifs de collection | Alexane</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,900;1,400;1,700&display=swap" rel="stylesheet">
 
   <style>
+    /* ── VARIABLES ── */
     :root {
       --orange: #ff6600;
-      --dark: #1a1a1a;
-      --light: #ffffff;
-      --white: #ffffff;
-      --rule: rgba(26,26,26,0.1);
+      --dark:   #1a1a1a;
+      --light:  #ffffff;
+      --rule:   rgba(26,26,26,0.1);
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,7 +26,7 @@
       overflow-x: hidden;
     }
 
-    /* ── NAV identique à index ── */
+    /* ════ NAV ════ */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -67,9 +68,29 @@
 
     .nav-links a:hover { color: var(--orange); }
 
-    /* ── HERO ── */
+    /* ════ BACK ════ */
+    .back-wrapper { padding: 9rem 6vw 0; }
+
+    .back-btn {
+      background: var(--orange);
+      color: var(--light) !important;
+      border-color: var(--orange);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.7rem 1.2rem;
+      border: 1px solid rgba(26,26,26,0.1);
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 400;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .back-btn:hover { background: var(--dark); }
+
+    /* ════ HERO ════ */
     .hero {
-      margin-top: 0;
       padding: 5vh 6vw 4vh;
       border-bottom: 1px solid var(--rule);
       display: grid;
@@ -78,21 +99,29 @@
       align-items: end;
     }
 
-    /* grand numéro en filigrane à gauche */
-    .hero-number {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(5rem, 10vw, 9rem);
-      font-weight: 900;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(26,26,26,0.1);
-      line-height: 1;
-      user-select: none;
-      padding-bottom: 0.1em;
+    .hero-image {
+      height: clamp(8rem, 14vw, 13rem);
+      width: auto;
+      display: block;
+      align-self: end;
     }
 
-    .hero-content { display: flex; flex-direction: column; gap: 1.6rem; }
+    /* placeholder SVG décoratif */
+    .hero-deco {
+      height: clamp(8rem, 14vw, 13rem);
+      width: clamp(8rem, 14vw, 13rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: end;
+    }
 
-    /* tag catégorie — même style que les stat-label de index */
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
     .hero-tag {
       display: inline-flex;
       align-items: center;
@@ -112,7 +141,6 @@
       flex-shrink: 0;
     }
 
-    /* titre principal — même famille que les h3 de index */
     .hero-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(3rem, 7vw, 6rem);
@@ -120,14 +148,12 @@
       line-height: 0.92;
     }
 
-    /* le mot en italique orange */
     .hero-title em {
       font-style: italic;
       font-weight: 700;
       color: var(--orange);
     }
 
-    /* métadonnées — même style que les stat-row de index */
     .hero-meta {
       display: flex;
       gap: 0;
@@ -154,97 +180,111 @@
       color: #888;
     }
 
-    .meta-value {
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
+    .meta-value { font-size: 0.9rem; font-weight: 500; }
 
-    /* ── INTRO ── */
+    /* ════ INTRO ════ */
     .intro-section {
       display: grid;
       grid-template-columns: 1fr 2fr;
-      gap: 4rem;
+      gap: 3rem;
       padding: 5vh 6vw;
       border-bottom: 1px solid var(--rule);
     }
 
-    .intro-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #888;
+    .intro-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
       padding-top: 0.3rem;
+    }
+
+    .intro-role {
+      font-size: 0.8rem;
+      color: #000;
+      line-height: 1.8;
+    }
+
+    .intro-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
 
     .intro-body {
       font-size: clamp(1rem, 1.6vw, 1.25rem);
       line-height: 1.7;
       font-weight: 300;
-      max-width: 600px;
+      max-width: 900px;
     }
 
     .intro-body strong { font-weight: 500; }
 
-    /* ── GALERIE HORIZONTALE GSAP ── */
-    .scroll-container { width: 100%; position: relative; }
-
-    .sticky-wrapper {
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      border-top: 1px solid var(--rule);
+    /* ════ GALERIE MOSAÏQUE ════ */
+    .gallery-section {
+      padding: 6vh 6vw;
       border-bottom: 1px solid var(--rule);
-      position: relative;
     }
 
-    /* label vertical identique au style éditorial */
-    .gallery-label {
-      position: absolute;
-      left: 2rem;
-      bottom: 2rem;
+    .gallery-label-top {
       font-size: 0.65rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: #888;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      z-index: 10;
+      margin-bottom: 2rem;
     }
 
-    .horizontal-gallery {
+    .mosaic {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto auto;
+      gap: 1rem;
+    }
+
+    /* Grande image principale — occupe 2 colonnes × 2 lignes */
+    .mosaic-main {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+    }
+
+    .img-placeholder {
+      background: #f0ede8;
+      border-radius: 8px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 2vw;
-      padding: 0 10vw 0 8vw;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #aaa;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      aspect-ratio: 1;
+      width: 100%;
+    }
+
+    .mosaic-main .img-placeholder {
+      aspect-ratio: unset;
       height: 100%;
-      will-change: transform;
+      min-height: 280px;
     }
 
-    /* image principale légèrement inclinée */
-    .master-art {
-      height: 68vh;
-      width: auto;
-      display: block;
-      border-radius: 12px;
-      transform: rotate(-0.6deg);
+    .img-placeholder svg { opacity: 0.35; }
+
+    /* Petites images motifs */
+    .mosaic-sm .img-placeholder { aspect-ratio: 1; }
+
+    /* Rangée du bas — 4 colonnes */
+    .mosaic-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 0;
     }
 
-    .gallery-img {
-      height: 52vh;
-      width: auto;
-      display: block;
-      border-radius: 12px;
-      flex-shrink: 0;
-    }
+    .mosaic-row .img-placeholder { aspect-ratio: 4/3; }
 
-    .gallery-img:nth-child(even) {
-      transform: rotate(0.4deg);
-      height: 40vh;
-    }
-
-    /* ── CONTEXTE 3 COLONNES ── */
+    /* ════ SECTION CHALLENGE + RÉSULTATS ════ */
     .context-section {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -258,22 +298,87 @@
 
     .context-block:last-child { border-right: none; }
 
-    /* titre de bloc — cohérent avec la typo index */
     .context-block h3 {
       font-family: 'Playfair Display', serif;
       font-size: 1.15rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 0.9rem;
     }
 
     .context-block p {
-      font-size: 0.87rem;
+      font-size: 1.1rem;
       line-height: 1.75;
       color: #555;
     }
 
-    /* ── PROJET SUIVANT ── */
-    /* fond sombre avec passage à l'orange au hover — comme le bouton project-btn */
+    /* ════ SHOWCASE PRODUITS ════ */
+    .showcase-section {
+      padding: 6vh 6vw;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .showcase-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .showcase-grid .img-placeholder {
+      aspect-ratio: 3/4;
+    }
+
+    .showcase-bottom {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .showcase-bottom .img-placeholder {
+      aspect-ratio: 1;
+    }
+
+    /* ════ CITATION ════ */
+    .quote-section {
+      padding: 8vh 6vw;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: center;
+    }
+
+    .quote {
+      max-width: 700px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.4vw, 1.4rem);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--dark);
+    }
+
+    .quote-author {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #4a4a4a;
+    }
+
+    /* ════ PROJET SUIVANT ════ */
     a.next-project {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -310,7 +415,7 @@
 
     a.next-project:hover .next-arrow { transform: translateX(10px); }
 
-    /* ── FOOTER identique à index ── */
+    /* ════ FOOTER ════ */
     footer {
       text-align: center;
       padding: 2rem;
@@ -319,13 +424,29 @@
       border-top: 1px solid var(--rule);
     }
 
-    /* ── ANIMATIONS ENTRÉE ── */
+    /* ════ SCROLL TOP ════ */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 200;
+      background: var(--orange);
+      color: var(--light);
+      border: none;
+      border-radius: 999px;
+      width: 54px; height: 54px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .scroll-top:hover { background: var(--dark); }
+
+    /* ════ ANIMATIONS ════ */
     .reveal {
       opacity: 0;
       transform: translateY(20px);
       animation: revealUp 0.6s ease forwards;
     }
-
     .reveal-1 { animation-delay: 0.05s; }
     .reveal-2 { animation-delay: 0.18s; }
     .reveal-3 { animation-delay: 0.32s; }
@@ -334,151 +455,225 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── RESPONSIVE ── */
+    /* ════ RESPONSIVE ════ */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.4rem; }
-      .hero { grid-template-columns: 1fr; padding: 12vh 5vw 4vh; }
-      .hero-number { display: none; }
-      .hero-meta { gap: 1rem; }
-      .meta-item { border-right: none; margin-right: 0; padding-right: 0; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 12vh 5vw 4vh;
+      }
+
+      .hero-deco { display: none; }
+
       .intro-section { grid-template-columns: 1fr; gap: 1.2rem; }
+
+      .mosaic {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .mosaic-main { grid-column: 1 / -1; grid-row: auto; }
+      .mosaic-row { grid-template-columns: repeat(2, 1fr); }
+
       .context-section { grid-template-columns: 1fr; }
       .context-block { border-right: none; border-bottom: 1px solid var(--rule); }
+
+      .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+      .showcase-bottom { grid-template-columns: repeat(2, 1fr); }
+
       a.next-project { grid-template-columns: 1fr; gap: 1.5rem; }
+
+      .meta-item { border-right: none; margin-right: 0; padding-right: 0; }
     }
-    .back-wrapper { padding: 9rem 6vw 0; }
-  .back-btn { background: var(--orange); color: var(--light) !important; border-color: var(--orange); display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.7rem 1.2rem; border: 1px solid rgba(26,26,26,0.1); border-radius: 999px; text-decoration: none; color: var(--dark); font-size: 0.88rem; font-weight: 400; transition: background 0.2s, color 0.2s, border-color 0.2s; }
-  .back-btn:hover { color: var(--orange); }
-  .scroll-top { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; background: var(--orange); color: var(--light); border: none; border-radius: 999px; width: 54px; height: 54px; font-size: 1.1rem; cursor: pointer; transition: background 0.2s; }
-  .scroll-top:hover { background: var(--orange); }
-</style>
-
-
-<link rel="icon" type="image/png" href="assets/images/logo.png">
+  </style>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
 </head>
 <body>
 
-  <!-- NAV identique à index -->
-<nav>
-  <div id="header-placeholder"></div>
-</nav>
+  <!-- ── NAV ── -->
+  <nav>
+    <div id="header-placeholder"></div>
+  </nav>
 
-  <!-- HERO -->
+  <!-- ── BACK ── -->
   <div class="back-wrapper">
     <a href="index.html" class="back-btn">← Retour</a>
   </div>
+
+  <!-- ── HERO ── -->
   <header class="hero">
-    <div class="hero-number reveal reveal-1">01</div>
+
+    <!-- Illustration décorative placeholder -->
+    <div class="hero-deco reveal reveal-1">
+      <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="90" cy="90" r="70" fill="#fde8d8"/>
+        <!-- fleur stylisée -->
+        <g transform="translate(90,90)">
+          <ellipse rx="14" ry="28" fill="#ff6600" opacity="0.6"/>
+          <ellipse rx="14" ry="28" fill="#ff6600" opacity="0.6" transform="rotate(60)"/>
+          <ellipse rx="14" ry="28" fill="#ff6600" opacity="0.6" transform="rotate(120)"/>
+          <circle r="12" fill="#ff6600"/>
+        </g>
+        <g transform="translate(55,55)" opacity="0.4">
+          <ellipse rx="8" ry="16" fill="#ff6600"/>
+          <ellipse rx="8" ry="16" fill="#ff6600" transform="rotate(60)"/>
+          <ellipse rx="8" ry="16" fill="#ff6600" transform="rotate(120)"/>
+          <circle r="7" fill="#ff6600"/>
+        </g>
+        <g transform="translate(125,120)" opacity="0.4">
+          <ellipse rx="7" ry="14" fill="#ff6600"/>
+          <ellipse rx="7" ry="14" fill="#ff6600" transform="rotate(60)"/>
+          <ellipse rx="7" ry="14" fill="#ff6600" transform="rotate(120)"/>
+          <circle r="6" fill="#ff6600"/>
+        </g>
+      </svg>
+    </div>
+
     <div class="hero-content">
-      <span class="hero-tag reveal reveal-1">Graphisme Web</span>
-      <h1 class="hero-title reveal reveal-2">Creation<br><em>de motifs</em></h1>
+      <span class="hero-tag reveal reveal-1">Graphisme · Impression</span>
+
+      <h1 class="hero-title reveal reveal-2">Motifs de<br><em>collection</em></h1>
+
       <div class="hero-meta reveal reveal-3">
         <div class="meta-item">
           <span class="meta-label">Année</span>
-          <span class="meta-value">2026</span>
+          <span class="meta-value">2024</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Partenaire</span>
-          <span class="meta-value">Vivant Le Média</span>
+          <span class="meta-label">Client</span>
+          <span class="meta-value">Polypap</span>
         </div>
         <div class="meta-item">
-          <span class="meta-label">Outils</span>
-          <span class="meta-value">Figma · Illustrator</span>
+          <span class="meta-label">Industrie</span>
+          <span class="meta-value">Service d'impression</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Cadre</span>
-          <span class="meta-value">Académique · Groupe</span>
+          <span class="meta-value">Professionnel · Rémunéré</span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- INTRO -->
+
+  <!-- ── INTRO ── -->
   <section class="intro-section">
-    <span class="intro-label">Contexte</span>
-    <p class="intro-body">
-      Refonte de la carte d'un média de proximité écologique, <strong>Le Vivant</strong> —
-      comment mettre en avant des données géolocalisées sans passer par une carte traditionnelle,
-      tout en restant lisible et engageant pour un lectorat non-spécialiste.
-    </p>
+    <div class="intro-left">
+      <span class="intro-label">Contexte</span>
+      <p class="intro-role">
+        <strong>Mon rôle :</strong><br>
+        Création de motifs floraux temporaires pour emballages de fleuristes, dans le cadre d'une mission professionnelle rémunérée en alternance.
+      </p>
+    </div>
+
+    <div class="intro-right">
+      <p class="intro-body">
+        Polypap, une industrie de service d'impression d'emballage pour fleuristes en B2B, m'a commandé la création de <strong>collections de motifs temporaires</strong> destinées à la fête des mères — visant à apporter de la nouveauté et un effet collector en lien avec la tendance des bouquets.
+        <br><br>
+        Les impressions sont réalisées avec une <strong>imprimante en France majoritairement</strong>, mais également à l'international (Canada, Chine, Italie, Espagne). Le travail repose sur un <strong>système de fichiers techniques</strong> précis, impliquant le respect de contraintes à garder en tête tout au long du processus.
+      </p>
+    </div>
   </section>
 
-  <!-- GALERIE GSAP -->
-  <div class="scroll-container">
-    <div class="sticky-wrapper">
-      <span class="gallery-label">Galerie du projet</span>
-      <div id="gallery" class="horizontal-gallery">
-        <img src="assets/images/gallerie-le-chemin.webp" class="master-art" alt="Galerie Le Chemin">
-        <!-- ajoute d'autres images ici -->
-        <!-- <img src="detail-1.webp" class="gallery-img" alt="Détail 1"> -->
-      </div>
-    </div>
-  </div>
 
-  <!-- CONTEXTE -->
-  <section class="context-section">
-    <div class="context-block">
-      <h3>Problématique</h3>
-      <p>Un média local écologique avec des données riches et géolocalisées, mais une carte classique trop froide pour son lectorat. Comment rendre ces données désirables ?</p>
+  <!-- ── GALERIE MOSAÏQUE ── -->
+  <section class="gallery-section">
+    <p class="gallery-label-top">Aperçu des motifs</p>
+    <div class="mosaic">
+
+      <!-- Grande image principale -->
+      <div class="mosaic-main">
+        <div class="img-placeholder" style="min-height:300px;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          Image principale — bouquet
+        </div>
+      </div>
+
+      <!-- 4 petits motifs à droite -->
+      <div class="mosaic-sm"><div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Motif rose pâle</div></div>
+      <div class="mosaic-sm"><div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Motif fuchsia</div></div>
+      <div class="mosaic-sm"><div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Motif vert</div></div>
+      <div class="mosaic-sm"><div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Motif taupe</div></div>
+
+      <!-- Rangée basse : 4 motifs pleine largeur -->
+      <div class="mosaic-row">
+        <div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Motif 5</div>
+        <div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Motif 6</div>
+        <div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Motif 7</div>
+        <div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Motif 8</div>
+      </div>
+
     </div>
+  </section>
+
+
+  <!-- ── CONTEXTE — 3 COLONNES ── -->
+  <section class="context-section">
+
+    <div class="context-block">
+      <h3>Challenge</h3>
+      <p>Allier la romance et la poésie de l'amour avec la chaleur et l'élégance maternelle, tout en respectant les contraintes industrielles et techniques. Proposer un rendu fidèle au brief, élaboré rapidement.</p>
+    </div>
+
     <div class="context-block">
       <h3>Démarche</h3>
-      <p>Partir des trajets réels pour construire une narration visuelle. L'itinéraire devient un fil conducteur qui guide la lecture sans imposer une logique cartographique.</p>
+      <p>Les choix graphiques répondent directement aux enjeux du projet : <strong>symbolique des couleurs</strong>, mais aussi des fleurs à les faire à la fois en complète. Le violett, le rose, et le rouge car ce sont les couleurs qui plaisent le mieux en période de Saint-Valentin. Les motifs sont déclinés par thématiques au sein de Polypap.</p>
     </div>
+
     <div class="context-block">
-      <h3>Résultat</h3>
-      <p>Une infographie éditoriale en double page, pensée pour la lecture lente, qui traduit des données complexes en expérience de promenade visuelle.</p>
+      <h3>Résultats</h3>
+      <p>Des choix intégrés à l'outil de vente de l'entreprise, à disposition des patrons de fleuristes, rigoureux et élégants. Visuels déployés en production, une expérience enrichissante au cœur d'un flux industriel réel.</p>
+    </div>
+
+  </section>
+
+
+  <!-- ── SHOWCASE PRODUITS FINIS ── -->
+  <section class="showcase-section">
+    <p class="showcase-label">Produits finis</p>
+    <div class="showcase-grid">
+      <div class="img-placeholder" style="aspect-ratio:3/4"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Emballage 1</div>
+      <div class="img-placeholder" style="aspect-ratio:3/4"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Emballage 2</div>
+      <div class="img-placeholder" style="aspect-ratio:3/4"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Emballage 3</div>
+    </div>
+    <div class="showcase-bottom">
+      <div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Bouquet 1</div>
+      <div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Bouquet 2</div>
+      <div class="img-placeholder"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Bouquet 3</div>
     </div>
   </section>
 
-  <!-- PROJET SUIVANT -->
-  <a href="autre-projet.html" class="next-project">
+
+  <!-- ── PROJET SUIVANT ── -->
+  <a href="lechemin.html" class="next-project">
     <div>
       <span class="next-label">Projet suivant</span>
-      <div class="next-title">Nom du<br>projet suivant</div>
+      <div class="next-title">Le<br>Chemin</div>
     </div>
     <div class="next-arrow">→</div>
   </a>
 
-  <!-- FOOTER -->
+
+  <!-- ── FOOTER ── -->
   <footer>
     <p>Alexane &mdash; <span id="year"></span></p>
   </footer>
-<button class="scroll-top" title="Revenir en haut de la page" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <button class="scroll-top" title="Revenir en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+
+  <!-- ── SCRIPTS ── -->
   <script src="./main.js"></script>
-
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
     fetch('./includes/header.html')
-    .then(res => res.text())
-    .then(data => { 
-      document.getElementById('header-placeholder').innerHTML = data; 
-      initBurger();
-    })
-    .catch(err => console.error("Erreur Header:", err));
-
-    gsap.registerPlugin(ScrollTrigger);
-    const gallery = document.getElementById("gallery");
-
-    gsap.to(gallery, {
-      x: () => -(gallery.scrollWidth - window.innerWidth + window.innerWidth * 0.2),
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".scroll-container",
-        start: "top top",
-        end: () => `+=${gallery.scrollWidth}`,
-        pin: true,
-        scrub: 1,
-        invalidateOnRefresh: true,
-      }
-    });
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        if (typeof initBurger === 'function') initBurger();
+      })
+      .catch(err => console.error('Erreur Header :', err));
   </script>
-
-
 
 </body>
 </html>
