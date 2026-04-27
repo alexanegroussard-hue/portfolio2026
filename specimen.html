@@ -14,7 +14,9 @@
       --dark:   #1a1a1a;
       --light:  #ffffff;
       --rule:   rgba(26,26,26,0.1);
-    }
+  --ph-bg-color: #f0ede8; /* Couleur de placeholder de ton image */
+}
+    
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -139,7 +141,7 @@
       z-index: 2;
     }
     .page {
-      aspect-ratio: 3/4;
+      aspect-ratio: 3/4.9;
       position: relative;
       overflow: hidden;
       transition: opacity 0.3s ease;
@@ -180,24 +182,50 @@
     .context-block p { font-size: 1.1rem; line-height: 1.75; color: #555; }
 
     /* ════ GALERIE PHOTOS ════ */
-    .photos-section { padding: 6vh 6vw; border-bottom: 1px solid var(--rule); }
-    .photos-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      grid-template-rows: auto auto;
-      gap: 1rem; margin-top: 1.5rem;
-    }
-    .img-ph {
-      background: #f0ede8; border-radius: 8px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 0.4rem; color: #aaa;
-      font-size: 0.65rem; letter-spacing: 0.1em;
-      text-transform: uppercase; text-align: center; padding: 1rem;
-    }
-    .img-ph svg { opacity: 0.35; }
-    .ph-main { grid-row: 1 / 3; min-height: 360px; }
-    .ph-sm { aspect-ratio: 4/3; }
+
+.photos-section {
+  padding: 6vh 6vw;
+}
+
+/* Optionnel : style pour le titre de section "SPECIMEN IMPRIME" */
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 2rem;
+}
+
+.photos-grid {
+  display: grid;
+  /* Ta grille asymétrique : 1 grande colonne (2fr) et 2 petites (1fr chacune) */
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-auto-rows: min-content; /* S'adapte à la hauteur des petits blocs */
+  gap: 1.5rem; /* Ajuste l'espace entre tes blocs selon tes besoins */
+}
+
+.img-ph {
+  background-color: var(--ph-bg-color); /* Couleur de secours de ton image */
+  background-size: cover;          /* L'image remplit tout l'espace sans déformation */
+  background-position: center;     /* L'image est centrée */
+  background-repeat: no-repeat;
+  border-radius: 4px;              /* Un radius léger comme dans ton exemple */
+  width: 100%;
+}
+
+/* Gestion de la structure asymétrique */
+
+/* 1. Le grand bloc prend 2 rangées de hauteur */
+.ph-main {
+  grid-row: span 2;
+  /* Optionnel : forcer une hauteur minimale si tes images sont absentes */
+  min-height: 400px; 
+}
+
+/* 2. Les petits blocs conservent un ratio spécifique */
+.ph-sm {
+  aspect-ratio: 4/3; /* Ratio de ton image de référence */
+}
 
     /* ════ PROJET SUIVANT ════ */
     a.next-project {
@@ -342,8 +370,8 @@
     <p>Compagnon est une nouvelle famille de police, estimement variée. L'objectif était de célébrer cette diversité et de la mettre en avant à travers l'objet éditorial qu'est le spécimen.</p>
   </div>
   <div class="context-block">
-    <h3>Challenge</h3>
-    <p>Concevoir un spécimen cohérent pour une famille aux nombreuses variations, en rendant lisible et attrayante sa richesse — et en donnant envie à des typographes et designers de l'utiliser.</p>
+    <h3>Démarche</h3>
+    <p>L’idée était de construire une histoire autour d’un homme en quête d’inspiration pour écrire une nouvelle. Il puise ses idées dans les différentes fontes de Compagnon, extrêment variée. C'était dans le but de célébrer la diversité de cette police, pouvoir l'illustrer et la mettre en avant dans un cadre créatif et libre.</p>
   </div>
   <div class="context-block">
     <h3>Résultats</h3>
@@ -354,17 +382,18 @@
 
 <!-- ── GALERIE PHOTOS ── -->
 <section class="photos-section">
-  <p class="section-label" style="font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:#888;">Spécimen imprimé</p>
   <div class="photos-grid">
-    <div class="img-ph ph-main">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      Spécimen relié — vue de face
-    </div>
-<div class="mosaic-container"> <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-1-specimen.webp');">Détail tranche</div>
-  <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-2-specimen.webp');">Illustration rouge</div>
-  <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-3-specimen.webp');">Pages intérieures</div>
-  <div class="img-ph ph-sm" style="background-image: url('assets/images/impression.jpg');">Détail impression</div>
-</div>
+    <div class="img-ph ph-main" style="background-image: url('assets/images/mockup-1-specimen.webp');" aria-label="Vue d'ensemble de face"></div>
+    
+    <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-2-specimen.webp');" aria-label="Détail de la tranche"></div>
+    
+    <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-3-specimen.webp');" aria-label="Illustration rouge"></div>
+    
+    <div class="img-ph ph-sm" style="background-image: url('assets/images/proposition-rouge.webp');" aria-label="Pages intérieures"></div>
+    
+    <div class="img-ph ph-sm" style="background-image: url('chemin/vers/image-impress.jpg');" aria-label="Détail d'impression"></div>
+  </div>
+</section>
 </section>
 
 
@@ -428,42 +457,43 @@
     return canvas;
   }
 
-  async function showSpread(idx, dir = 0) {
-    pL.style.opacity = pR.style.opacity = '0';
-    pL.style.transform = pR.style.transform =
-      dir > 0 ? 'translateX(6px)' : dir < 0 ? 'translateX(-6px)' : 'none';
+async function showSpread(idx, dir = 0) {
+  pL.style.opacity = pR.style.opacity = '0';
+  pL.style.transform = pR.style.transform =
+    dir > 0 ? 'translateX(6px)' : dir < 0 ? 'translateX(-6px)' : 'none';
 
-    const leftNum  = idx * 2 + 1;
-    const rightNum = idx * 2 + 2;
-    const total    = pdfDoc.numPages;
+  // Décalage d'une page : spread 0 → gauche vide / droite = page 1
+  const leftNum  = idx * 2;       // 0 = vide, 2, 4, 6...
+  const rightNum = idx * 2 + 1;   // 1, 3, 5...
+  const total    = pdfDoc.numPages;
 
-    const [cL, cR] = await Promise.all([
-      leftNum  <= total ? renderPage(leftNum)  : Promise.resolve(null),
-      rightNum <= total ? renderPage(rightNum) : Promise.resolve(null),
-    ]);
+  const [cL, cR] = await Promise.all([
+    leftNum  >= 1 && leftNum  <= total ? renderPage(leftNum)  : Promise.resolve(null),
+    rightNum >= 1 && rightNum <= total ? renderPage(rightNum) : Promise.resolve(null),
+  ]);
 
-    pL.innerHTML = '';
-    pR.innerHTML = '';
-    if (cL) pL.appendChild(cL);
-    if (cR) pR.appendChild(cR);
+  pL.innerHTML = '';
+  pR.innerHTML = '';
+  if (cL) pL.appendChild(cL);
+  if (cR) pR.appendChild(cR);
 
-    if (idx === 0) {
-      counter.textContent = 'Couverture';
-    } else if (rightNum > total) {
-      counter.textContent = `Page ${leftNum}`;
-    } else {
-      counter.textContent = `${leftNum} — ${rightNum}`;
-    }
-
-    setTimeout(() => {
-      pL.style.transition = pR.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
-      pL.style.opacity = pR.style.opacity = '1';
-      pL.style.transform = pR.style.transform = 'translateX(0)';
-    }, 30);
-
-    btnPrev.disabled = idx === 0;
-    btnNext.disabled = idx >= numSpreads - 1;
+  if (idx === 0) {
+    counter.textContent = 'Couverture';
+  } else if (rightNum > total) {
+    counter.textContent = `Page ${leftNum}`;
+  } else {
+    counter.textContent = `${leftNum} — ${rightNum}`;
   }
+
+  setTimeout(() => {
+    pL.style.transition = pR.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+    pL.style.opacity = pR.style.opacity = '1';
+    pL.style.transform = pR.style.transform = 'translateX(0)';
+  }, 30);
+
+  btnPrev.disabled = idx === 0;
+  btnNext.disabled = idx >= numSpreads - 1;
+}
 
   function flipPage(dir) {
     const next = Math.max(0, Math.min(numSpreads - 1, current + dir));
@@ -489,7 +519,7 @@
 
   pdfjsLib.getDocument(PDF_URL).promise.then(pdf => {
     pdfDoc     = pdf;
-    numSpreads = Math.ceil(pdf.numPages / 2);
+    numSpreads = Math.ceil((pdf.numPages + 1) / 2);
     loadingEl.style.display = 'none';
     bookEl.style.display    = 'grid';
     btnPrev.disabled = false;
