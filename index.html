@@ -116,9 +116,12 @@
   .category-view.visible { display: block; }
   footer { text-align: center; padding: 2rem; color: #bbb; font-size: 0.8rem; }
 
+  
+
   /* ── MOBILE (NETTOYÉ) ── */
 /* ── MOBILE (SANS AUCUN ASSOMBRISSEMENT) ── */
 @media (max-width: 768px) {
+
 
       nav {
         padding: 1rem 1.4rem;
@@ -203,10 +206,14 @@
         color: #000 !important;
       }
 
-      .project-stats {
-  width: 100% !important; /* Force le bloc à occuper toute la largeur dispo */
-  margin-top: auto;       /* Pousse les stats vers le bas du carré */
+      /* Remplace ton .project-stats existant dans la media query par : */
+.project-stats {
+  width: 100% !important;
+  margin-top: auto;
   margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 12px 16px;
 }
 
 .stat-row {
