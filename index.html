@@ -63,14 +63,21 @@
     font-size: 2rem; 
     margin-bottom: 0.8rem; 
     white-space: nowrap;
-    color: rgb(255, 255, 255)
+    color: rgb(34, 34, 34)
   }
 
-  .project-card::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, var(--overlay-color, rgba(255, 255, 255, 0.945)) 0%, transparent 100%); }
+  .project-card::before { 
+ content: '';
+ position: absolute;
+ inset: 0;
+ z-index: 1;
+ background: linear-gradient(to right,
+ var(--overlay-color, rgba(255, 255, 255, 0.945)) 0%, transparent 100%); 
+}
 
   .project-card-content p { 
     font-size: 0.88rem;
-     color: rgb(255, 255, 255);
+     color: rgb(34, 34, 34);
       line-height: 1.6;
        margin-bottom: 1.4rem; }
 
@@ -129,7 +136,7 @@
   width: 100% !important;
   margin-top: auto;
   margin-bottom: 1rem;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 12px;
   padding: 12px 16px;
 }
@@ -180,15 +187,16 @@
       }
 
       /* Overlay clair de gauche à droite, comme le desktop */
-.project-card.has-image::before {
-    /* Le dégradé part de TA couleur et devient transparent à droite */
-    background: linear-gradient(to bottom, 
-      var(--overlay-color) 00%, 
-      var(--overlay-color) 40%, 
-      transparent 100%) !important;
-    z-index: 1;
-    border-radius: 20px; /* Pour bien suivre l'arrondi de ta carte */
-  }
+  .project-card::before { 
+ content: '';
+ position: absolute;
+ inset: 0;
+ z-index: 1;
+ background: linear-gradient(to right,
+ var(--overlay-color, rgba(255, 255, 255, 0.945)) 0%, transparent 100%); 
+ z-index: 1;
+ border-radius: 20px; /* Pour bien suivre l'arrondi de ta carte */
+ }
 
   /* Pour être sûr que le texte reste lisible sur ta couleur */
   .project-card-content {
@@ -206,12 +214,12 @@
       .project-card-content h3 {
         font-size: 1.5rem;
         white-space: normal;
-        color: var(--white) !important;
+        color: rgb(34, 34, 34) !important;
       }
 
       .project-card-content p {
         max-width: 60% !important;
-        color: #ffffff !important;
+        color: rgb(34, 34, 34) !important;
       }
 
       .stat-label {
@@ -227,7 +235,7 @@
   width: 100% !important;
   margin-top: auto;
   margin-bottom: 1rem;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 12px;
   padding: 12px 16px;
 }
@@ -254,7 +262,7 @@
     font-size: 0.85rem;
     text-decoration: none;
     transition: 0.3s ease;
-    background: rgba(255, 255, 255, 0.8) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
     backdrop-filter: blur(8px);
     color: #000 !important;
@@ -304,7 +312,7 @@ Projets sélectionnés
 
         <!-- LE CHEMIN -->
         <div class="project-card has-image"
-          style="background-image: url('assets/images/cover-vivant.webp'); --overlay-color: rgba(255, 102, 0, 0.678);">
+          style="background-image: url('assets/images/cover-vivant.webp'); --overlay-color: hsl(51, 100%, 90%);">
           <div class="bookmark-wrap tag-group">
             <div class="bookmark-body">Sco</div>
           </div>
@@ -326,13 +334,13 @@ Projets sélectionnés
 
                 <!-- BRANDING -->
         <div class="project-card has-image"
-          style="background-image: url('assets/images/cover-carroussel.webp') !important; --overlay-color: rgba(165, 16, 115, 0.678);">
+          style="background-image: url('assets/images/cover-carroussel.webp') !important; --overlay-color: rgb(255, 205, 230);">
           <div class="bookmark-wrap">
             <div class="bookmark-body">Sco</div>
           </div>
           <div class="project-card-content">
             <div>
-              <h3>Carroussels <br> de marque</h3>
+              <h3>Carroussel <br> de marques</h3>
               <p>Projets d'identité de marque sur la base de briefs fictifs. Création ensuite d'un support de présentation sous la forme d'un carroussel instagram.</p>
              <div class="project-stats">
                 <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2026</span></div>
@@ -347,7 +355,7 @@ Projets sélectionnés
 
         <!-- TROC EN STOCK -->
         <div class="project-card"
-          style="background-image: url('assets/images/cover-mobi.webp'); --overlay-color: rgba(0, 247, 255, 0.623);">
+          style="background-image: url('assets/images/cover-mobi.webp'); --overlay-color: rgba(209, 252, 255, 0.815);">
           <div class="bookmark-wrap">
             <div class="bookmark-body">Sco</div>
           </div>
@@ -368,7 +376,7 @@ Projets sélectionnés
 
                 <!-- SURF -->
         <div class="project-card has-image"
-          style="background-image: url('assets/images/cover-surf.gif') !important; --overlay-color: rgba(255, 94, 0, 0.678);">
+          style="background-image: url('assets/images/cover-surf.gif') !important; --overlay-color: rgba(255, 211, 191, 0.959);">
           <div class="bookmark-wrap">
             <div class="bookmark-body">Sco</div>
           </div>
