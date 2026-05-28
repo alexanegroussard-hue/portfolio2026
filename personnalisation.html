@@ -275,7 +275,7 @@
 <nav><div id="header-placeholder"></div></nav>
 
 <div class="back-wrapper">
-  <a href="index.html" class="back-btn">← Retour</a>
+  <a id="back-btn" href="index.html" class="back-btn">← Retour</a>
 </div>
 
 <!-- ── HERO ── -->
@@ -532,5 +532,9 @@ async function showSpread(idx, dir = 0) {
 })();
 </script>
 
+<script>
+const from = new URLSearchParams(window.location.search).get("from");
+if (from === "print") document.getElementById("back-btn").href = "print.html";
+</script>
 </body>
 </html>
