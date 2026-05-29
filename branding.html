@@ -518,6 +518,7 @@
 
 
 <link rel="icon" type="image/png" href="assets/images/logo.webp">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
@@ -613,7 +614,7 @@
       </aside>
 
       <div class="gallery-clip"><div class="gallery-track">
-        <img src="assets/images/gallerie1-MT.webp" alt="Maison Thé — galerie">
+        <a href="assets/images/gallerie1-MT.webp" class="glightbox"><img src="assets/images/gallerie1-MT.webp" alt="Maison Thé — galerie"></a>
       </div></div>
 
     </div>
@@ -649,7 +650,7 @@
       </aside>
 
       <div class="gallery-clip"><div class="gallery-track">
-        <img src="assets/images/gallerie2-P.webp" alt="Plately — galerie">
+        <a href="assets/images/gallerie2-P.webp" class="glightbox"><img src="assets/images/gallerie2-P.webp" alt="Plately — galerie"></a>
       </div></div>
 
     </div>
@@ -685,7 +686,7 @@
       </aside>
 
       <div class="gallery-clip"><div class="gallery-track">
-        <img src="assets/images/gallerie3-Petal.webp" alt="Petaly — galerie">
+        <a href="assets/images/gallerie3-Petal.webp" class="glightbox"><img src="assets/images/gallerie3-Petal.webp" alt="Petaly — galerie"></a>
       </div></div>
 
     </div>
@@ -777,5 +778,7 @@
     });
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>const lightbox = GLightbox({ selector: ".glightbox" });</script>
 </body>
 </html>

@@ -365,6 +365,7 @@
 </style>
   
 <link rel="icon" type="image/png" href="assets/images/logo.webp">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
@@ -426,16 +427,16 @@
     <div class="sticky-wrapper">
       <span class="gallery-label">Galerie du projet</span>
       <div id="gallery" class="horizontal-gallery">
-        <img src="assets/images/calendrier2.webp" class="master-art" alt="Calendrier 1">
-        <img src="assets/images/calendrier3.webp" class="gallery-img" alt="Calendrier 2">
-        <img src="assets/images/Calendrier Thème Perso 2026 - MM - 420x297 - ciel.webp" class="gallery-img" alt="Calendrier 3">
-        <img src="assets/images/calendrier4.webp" class="gallery-img" alt="Calendrier 4">
-        <img src="assets/images/calendrier5.webp" class="gallery-img" alt="Calendrier 5">
-        <img src="assets/images/calendrier6.webp" class="gallery-img" alt="Calendrier 6">
-        <img src="assets/images/calendrier7.webp" class="gallery-img" alt="Calendrier 7">
-        <img src="assets/images/calendrier1.webp" class="gallery-img" alt="Calendrier 8">
+        <a href="assets/images/calendrier2.webp" class="glightbox"><img src="assets/images/calendrier2.webp" class="master-art" alt="Calendrier 1"></a>
+        <a href="assets/images/calendrier3.webp" class="glightbox"><img src="assets/images/calendrier3.webp" class="gallery-img" alt="Calendrier 2"></a>
+        <a href="assets/images/Calendrier Thème Perso 2026 - MM - 420x297 - ciel.webp" class="glightbox"><img src="assets/images/Calendrier Thème Perso 2026 - MM - 420x297 - ciel.webp" class="gallery-img" alt="Calendrier 3"></a>
+        <a href="assets/images/calendrier4.webp" class="glightbox"><img src="assets/images/calendrier4.webp" class="gallery-img" alt="Calendrier 4"></a>
+        <a href="assets/images/calendrier5.webp" class="glightbox"><img src="assets/images/calendrier5.webp" class="gallery-img" alt="Calendrier 5"></a>
+        <a href="assets/images/calendrier6.webp" class="glightbox"><img src="assets/images/calendrier6.webp" class="gallery-img" alt="Calendrier 6"></a>
+        <a href="assets/images/calendrier7.webp" class="glightbox"><img src="assets/images/calendrier7.webp" class="gallery-img" alt="Calendrier 7"></a>
+        <a href="assets/images/calendrier1.webp" class="glightbox"><img src="assets/images/calendrier1.webp" class="gallery-img" alt="Calendrier 8"></a>
         <!-- ajoute d'autres images ici -->
-        <!-- <img src="detail-1.webp" class="gallery-img" alt="Détail 1"> -->
+        <!-- <a href="detail-1.webp" class="glightbox"><img src="detail-1.webp" class="gallery-img" alt="Détail 1"></a> -->
       </div>
     </div>
   </div>
@@ -517,5 +518,7 @@ if (from === "print") document.getElementById("back-btn").href = "print.html";
 const from = new URLSearchParams(window.location.search).get("from");
 if (from === "print") document.getElementById("back-btn").href = "print.html";
 </script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>const lightbox = GLightbox({ selector: ".glightbox" });</script>
 </body>
 </html>

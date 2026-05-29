@@ -444,6 +444,7 @@
     }
   </style>
   <link rel="icon" type="image/png" href="assets/images/logo.webp">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
@@ -518,29 +519,29 @@
 
       <!-- Grande image principale -->
       <div class="mosaic-main">
-        <img src="assets/images/montage-photos.webp" alt="Bouquet principal" class="mosaic-img">
+        <a href="assets/images/montage-photos.webp" class="glightbox"><img src="assets/images/montage-photos.webp" alt="Bouquet principal" class="mosaic-img"></a>
       </div>
 
       <!-- 4 petits motifs à droite -->
       <div class="mosaic-sm">
-        <img src="assets/images/oiseau-motif.webp" alt="Motif rose pâle" class="mosaic-img">
+        <a href="assets/images/oiseau-motif.webp" class="glightbox"><img src="assets/images/oiseau-motif.webp" alt="Motif rose pâle" class="mosaic-img"></a>
       </div>
       <div class="mosaic-sm">
-        <img src="assets/images/angerose-motif.webp" alt="Motif fuchsia" class="mosaic-img">
+        <a href="assets/images/angerose-motif.webp" class="glightbox"><img src="assets/images/angerose-motif.webp" alt="Motif fuchsia" class="mosaic-img"></a>
       </div>
       <div class="mosaic-sm">
-        <img src="assets/images/aquarelle_c7.webp" alt="Motif vert" class="mosaic-img">
+        <a href="assets/images/aquarelle_c7.webp" class="glightbox"><img src="assets/images/aquarelle_c7.webp" alt="Motif vert" class="mosaic-img"></a>
       </div>
       <div class="mosaic-sm">
-        <img src="assets/images/blaxckchain-motif.webp" alt="Motif taupe" class="mosaic-img">
+        <a href="assets/images/blaxckchain-motif.webp" class="glightbox"><img src="assets/images/blaxckchain-motif.webp" alt="Motif taupe" class="mosaic-img"></a>
       </div>
 
       <!-- Rangée basse : 4 motifs pleine largeur -->
       <div class="mosaic-row">
-        <img src="assets/images/montgolfière-motif.webp" alt="Motif 5" class="mosaic-img">
-        <img src="assets/images/Echeveria - Kraft blanc - Vert pastel et Vert déco.webp" alt="Motif 6" class="mosaic-img">
-        <img src="assets/images/Empire - Kraft Blanc - Rose pastel et Vieux rose.webp" alt="Motif 7" class="mosaic-img">
-        <img src="assets/images/Glycine - C1_compressed_page-0001.jpg" alt="Motif 8" class="mosaic-img">
+        <a href="assets/images/montgolfière-motif.webp" class="glightbox"><img src="assets/images/montgolfière-motif.webp" alt="Motif 5" class="mosaic-img"></a>
+        <a href="assets/images/Echeveria - Kraft blanc - Vert pastel et Vert déco.webp" class="glightbox"><img src="assets/images/Echeveria - Kraft blanc - Vert pastel et Vert déco.webp" alt="Motif 6" class="mosaic-img"></a>
+        <a href="assets/images/Empire - Kraft Blanc - Rose pastel et Vieux rose.webp" class="glightbox"><img src="assets/images/Empire - Kraft Blanc - Rose pastel et Vieux rose.webp" alt="Motif 7" class="mosaic-img"></a>
+        <a href="assets/images/Glycine - C1_compressed_page-0001.jpg" class="glightbox"><img src="assets/images/Glycine - C1_compressed_page-0001.jpg" alt="Motif 8" class="mosaic-img"></a>
       </div>
 
     </div>
@@ -573,15 +574,15 @@
     <p class="showcase-label">Produits finis</p>
 
     <div class="showcase-grid">
-      <img src="assets/images/innobag-angerose.webp" alt="Emballage 1" class="showcase-img">
-      <img src="assets/images/florbox-angerose.webp" alt="Emballage 2" class="showcase-img">
-      <img src="assets/images/innobagrose-oiseau.webp" alt="Emballage 3" class="showcase-img">
+      <a href="assets/images/innobag-angerose.webp" class="glightbox"><img src="assets/images/innobag-angerose.webp" alt="Emballage 1" class="showcase-img"></a>
+      <a href="assets/images/florbox-angerose.webp" class="glightbox"><img src="assets/images/florbox-angerose.webp" alt="Emballage 2" class="showcase-img"></a>
+      <a href="assets/images/innobagrose-oiseau.webp" class="glightbox"><img src="assets/images/innobagrose-oiseau.webp" alt="Emballage 3" class="showcase-img"></a>
     </div>
 
     <div class="showcase-bottom">
-      <img src="assets/images/bouquet-aquarelle.webp" alt="Bouquet 1" class="showcase-img">
-      <img src="assets/images/bouquet-oiseaux.webp" alt="Bouquet 2" class="showcase-img">
-      <img src="assets/images/decobulle-blackchain.webp" alt="Bouquet 2" class="showcase-img">
+      <a href="assets/images/bouquet-aquarelle.webp" class="glightbox"><img src="assets/images/bouquet-aquarelle.webp" alt="Bouquet 1" class="showcase-img"></a>
+      <a href="assets/images/bouquet-oiseaux.webp" class="glightbox"><img src="assets/images/bouquet-oiseaux.webp" alt="Bouquet 2" class="showcase-img"></a>
+      <a href="assets/images/decobulle-blackchain.webp" class="glightbox"><img src="assets/images/decobulle-blackchain.webp" alt="Bouquet 2" class="showcase-img"></a>
     </div>
   </section>
 
@@ -623,5 +624,7 @@
     if (from === "print") document.getElementById("back-btn").href = "print.html";
   </script>
 
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>const lightbox = GLightbox({ selector: ".glightbox" });</script>
 </body>
 </html>

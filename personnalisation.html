@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compagnon | Alexane</title>
+  <title>Personnalisation de supports | Alexane</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,900;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -14,9 +14,7 @@
       --dark:   #1a1a1a;
       --light:  #ffffff;
       --rule:   rgba(26,26,26,0.1);
-  --ph-bg-color: #f0ede8; /* Couleur de placeholder de ton image */
-}
-    
+    }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -40,19 +38,42 @@
       backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(0,0,0,0.06);
     }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-    .nav-links a { text-decoration: none; color: var(--dark); font-size: 1rem; font-weight: 400; transition: color 0.2s; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 1rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
     .nav-links a:hover { color: var(--orange); }
 
     /* ════ BACK ════ */
     .back-wrapper { padding: 9rem 6vw 0; }
+
     .back-btn {
-      background: var(--orange); color: var(--light) !important;
-      display: inline-flex; align-items: center; gap: 0.7rem;
-      padding: 0.7rem 1.2rem; border: 1px solid var(--orange);
-      border-radius: 999px; text-decoration: none;
-      font-size: 0.88rem; font-weight: 400; transition: background 0.2s;
+      background: var(--orange);
+      color: var(--light) !important;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.7rem 1.2rem;
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 400;
+      transition: background 0.2s;
     }
+
     .back-btn:hover { background: var(--dark); }
 
     /* ════ HERO ════ */
@@ -64,477 +85,735 @@
       gap: 4vw;
       align-items: end;
     }
-    .hero-deco { height: clamp(8rem, 14vw, 13rem); width: clamp(8rem, 14vw, 13rem); align-self: end; }
-    .hero-content { display: flex; flex-direction: column; gap: 1.6rem; }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--orange);
+
+    .hero-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(26,26,26,0.1);
+      line-height: 1;
+      user-select: none;
     }
-    .hero-tag::before { content: ''; width: 18px; height: 1px; background: var(--orange); flex-shrink: 0; }
+
+    .hero-content { display: flex; flex-direction: column; gap: 1.6rem; }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 18px; height: 1px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; line-height: 0.92;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 0.92;
     }
-    .hero-title em { font-style: italic; font-weight: 700; color: var(--orange); }
-    .hero-meta { display: flex; border-top: 1px solid var(--rule); padding-top: 1.2rem; flex-wrap: wrap; }
+
+    .hero-title em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      padding-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
     .meta-item {
-      display: flex; flex-direction: column; gap: 0.2rem;
-      padding-right: 2.5rem; border-right: 1px solid var(--rule); margin-right: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding-right: 2.5rem;
+      border-right: 1px solid var(--rule);
+      margin-right: 2.5rem;
     }
+
     .meta-item:last-child { border-right: none; margin-right: 0; }
-    .meta-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #888; }
+
+    .meta-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+    }
+
     .meta-value { font-size: 0.9rem; font-weight: 500; }
 
     /* ════ INTRO ════ */
     .intro-section {
-      display: grid; grid-template-columns: 1fr 2fr;
-      gap: 3rem; padding: 5vh 6vw; border-bottom: 1px solid var(--rule);
-    }
-    .intro-left { display: flex; flex-direction: column; gap: 1.2rem; padding-top: 0.3rem; }
-    .intro-role { font-size: 0.8rem; color: #000; line-height: 1.8; }
-    .intro-right { display: flex; flex-direction: column; gap: 2rem; }
-    .intro-body { font-size: clamp(1rem, 1.6vw, 1.25rem); line-height: 1.7; font-weight: 300; max-width: 900px; }
-    .intro-body strong { font-weight: 500; }
-
-    /* ════ FLIPBOOK ════ */
-    .flipbook-section {
-      padding: 6vh 6vw;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      padding: 5vh 6vw;
       border-bottom: 1px solid var(--rule);
-      background: #f7f5f2;
+    }
+
+    .intro-left {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 2.5rem;
+      gap: 1.2rem;
+      padding-top: 0.3rem;
     }
-    .section-label {
-      font-size: 0.65rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: #888; align-self: flex-start;
+
+    .intro-role {
+      font-size: 0.8rem;
+      color: #000;
+      line-height: 1.8;
     }
-    .book-wrapper {
-      position: relative;
-      width: min(820px, 90vw);
-      display: flex; flex-direction: column;
-      align-items: center; gap: 1.8rem;
+
+    .intro-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
-    .book {
-      width: 100%;
+
+    .intro-body {
+      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 900px;
+    }
+
+    .intro-body strong { font-weight: 500; }
+
+    /* ════ CHIFFRES CLÉS ════ */
+    .stats-section {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.06);
-      border-radius: 3px 8px 8px 3px;
-      overflow: hidden;
-      position: relative;
-    }
-    .book::after {
-      content: '';
-      position: absolute;
-      left: 50%; top: 0; bottom: 0;
-      width: 28px;
-      transform: translateX(-50%);
-      background: linear-gradient(to right,
-        rgba(0,0,0,0.18) 0%,
-        rgba(0,0,0,0.06) 40%,
-        rgba(0,0,0,0.06) 60%,
-        rgba(0,0,0,0.18) 100%);
-      pointer-events: none;
-      z-index: 2;
-    }
-    .page {
-      aspect-ratio: 3/4.9;
-      position: relative;
-      overflow: hidden;
-      transition: opacity 0.3s ease;
-    }
-    .page-left  { background: #e8e4de; }
-    .page-right { background: #fff; }
-
-    .flipbook-nav {
-      display: flex; align-items: center; gap: 1.5rem;
-    }
-    .flip-btn {
-      background: var(--dark); color: var(--light);
-      border: none; border-radius: 999px;
-      width: 44px; height: 44px; font-size: 1rem;
-      cursor: pointer; transition: background 0.2s, transform 0.15s;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .flip-btn:hover:not(:disabled) { background: var(--orange); }
-    .flip-btn:active:not(:disabled) { transform: scale(0.93); }
-    .flip-btn:disabled { background: #ccc; cursor: default; }
-    .flip-counter {
-      font-size: 0.72rem; letter-spacing: 0.12em;
-      text-transform: uppercase; color: #888; min-width: 90px; text-align: center;
-    }
-    .flip-hint {
-      font-size: 0.6rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #bbb;
-    }
-
-    /* ════ CONTEXTE 3 COL ════ */
-    .context-section {
-      display: grid; grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       border-bottom: 1px solid var(--rule);
     }
-    .context-block { padding: 5vh 3.5vw; border-right: 1px solid var(--rule); }
+
+    .stat-block {
+      padding: 4vh 3.5vw;
+      border-right: 1px solid var(--rule);
+    }
+
+    .stat-block:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-desc {
+      font-size: 0.82rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* ════ PROCESSUS ════ */
+    .process-section {
+      padding: 6vh 6vw;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 3rem;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+    }
+
+    .step {
+      padding: 0 2rem 2rem 0;
+      border-right: 1px solid var(--rule);
+    }
+
+    .step:last-child { border-right: none; padding-right: 0; }
+    .step:first-child { padding-left: 0; }
+
+    /* Photo au-dessus de chaque étape */
+    .step-photo {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.72rem;
+      font-weight: 900;
+      color: var(--orange);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .step h4 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .step p {
+      font-size: 0.8rem;
+      color: #666;
+      line-height: 1.65;
+    }
+
+          .gallery-section {
+  position: relative;
+  z-index: 1;
+}
+
+.bat-section {
+  position: relative;
+  z-index: 2;
+  background: var(--light);
+}
+
+    /* ════ GALERIE MOSAÏQUE ════ */
+    .gallery-section {
+      padding: 6vh 6vw;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .mosaic-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      height: 420px;
+    }
+
+    .mosaic-top-right {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .mosaic-bottom {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      height: 260px;
+    }
+
+    .mosaic-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    /* ════ BAT ════ */
+    .bat-section {
+      padding: 6vh 6vw;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .bat-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .bat-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .bat-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--dark);
+      color: var(--light);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    .bat-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .bat-title em {
+      font-style: italic;
+      color: var(--orange);
+    }
+
+    .bat-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      font-weight: 300;
+      color: #444;
+    }
+
+    .bat-body strong { font-weight: 500; color: var(--dark); }
+
+    .bat-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* L'image du BAT paysage pleine largeur */
+    .bat-img {
+      width: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #f5f4f0;
+      padding: 1.5rem;
+      display: block;
+    }
+
+    .bat-caption {
+      font-size: 0.78rem;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    /* Specs techniques */
+    .spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 1rem;
+    }
+
+    .spec-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.88rem;
+    }
+
+    .spec-row:last-child { border-bottom: none; }
+
+    .spec-key {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      align-self: center;
+    }
+
+    .spec-val { font-weight: 500; }
+
+    /* ════ CONTEXTE 3 COLONNES ════ */
+    .context-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .context-block {
+      padding: 5vh 3.5vw;
+      border-right: 1px solid var(--rule);
+    }
+
     .context-block:last-child { border-right: none; }
-    .context-block h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.9rem; }
-    .context-block p { font-size: 1.1rem; line-height: 1.75; color: #555; }
 
-    /* ════ GALERIE PHOTOS ════ */
+    .context-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+    }
 
-.photos-section {
-  padding: 6vh 6vw;
-}
-
-/* Optionnel : style pour le titre de section "SPECIMEN IMPRIME" */
-.section-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #888;
-  margin-bottom: 2rem;
-}
-
-.photos-grid {
-  display: grid;
-  /* Ta grille asymétrique : 1 grande colonne (2fr) et 2 petites (1fr chacune) */
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-auto-rows: min-content; /* S'adapte à la hauteur des petits blocs */
-  gap: 1.5rem; /* Ajuste l'espace entre tes blocs selon tes besoins */
-}
-
-.img-ph {
-  background-color: var(--ph-bg-color); /* Couleur de secours de ton image */
-  background-size: cover;          /* L'image remplit tout l'espace sans déformation */
-  background-position: center;     /* L'image est centrée */
-  background-repeat: no-repeat;
-  border-radius: 4px;              /* Un radius léger comme dans ton exemple */
-  width: 100%;
-}
-
-/* Gestion de la structure asymétrique */
-
-/* 1. Le grand bloc prend 2 rangées de hauteur */
-.ph-main {
-  grid-row: span 2;
-  /* Optionnel : forcer une hauteur minimale si tes images sont absentes */
-  min-height: 400px; 
-}
-
-/* 2. Les petits blocs conservent un ratio spécifique */
-.ph-sm {
-  aspect-ratio: 4/3; /* Ratio de ton image de référence */
-}
+    .context-block p {
+      font-size: 0.87rem;
+      line-height: 1.75;
+      color: #555;
+    }
 
     /* ════ PROJET SUIVANT ════ */
     a.next-project {
-      display: grid; grid-template-columns: 1fr auto;
-      align-items: center; padding: 5vh 6vw;
-      background: var(--dark); color: var(--light);
-      text-decoration: none; transition: background 0.35s ease;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      padding: 5vh 6vw;
+      background: var(--dark);
+      color: var(--light);
+      text-decoration: none;
+      transition: background 0.35s ease;
     }
+
     a.next-project:hover { background: var(--orange); }
-    .next-label { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245,244,240,0.4); display: block; margin-bottom: 0.5rem; }
-    .next-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1; }
-    .next-arrow { font-size: 2.5rem; transition: transform 0.3s ease; }
+
+    .next-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(245,244,240,0.4);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .next-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .next-arrow {
+      font-size: 2.5rem;
+      transition: transform 0.3s ease;
+    }
+
     a.next-project:hover .next-arrow { transform: translateX(10px); }
 
-    footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #bbb; border-top: 1px solid var(--rule); }
-    .scroll-top {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
-      background: var(--orange); color: var(--light); border: none;
-      border-radius: 999px; width: 54px; height: 54px; font-size: 1.1rem;
-      cursor: pointer; transition: background 0.2s;
+    /* ════ FOOTER ════ */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #bbb;
+      border-top: 1px solid var(--rule);
     }
+
+    /* ════ SCROLL TOP ════ */
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 200;
+      background: var(--orange);
+      color: var(--light);
+      border: none;
+      border-radius: 999px;
+      width: 54px; height: 54px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
     .scroll-top:hover { background: var(--dark); }
 
-    .reveal { opacity: 0; transform: translateY(20px); animation: revealUp 0.6s ease forwards; }
+    /* ════ ANIMATIONS ════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: revealUp 0.6s ease forwards;
+    }
     .reveal-1 { animation-delay: 0.05s; }
     .reveal-2 { animation-delay: 0.18s; }
     .reveal-3 { animation-delay: 0.32s; }
-    @keyframes revealUp { to { opacity: 1; transform: translateY(0); } }
 
+    @keyframes revealUp {
+      to { opacity: 1; transform: translateY(0); }
+
+
+    }
+
+    /* ════ RESPONSIVE ════ */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.4rem; }
       .hero { grid-template-columns: 1fr; padding: 12vh 5vw 4vh; }
-      .hero-deco { display: none; }
+      .hero-number { display: none; }
+      .meta-item { border-right: none; margin-right: 0; padding-right: 0; }
       .intro-section { grid-template-columns: 1fr; gap: 1.2rem; }
+      .stats-section { grid-template-columns: repeat(2, 1fr); }
+      .stat-block:nth-child(2) { border-right: none; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .step { border-right: none; padding: 0; }
+      .mosaic-top { height: auto; grid-template-columns: 1fr; }
+      .mosaic-top-right { grid-template-rows: auto; grid-template-columns: 1fr 1fr; }
+      .mosaic-bottom { height: auto; grid-template-columns: 1fr; }
+      .mosaic-img { height: 220px; }
+      .bat-cols { grid-template-columns: 1fr; gap: 2rem; }
       .context-section { grid-template-columns: 1fr; }
       .context-block { border-right: none; border-bottom: 1px solid var(--rule); }
-      .photos-grid { grid-template-columns: 1fr 1fr; }
-      .ph-main { grid-row: auto; grid-column: 1 / -1; min-height: 220px; }
       a.next-project { grid-template-columns: 1fr; gap: 1.5rem; }
-      .meta-item { border-right: none; margin-right: 0; padding-right: 0; }
     }
   </style>
+
   <link rel="icon" type="image/png" href="assets/images/logo.webp">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
-<nav><div id="header-placeholder"></div></nav>
+  <!-- NAV -->
+  <nav>
+    <div id="header-placeholder"></div>
+  </nav>
 
-<div class="back-wrapper">
-  <a id="back-btn" href="index.html" class="back-btn">← Retour</a>
-</div>
-
-<!-- ── HERO ── -->
-<header class="hero">
-  <div class="hero-deco reveal reveal-1">
-    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="200" height="200" rx="12" fill="#f0ede8"/>
-      <rect x="0"   y="0"   width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="100" y="0"   width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="50"  y="50"  width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="150" y="50"  width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="0"   y="100" width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="100" y="100" width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="50"  y="150" width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="150" y="150" width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <text x="25"  y="35"  text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">C</text>
-      <text x="125" y="35"  text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">O</text>
-      <text x="75"  y="85"  text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">M</text>
-      <text x="175" y="85"  text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">P</text>
-      <text x="25"  y="135" text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">A</text>
-      <text x="125" y="135" text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">G</text>
-      <text x="75"  y="185" text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">N</text>
-      <text x="175" y="185" text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">O</text>
-    </svg>
+  <!-- BACK -->
+  <div class="back-wrapper">
+    <a href="index.html" class="back-btn">← Retour</a>
   </div>
 
-  <div class="hero-content">
-    <span class="hero-tag reveal reveal-1">Typographie · Édition</span>
-    <h1 class="hero-title reveal reveal-2"><em>Compagnon</em></h1>
-    <div class="hero-meta reveal reveal-3">
-      <div class="meta-item"><span class="meta-label">Année</span><span class="meta-value">2024</span></div>
-      <div class="meta-item"><span class="meta-label">Client</span><span class="meta-value">EDNA</span></div>
-      <div class="meta-item"><span class="meta-label">Industrie</span><span class="meta-value">Typographie</span></div>
-      <div class="meta-item"><span class="meta-label">Cadre</span><span class="meta-value">Académique · Groupe</span></div>
-      <div class="meta-item"><span class="meta-label">Expérience</span><span class="meta-value">Édition</span></div>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-number reveal reveal-1">03</div>
+    <div class="hero-content">
+      <span class="hero-tag reveal reveal-1">Impression · Identité visuelle</span>
+      <h1 class="hero-title reveal reveal-2">Personnalisation<br><em>de supports</em></h1>
+      <div class="hero-meta reveal reveal-3">
+        <div class="meta-item">
+          <span class="meta-label">Années</span>
+          <span class="meta-value">2024 – 2026</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Entreprise</span>
+          <span class="meta-value">Polypap</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Outils</span>
+          <span class="meta-value">Illustrator · Photoshop</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Cadre</span>
+          <span class="meta-value">Professionnel · Rémunéré</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="intro-section">
+    <div class="intro-left">
+      <span class="intro-label">Contexte</span>
+      <p class="intro-role">
+        <strong>Mon rôle :</strong><br>
+        Infographiste chargée de la personnalisation d'emballages et d'étiquettes pour les clients de Polypap — de la réception du brief commercial jusqu'à la validation du bon à tirer.
+      </p>
+    </div>
+    <div class="intro-right">
+      <p class="intro-body">
+        Polypap propose à ses clients fleuristes la possibilité de <strong>personnaliser leurs emballages</strong> à leur image — papier kraft, sacs bouquet, étiquettes adhésives, rubans. Le processus commence par une commande transmise via un formulaire commercial, auquel est joint le logo du client. Mon rôle est d'<strong>intégrer cette identité dans nos gabarits techniques</strong>, en respectant les contraintes de l'impression flexographique et offset, puis de produire un bon à tirer soumis à validation.
+        <br><br>
+        Ce travail allie <strong>rigueur technique</strong> — gestion des fonds perdus, des trappings, des profils colorimétriques — 
+        et <strong>sensibilité graphique</strong>, car chaque résultat final doit être élégant entre les mains d'un client final.
+      </p>
+    </div>
+  </section>
+
+  <!-- CHIFFRES CLÉS -->
+  <div class="stats-section">
+    <div class="stat-block">
+      <div class="stat-number">+300</div>
+      <div class="stat-desc">supports personnalisés traités sur 2 ans d'alternance</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">12</div>
+      <div class="stat-desc">Formats maîtrisés : autocollant, carte tous types, étiquette, sac, Innobag, Florbox, Irisbox, Décobulle, bobine, rame, elite, tampons...</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">48h</div>
+      <div class="stat-desc">Délai moyen entre commande et envoi du BAT client</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">B2B</div>
+      <div class="stat-desc">clients fleuristes France, Canada, Italie, Chine</div>
     </div>
   </div>
-</header>
 
+  <!-- PROCESSUS -->
+  <section class="process-section">
+    <p class="section-label">Processus de travail</p>
+    <div class="process-steps">
 
-<!-- ── INTRO ── -->
-<section class="intro-section">
-  <div class="intro-left">
-    <span class="intro-label">Contexte</span>
-    <p class="intro-role">
-      <strong>Mon rôle :</strong><br>
-      Conception et mise en page du spécimen typographique, en autonomie totale dans un cadre scolaire collectif.
-    </p>
-  </div>
-  <div class="intro-right">
-    <p class="intro-body">
-      Le sujet était <strong>Compagnon, une famille de police</strong> réalisée par Juliette Duhé, Léa Pradine, Valentin Papon, Chloé Lozano et Sébastien Sanfilippo, visant une audience de designers et de professionnels utilisant régulièrement des typographies. Il s'agit de la réalisation d'un <strong>spécimen</strong> — un objet éditorial créé dans le but de présenter et mettre en valeur une typographie.
-    </p>
-  </div>
-</section>
+      <div class="step">
+        <!-- Remplace src par ta photo : capture ZohoForms, email commercial, etc. -->
+        <a href="assets/images/Zohoform.jpg" class="glightbox"><img src="assets/images/Zohoform.jpg" alt="Réception commande" class="step-photo"></a>
+        <span class="step-num">01</span>
+        <h4>Réception de la commande</h4>
+        <p>Le commercial transmet via ZohoForms la fiche client : type de support, quantité, format, et logo fourni par le fleuriste.</p>
+      </div>
 
+      <div class="step">
+        <!-- Remplace src par ta photo : capture Illustrator, logo vectoriel, etc. -->
+        <a href="assets/images/blaxckchain-motif.webp" class="glightbox"><img src="assets/images/blaxckchain-motif.webp" alt="Analyse du logo" class="step-photo"></a>
+        <span class="step-num">02</span>
+        <h4>Analyse du logo</h4>
+        <p>Vérification de la qualité du fichier source — vectoriel ou bitmap, mode colorimétrique, lisibilité à petite taille, compatibilité flexo.</p>
+      </div>
 
-<!-- ── FLIPBOOK PDF ── -->
-<section class="flipbook-section">
-  <p class="section-label">Feuilleter le spécimen</p>
+      <div class="step">
+        <!-- Remplace src par ta photo : gabarit technique ouvert dans Illustrator -->
+        <a href="assets/images/oiseau-motif.webp" class="glightbox"><img src="assets/images/oiseau-motif.webp" alt="Intégration technique" class="step-photo"></a>
+        <span class="step-num">03</span>
+        <h4>Intégration technique</h4>
+        <p>Mise en page sur gabarit propriétaire : fonds perdus, zones de sécurité, trapping des couleurs, conversion en tons directs si nécessaire.</p>
+      </div>
 
-  <div class="book-wrapper">
+      <div class="step">
+        <!-- Remplace src par ta photo : PDF de BAT, aperçu document -->
+        <a href="assets/images/decobulle-blackchain.webp" class="glightbox"><img src="assets/images/decobulle-blackchain.webp" alt="Envoi du BAT" class="step-photo"></a>
+        <span class="step-num">04</span>
+        <h4>Envoi du BAT</h4>
+        <p>Génération du bon à tirer en PDF, transmis au client via le commercial. Retour de validation signé avant lancement en production.</p>
+      </div>
 
-    <div id="flipLoading" style="
-      width: min(820px, 90vw);
-      aspect-ratio: 3/2;
-      display: flex; align-items: center; justify-content: center;
-      background: #f0ede8; border-radius: 4px;
-      font-size: 0.72rem; letter-spacing: 0.14em;
-      text-transform: uppercase; color: #aaa;
-    ">Chargement du spécimen…</div>
+      <div class="step">
+        <!-- Remplace src par ta photo : imprimante flexo, produit fini -->
+        <a href="assets/images/innobag-angerose.webp" class="glightbox"><img src="assets/images/innobag-angerose.webp" alt="Lancement production" class="step-photo"></a>
+        <span class="step-num">05</span>
+        <h4>Corrections & lancement</h4>
+        <p>Intégration des retours clients, parfois en échange direct. Une fois validé, le fichier part en production sur les imprimantes flexographiques.</p>
+      </div>
 
-    <div class="book" id="book" style="display:none;">
-      <div class="page page-left"  id="pageLeft"  style="background:#fff;"></div>
-      <div class="page page-right" id="pageRight" style="background:#fff;"></div>
     </div>
+  </section>
 
-    <div class="flipbook-nav">
-      <button class="flip-btn" id="btnPrev" disabled>←</button>
-      <span class="flip-counter" id="flipCounter">—</span>
-      <button class="flip-btn" id="btnNext" disabled>→</button>
+  <!-- GALERIE -->
+  <section class="gallery-section">
+    <p class="section-label">Aperçu des réalisations</p>
+    <div class="mosaic-top">
+      <a href="assets/images/innobag-angerose.webp" class="glightbox"><img src="assets/images/innobag-angerose.webp" alt="Sac bouquet personnalisé Fleurs du Moulin" class="mosaic-img"></a>
+      <div class="mosaic-top-right">
+        <a href="assets/images/decobulle-blackchain.webp" class="glightbox"><img src="assets/images/decobulle-blackchain.webp" alt="Étiquette adhésive La Roseraie" class="mosaic-img"></a>
+        <a href="assets/images/oiseau-motif.webp" class="glightbox"><img src="assets/images/oiseau-motif.webp" alt="Kraft personnalisé Atelier Végétal" class="mosaic-img"></a>
+      </div>
     </div>
-    <span class="flip-hint">Flèches · clavier · swipe</span>
-  </div>
-</section>
+    <div class="mosaic-bottom">
+      <a href="assets/images/innobagrose-oiseau.webp" class="glightbox"><img src="assets/images/innobagrose-oiseau.webp" alt="Sac rose Jardins de Clémence" class="mosaic-img"></a>
+      <a href="assets/images/florbox-angerose.webp" class="glightbox"><img src="assets/images/florbox-angerose.webp" alt="Florbox personnalisée Maison Pivoine" class="mosaic-img"></a>
+      <a href="assets/images/bouquet-aquarelle.webp" class="glightbox"><img src="assets/images/bouquet-aquarelle.webp" alt="Bouquet emballé Fleuriste Lacombe" class="mosaic-img"></a>
+    </div>
+  </section>
 
+  <!-- BAT -->
+  <section class="bat-section">
+    <div class="bat-cols">
 
-<!-- ── CONTEXTE 3 COLONNES ── -->
-<section class="context-section">
-  <div class="context-block">
-    <h3>À propos</h3>
-    <p>Compagnon est une nouvelle famille de police, estimement variée. L'objectif était de célébrer cette diversité et de la mettre en avant à travers l'objet éditorial qu'est le spécimen.</p>
-  </div>
-  <div class="context-block">
-    <h3>Démarche</h3>
-    <p>L’idée était de construire une histoire autour d’un homme en quête d’inspiration pour écrire une nouvelle. Il puise ses idées dans les différentes fontes de Compagnon, extrêment variée. C'était dans le but de célébrer la diversité de cette police, pouvoir l'illustrer et la mettre en avant dans un cadre créatif et libre.</p>
-  </div>
-  <div class="context-block">
-    <h3>Résultats</h3>
-    <p>Projet réalisé principalement avec <strong>InDesign et Procreate pour les illustrations</strong>. Ce cadre académique m'a permis de développer un <strong>amour du papier et de la création éditoriale</strong>, qui me serviront dans de futurs projets professionnels.</p>
-  </div>
-</section>
+      <div class="bat-left">
+        <span class="bat-badge">→ Expertise technique</span>
+        <h2 class="bat-title">Le bon à tirer :<br>un document <em>contractuel</em></h2>
+        <p class="bat-body">
+          Le BAT n'est pas qu'un aperçu visuel — c'est un <strong>accord définitif avant impression</strong>. Il engage le client sur la conformité des textes, de la mise en page et des couleurs. Une fois signé, aucune modification ni réclamation ne peut être acceptée.
+          <br><br>
+          Sa production exige de maîtriser simultanément les <strong>exigences graphiques du client</strong> et les <strong>contraintes techniques de l'impression flexographique</strong> : nombre de couleurs limité, comportement de l'encre sur matière souple, rendu sur papier kraft ou couché.
+        </p>
+        <p class="bat-body">
+          Il m'arrive de <strong>travailler directement avec le client</strong> après l'envoi du premier BAT — pour affiner la disposition du logo, ajuster une couleur, ou expliquer pourquoi certaines contraintes techniques s'imposent.
+        </p>
 
+        <div class="spec-list">
+          <div class="spec-row">
+            <span class="spec-key">Produit</span>
+            <span class="spec-val">Autocollant personnalisé</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">Format</span>
+            <span class="spec-val">60 × 30 mm</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">Tirage</span>
+            <span class="spec-val">Rouleau de 1 000 ex.</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">Impression</span>
+            <span class="spec-val">Couleur quadri</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">Matière</span>
+            <span class="spec-val">Papier couché 80 g</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">Finition</span>
+            <span class="spec-val">Vernis brillant</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-key">Statut</span>
+            <span class="spec-val">BAT validé · En production</span>
+          </div>
+        </div>
+      </div>
 
-<!-- ── GALERIE PHOTOS ── -->
-<section class="photos-section">
-  <div class="photos-grid">
-    <div class="img-ph ph-main" style="background-image: url('assets/images/mockup-1-specimen.webp');" aria-label="Vue d'ensemble de face"></div>
-    
-    <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-2-specimen.webp');" aria-label="Détail de la tranche"></div>
-    
-    <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-3-specimen.webp');" aria-label="Illustration rouge"></div>
-    
-    <div class="img-ph ph-sm" style="background-image: url('assets/images/proposition-rouge.webp');" aria-label="Pages intérieures"></div>
-    
-    <div class="img-ph ph-sm" style="background-image: url('chemin/vers/image-impress.webp');" aria-label="Détail d'impression"></div>
-  </div>
-</section>
-</section>
+      <div class="bat-right">
+        <p class="section-label">Exemple de bon à tirer</p>
+        <!-- Remplace src par ton vrai BAT anonymisé, format paysage -->
+        <a href="assets/images/TON-BAT.webp" class="glightbox"><img src="assets/images/TON-BAT.webp" alt="Exemple de bon à tirer" class="bat-img"></a>
+        <p class="bat-caption">Bon à tirer · Étiquette adhésive 60×30mm · Papier couché 80g · Vernis brillant</p>
+      </div>
 
+    </div>
+  </section>
 
-<!-- ── PROJET SUIVANT ── -->
-<a href="motifs.html" class="next-project">
-  <div>
-    <span class="next-label">Projet suivant</span>
-    <div class="next-title">Motifs de<br>collection</div>
-  </div>
-  <div class="next-arrow">→</div>
-</a>
+  <!-- CONTEXTE 3 COLONNES -->
+  <section class="context-section">
+    <div class="context-block">
+      <h3>Problématique</h3>
+      <p>Intégrer une identité visuelle externe — souvent mal adaptée à l'impression — dans un gabarit technique contraint, tout en produisant un rendu élégant pour le client final.</p>
+    </div>
+    <div class="context-block">
+      <h3>Démarche</h3>
+      <p>Analyse systématique du logo source, nettoyage vectoriel si nécessaire, adaptation colorimétrique, mise en page sur gabarit propriétaire, puis génération du PDF de validation.</p>
+    </div>
+    <div class="context-block">
+      <h3>Résultats</h3>
+      <p>Des supports livrés dans les délais, validés sans allers-retours excessifs, et une relation de confiance construite avec certains clients réguliers qui demandent à travailler directement avec moi.</p>
+    </div>
+  </section>
 
-<footer><p>Alexane &mdash; <span id="year"></span></p></footer>
-<button class="scroll-top" title="Revenir en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  <!-- PROJET SUIVANT -->
+  <a href="calendriers.html" class="next-project">
+    <div>
+      <span class="next-label">Projet suivant</span>
+      <div class="next-title">Création de<br>calendriers</div>
+    </div>
+    <div class="next-arrow">→</div>
+  </a>
 
+  <!-- FOOTER -->
+  <footer>
+    <p>Alexane &mdash; <span id="year"></span></p>
+  </footer>
 
-<script src="./main.js"></script>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  fetch('./includes/header.html')
-    .then(r => r.text())
-    .then(d => { document.getElementById('header-placeholder').innerHTML = d; if (typeof initBurger === 'function') initBurger(); })
-    .catch(() => {});
-</script>
+  <button class="scroll-top" title="Revenir en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script>
-(function () {
-  // ── À MODIFIER ──────────────────────────────────────────
-  const PDF_URL = 'assets/pdf/specimen-compagnon.pdf';
-  // ────────────────────────────────────────────────────────
+  <script src="./main.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    fetch('./includes/header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+        if (typeof initBurger === 'function') initBurger();
+      })
+      .catch(err => console.error('Erreur Header :', err));
+  </script>
 
-  pdfjsLib.GlobalWorkerOptions.workerSrc =
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-  let pdfDoc     = null;
-  let current    = 0;
-  let numSpreads = 0;
-
-  const bookEl    = document.getElementById('book');
-  const loadingEl = document.getElementById('flipLoading');
-  const pL        = document.getElementById('pageLeft');
-  const pR        = document.getElementById('pageRight');
-  const counter   = document.getElementById('flipCounter');
-  const btnPrev   = document.getElementById('btnPrev');
-  const btnNext   = document.getElementById('btnNext');
-
-  async function renderPage(pageNum) {
-    const page     = await pdfDoc.getPage(pageNum);
-    const viewport = page.getViewport({ scale: 1 });
-    const containerW = bookEl.offsetWidth / 2;
-    const scale      = containerW / viewport.width;
-    const vp         = page.getViewport({ scale });
-
-    const canvas = document.createElement('canvas');
-    canvas.width  = vp.width;
-    canvas.height = vp.height;
-    canvas.style.cssText = 'width:100%; height:100%; object-fit:contain; display:block;';
-
-    await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
-    return canvas;
-  }
-
-async function showSpread(idx, dir = 0) {
-  pL.style.opacity = pR.style.opacity = '0';
-  pL.style.transform = pR.style.transform =
-    dir > 0 ? 'translateX(6px)' : dir < 0 ? 'translateX(-6px)' : 'none';
-
-  // Décalage d'une page : spread 0 → gauche vide / droite = page 1
-  const leftNum  = idx * 2;       // 0 = vide, 2, 4, 6...
-  const rightNum = idx * 2 + 1;   // 1, 3, 5...
-  const total    = pdfDoc.numPages;
-
-  const [cL, cR] = await Promise.all([
-    leftNum  >= 1 && leftNum  <= total ? renderPage(leftNum)  : Promise.resolve(null),
-    rightNum >= 1 && rightNum <= total ? renderPage(rightNum) : Promise.resolve(null),
-  ]);
-
-  pL.innerHTML = '';
-  pR.innerHTML = '';
-  if (cL) pL.appendChild(cL);
-  if (cR) pR.appendChild(cR);
-
-  if (idx === 0) {
-    counter.textContent = 'Couverture';
-  } else if (rightNum > total) {
-    counter.textContent = `Page ${leftNum}`;
-  } else {
-    counter.textContent = `${leftNum} — ${rightNum}`;
-  }
-
-  setTimeout(() => {
-    pL.style.transition = pR.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
-    pL.style.opacity = pR.style.opacity = '1';
-    pL.style.transform = pR.style.transform = 'translateX(0)';
-  }, 30);
-
-  btnPrev.disabled = idx === 0;
-  btnNext.disabled = idx >= numSpreads - 1;
-}
-
-  function flipPage(dir) {
-    const next = Math.max(0, Math.min(numSpreads - 1, current + dir));
-    if (next === current) return;
-    current = next;
-    showSpread(current, dir);
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') flipPage(1);
-    if (e.key === 'ArrowLeft')  flipPage(-1);
-  });
-
-  let tx0 = 0;
-  bookEl.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
-  bookEl.addEventListener('touchend',   e => {
-    const dx = e.changedTouches[0].clientX - tx0;
-    if (Math.abs(dx) > 40) flipPage(dx < 0 ? 1 : -1);
-  });
-
-  btnPrev.onclick = () => flipPage(-1);
-  btnNext.onclick = () => flipPage(1);
-
-  pdfjsLib.getDocument(PDF_URL).promise.then(pdf => {
-    pdfDoc     = pdf;
-    numSpreads = Math.ceil((pdf.numPages + 1) / 2);
-    loadingEl.style.display = 'none';
-    bookEl.style.display    = 'grid';
-    btnPrev.disabled = false;
-    btnNext.disabled = false;
-    showSpread(0);
-  }).catch(err => {
-    loadingEl.textContent = 'Impossible de charger le PDF.';
-    console.error(err);
-  });
-})();
-</script>
-
-<script>
-const from = new URLSearchParams(window.location.search).get("from");
-if (from === "print") document.getElementById("back-btn").href = "print.html";
-</script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>const lightbox = GLightbox({ selector: ".glightbox" });</script>
 </body>
 </html>

@@ -333,6 +333,7 @@
 
   
 <link rel="icon" type="image/png" href="assets/images/logo.webp">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
@@ -388,7 +389,7 @@
       <div class="sticky-wrapper">
         <span class="gallery-label">Galerie du projet</span>
         <div id="gallery" class="horizontal-gallery">
-          <img src="assets/images/gallerie-mobi.webp" class="master-art" alt="Mobi Screens">
+          <a href="assets/images/gallerie-mobi.webp" class="glightbox"><img src="assets/images/gallerie-mobi.webp" class="master-art" alt="Mobi Screens"></a>
         </div>
       </div>
     </div>
@@ -478,5 +479,7 @@
     }
   </script>
 
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>const lightbox = GLightbox({ selector: ".glightbox" });</script>
 </body>
 </html>

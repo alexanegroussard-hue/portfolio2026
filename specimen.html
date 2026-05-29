@@ -269,6 +269,7 @@
     }
   </style>
   <link rel="icon" type="image/png" href="assets/images/logo.webp">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
@@ -544,5 +545,7 @@ if (from === "print") document.getElementById("back-btn").href = "print.html";
 const from = new URLSearchParams(window.location.search).get("from");
 if (from === "print") document.getElementById("back-btn").href = "print.html";
 </script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>const lightbox = GLightbox({ selector: ".glightbox" });</script>
 </body>
 </html>
