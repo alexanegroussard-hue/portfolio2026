@@ -96,14 +96,15 @@
       transform: translateY(-4px); 
     }
 
-    .project-card.has-image::before { 
-      content: ''; 
-      position: absolute; 
-      inset: 0; 
-      border-radius: 20px; 
-      z-index: 1; 
-      background: linear-gradient(to bottom, var(--overlay-color, rgba(255, 241, 197, 0.9)) 0%, transparent 100%); }
-   
+  .project-card::before { 
+ content: '';
+ position: absolute;
+ inset: 0;
+ z-index: 1;
+ background: linear-gradient(to right,
+ var(--overlay-color, rgba(255, 255, 255, 0.945)) 0%, transparent 100%); 
+}
+
     .project-card-content { 
       position: relative; 
       z-index: 2; 
@@ -120,13 +121,13 @@
     font-size: 2rem; 
     margin-bottom: 0.8rem; 
     white-space: nowrap;
-    color: #ffffff
+    color: rgb(34, 34, 34)
     
   }
 
     .project-card-content p { 
       font-size: 0.88rem;
-       color: #353535;
+       color: rgb(34, 34, 34);
         line-height: 1.65;
          margin-bottom: 2rem; 
         }
@@ -237,15 +238,16 @@
       }
 
       /* Overlay clair de gauche à droite, comme le desktop */
-.project-card.has-image::before {
-    /* Le dégradé part de TA couleur et devient transparent à droite */
-    background: linear-gradient(to bottom, 
-      var(--overlay-color) 00%, 
-      var(--overlay-color) 40%, 
-      transparent 100%) !important;
-    z-index: 1;
-    border-radius: 20px; /* Pour bien suivre l'arrondi de ta carte */
-  }
+  .project-card::before { 
+ content: '';
+ position: absolute;
+ inset: 0;
+ z-index: 1;
+ background: linear-gradient(to right,
+ var(--overlay-color, rgba(255, 255, 255, 0.945)) 0%, transparent 100%); 
+ z-index: 1;
+ border-radius: 20px; /* Pour bien suivre l'arrondi de ta carte */
+ }
 
   /* Pour être sûr que le texte reste lisible sur ta couleur */
   .project-card-content {
@@ -347,7 +349,7 @@ Projets sélectionnés
     <!-- COLLECTION DE MOTIFS-->
 
     <!-- Calendriers -->
-    <div class="project-card has-image" style="background-image: url('assets/images/cover-calendar.webp'); --overlay-color: rgba(0, 174, 255, 0.7);">
+    <div class="project-card has-image" style="background-image: url('assets/images/cover-calendar.webp'); --overlay-color: rgb(129, 215, 255);">
       <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
       <div class="project-card-content">
         <div>
@@ -366,7 +368,7 @@ Projets sélectionnés
 
 
     <!-- Collection de motifs -->
-    <div class="project-card has-image" style="background-image: url('assets/images/cover-patterpolypap.webp'); --overlay-color: rgba(255, 0, 255, 0.671);">
+    <div class="project-card has-image" style="background-image: url('assets/images/cover-patterpolypap.webp'); --overlay-color: rgb(255, 117, 255);">
       <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
       <div class="project-card-content">
         <div>
@@ -383,7 +385,7 @@ Projets sélectionnés
     </div>
 
     <!-- Création de spécimen -->
-    <div class="project-card has-image" style="background-image: url('assets/images/cover-specimen.webp'); --overlay-color: rgb(255, 208, 0);">
+    <div class="project-card has-image" style="background-image: url('assets/images/cover-specimen.webp'); --overlay-color: rgb(255, 238, 160);">
       <div class="bookmark-wrap"><div class="bookmark-body">Sco</div></div>
       <div class="project-card-content">
         <div>
@@ -400,7 +402,7 @@ Projets sélectionnés
     </div>
 
     <!-- Création de spécimen -->
-    <div class="project-card has-image" style="background-image: url('assets/images/cover-specimen.webp'); --overlay-color: rgba(0, 0, 0, 0.7);">
+    <div class="project-card has-image" style="background-image: url('assets/images/cover-specimen.webp'); --overlay-color: rgb(155, 155, 155);">
       <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
       <div class="project-card-content">
         <div>
