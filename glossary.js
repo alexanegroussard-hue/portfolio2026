@@ -50,7 +50,7 @@ const GLOSSARY = {
   },
    Anamorphose: {
     label: "Anamorphose",
-    def: "En impression, technique de déformation appliquée volontairement sur les fichiers d'impression pour compenser la distorsion faite par la surface ronde du cylindre sur lequel le motif sera placé pour être imprimé. Sans ça, le motif imprimé serait plus étiré que le motif original."
+    def: "Technique de déformation appliquée volontairement sur les fichiers d'impression pour compenser la distorsion faite par la surface ronde du cylindre sur lequel le motif sera placé pour être imprimé. Sans ça, le motif imprimé serait plus étiré que le motif original."
   },
 
 
