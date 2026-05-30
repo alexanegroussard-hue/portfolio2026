@@ -69,7 +69,7 @@
     }
 
     /* ── TITRES (C'est ce qui manquait) ── */
-    .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900; margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-top: 2rem; }
+    .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900; margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 1.2rem;  }
     .arrow-deco { animation: bounce 1.8s infinite; }
     @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
     .section-subtitle { text-align: center; color: #888; font-size: 1.1rem; margin-bottom: 3rem; font-weight: 300; }
@@ -192,12 +192,12 @@
       }
 
       .toggle-section {
-        margin-top: 120px;
+        margin-top: 70px;
         padding: 0 1.2rem;
       }
 
       .projects-section {
-        padding: 2rem 1.2rem 4rem;
+        padding: 2rem 1.2rem 2rem;
       }
 
       .project-stats {
@@ -338,16 +338,15 @@
     </div>
   </div>
 
+  <section class="projects-section">
   <div class="section-title">
-<img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
-Projets sélectionnés
-<img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
+    <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
+    Projets sélectionnés
+    <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
   </div>
   <p class="section-subtitle">édition · identité visuelle · typographie</p>
-
-  <section class="projects-section">
+ 
   <div class="projects-grid">
-    <!-- COLLECTION DE MOTIFS-->
 
     <!-- Calendriers -->
     <div class="project-card has-image" style="background-image: url('assets/images/cover-calendar.webp'); --overlay-color: rgb(129, 215, 255);">
@@ -365,8 +364,6 @@ Projets sélectionnés
         <a href="calendar.html?from=print" class="project-btn">→ Aujourd'hui</a>
       </div>
     </div>
-
-
 
     <!-- Collection de motifs -->
     <div class="project-card has-image" style="background-image: url('assets/images/cover-patterpolypap.webp'); --overlay-color: rgb(255, 117, 255);">
