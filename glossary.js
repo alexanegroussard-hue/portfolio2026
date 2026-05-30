@@ -42,7 +42,7 @@ const GLOSSARY = {
   },
       Répétition: {
     label: "Répétition de motifs",
-    def: "En flexographie, le motif se répète en continu sur le support. Deux types de plaques existent : le cliché, un morceau de tampon collé sur le cylindre — (ses bords doivent être invisibles à l'impression donc le motif doit avoir des espaces vides (voir image, les angeroses)) ; et le manchon, un cylindre en polyester sur lequel le motif est directement gravé, qui s'enfile sur le cylindre de la presse sans jointure. Le manchon est plus coûteux mais adapté aux motifs qui ne comportent pas d'espaces vides (voir les images, les plantes)."
+    def: "En flexographie, le motif se répète en continu sur le support. Deux types de plaques existent : le cliché, un morceau de tampon collé sur le cylindre — (ses bords doivent être invisibles à l'impression donc le motif doit avoir des espaces vides) ; et le manchon, un cylindre en polyester sur lequel le motif est directement gravé, qui s'enfile sur le cylindre de la presse sans jointure. Le manchon est plus coûteux mais adapté aux motifs qui ne comportent pas d'espaces vides."
   },
   Prépresse: {
     label: "Prépresse",
