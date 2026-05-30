@@ -411,17 +411,12 @@
 <button class="scroll-top" title="Revenir en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 
-<script src="./main.js"></script>
-<script>
   document.getElementById('year').textContent = new Date().getFullYear();
   fetch('./includes/header.html')
     .then(r => r.text())
     .then(d => { document.getElementById('header-placeholder').innerHTML = d; if (typeof initBurger === 'function') initBurger(); })
     .catch(() => {});
-</script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script>
 (function () {
   // ── À MODIFIER ──────────────────────────────────────────
   const PDF_URL = 'assets/pdf/specimen-compagnon.pdf';
@@ -531,21 +526,10 @@ async function showSpread(idx, dir = 0) {
     console.error(err);
   });
 })();
-</script>
 
 <script>
 const from = new URLSearchParams(window.location.search).get("from");
 if (from === "print") document.getElementById("back-btn").href = "print.html";
 </script>
-<script>
-const from = new URLSearchParams(window.location.search).get("from");
-if (from === "print") document.getElementById("back-btn").href = "print.html";
-</script>
-<script>
-const from = new URLSearchParams(window.location.search).get("from");
-if (from === "print") document.getElementById("back-btn").href = "print.html";
-</script>
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-<script>const lightbox = GLightbox({ selector: ".glightbox" });</script>
 </body>
 </html>
