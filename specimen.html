@@ -14,7 +14,7 @@
       --dark:   #1a1a1a;
       --light:  #ffffff;
       --rule:   rgba(26,26,26,0.1);
-  --ph-bg-color: #f0ede8; /* Couleur de placeholder de ton image */
+  --ph-bg-color: #f0ede8;
 }
     
 
@@ -27,7 +27,6 @@
       overflow-x: hidden;
     }
 
-    /* ════ NAV ════ */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -44,7 +43,6 @@
     .nav-links a { text-decoration: none; color: var(--dark); font-size: 1rem; font-weight: 400; transition: color 0.2s; }
     .nav-links a:hover { color: var(--orange); }
 
-    /* ════ BACK ════ */
     .back-wrapper { padding: 9rem 6vw 0; }
     .back-btn {
       background: var(--orange); color: var(--light) !important;
@@ -55,7 +53,6 @@
     }
     .back-btn:hover { background: var(--dark); }
 
-    /* ════ HERO ════ */
     .hero {
       padding: 5vh 6vw 4vh;
       border-bottom: 1px solid var(--rule);
@@ -86,7 +83,6 @@
     .meta-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: #888; }
     .meta-value { font-size: 0.9rem; font-weight: 500; }
 
-    /* ════ INTRO ════ */
     .intro-section {
       display: grid; grid-template-columns: 1fr 2fr;
       gap: 3rem; padding: 5vh 6vw; border-bottom: 1px solid var(--rule);
@@ -97,7 +93,6 @@
     .intro-body { font-size: clamp(1rem, 1.6vw, 1.25rem); line-height: 1.7; font-weight: 300; max-width: 900px; }
     .intro-body strong { font-weight: 500; }
 
-    /* ════ FLIPBOOK ════ */
     .flipbook-section {
       padding: 6vh 6vw;
       border-bottom: 1px solid var(--rule);
@@ -171,7 +166,6 @@
       text-transform: uppercase; color: #bbb;
     }
 
-    /* ════ CONTEXTE 3 COL ════ */
     .context-section {
       display: grid; grid-template-columns: repeat(3, 1fr);
       border-bottom: 1px solid var(--rule);
@@ -181,53 +175,24 @@
     .context-block h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.9rem; }
     .context-block p { font-size: 1.1rem; line-height: 1.75; color: #555; }
 
-    /* ════ GALERIE PHOTOS ════ */
+    .photos-section { padding: 6vh 6vw; }
+    .photos-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-auto-rows: min-content;
+      gap: 1.5rem;
+    }
+    .img-ph {
+      background-color: var(--ph-bg-color);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 4px;
+      width: 100%;
+    }
+    .ph-main { grid-row: span 2; min-height: 400px; }
+    .ph-sm { aspect-ratio: 4/3; }
 
-.photos-section {
-  padding: 6vh 6vw;
-}
-
-/* Optionnel : style pour le titre de section "SPECIMEN IMPRIME" */
-.section-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #888;
-  margin-bottom: 2rem;
-}
-
-.photos-grid {
-  display: grid;
-  /* Ta grille asymétrique : 1 grande colonne (2fr) et 2 petites (1fr chacune) */
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-auto-rows: min-content; /* S'adapte à la hauteur des petits blocs */
-  gap: 1.5rem; /* Ajuste l'espace entre tes blocs selon tes besoins */
-}
-
-.img-ph {
-  background-color: var(--ph-bg-color); /* Couleur de secours de ton image */
-  background-size: cover;          /* L'image remplit tout l'espace sans déformation */
-  background-position: center;     /* L'image est centrée */
-  background-repeat: no-repeat;
-  border-radius: 4px;              /* Un radius léger comme dans ton exemple */
-  width: 100%;
-}
-
-/* Gestion de la structure asymétrique */
-
-/* 1. Le grand bloc prend 2 rangées de hauteur */
-.ph-main {
-  grid-row: span 2;
-  /* Optionnel : forcer une hauteur minimale si tes images sont absentes */
-  min-height: 400px; 
-}
-
-/* 2. Les petits blocs conservent un ratio spécifique */
-.ph-sm {
-  aspect-ratio: 4/3; /* Ratio de ton image de référence */
-}
-
-    /* ════ PROJET SUIVANT ════ */
     a.next-project {
       display: grid; grid-template-columns: 1fr auto;
       align-items: center; padding: 5vh 6vw;
@@ -269,7 +234,7 @@
     }
   </style>
   <link rel="icon" type="image/png" href="assets/images/logo.webp">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
 </head>
 <body>
 
@@ -279,7 +244,6 @@
   <a id="back-btn" href="index.html" class="back-btn">← Retour</a>
 </div>
 
-<!-- ── HERO ── -->
 <header class="hero">
   <div class="hero-deco reveal reveal-1">
     <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -316,8 +280,6 @@
   </div>
 </header>
 
-
-<!-- ── INTRO ── -->
 <section class="intro-section">
   <div class="intro-left">
     <span class="intro-label">Contexte</span>
@@ -333,8 +295,6 @@
   </div>
 </section>
 
-
-<!-- ── FLIPBOOK PDF ── -->
 <section class="flipbook-section">
   <p class="section-label">Feuilleter le spécimen</p>
 
@@ -363,8 +323,6 @@
   </div>
 </section>
 
-
-<!-- ── CONTEXTE 3 COLONNES ── -->
 <section class="context-section">
   <div class="context-block">
     <h3>À propos</h3>
@@ -372,7 +330,7 @@
   </div>
   <div class="context-block">
     <h3>Démarche</h3>
-    <p>L’idée était de construire une histoire autour d’un homme en quête d’inspiration pour écrire une nouvelle. Il puise ses idées dans les différentes fontes de Compagnon, extrêment variée. C'était dans le but de célébrer la diversité de cette police, pouvoir l'illustrer et la mettre en avant dans un cadre créatif et libre.</p>
+    <p>L'idée était de construire une histoire autour d'un homme en quête d'inspiration pour écrire une nouvelle. Il puise ses idées dans les différentes fontes de Compagnon, extrêment variée. C'était dans le but de célébrer la diversité de cette police, pouvoir l'illustrer et la mettre en avant dans un cadre créatif et libre.</p>
   </div>
   <div class="context-block">
     <h3>Résultats</h3>
@@ -380,25 +338,16 @@
   </div>
 </section>
 
-
-<!-- ── GALERIE PHOTOS ── -->
 <section class="photos-section">
   <div class="photos-grid">
     <div class="img-ph ph-main" style="background-image: url('assets/images/mockup-1-specimen.webp');" aria-label="Vue d'ensemble de face"></div>
-    
     <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-2-specimen.webp');" aria-label="Détail de la tranche"></div>
-    
     <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-3-specimen.webp');" aria-label="Illustration rouge"></div>
-    
     <div class="img-ph ph-sm" style="background-image: url('assets/images/proposition-rouge.webp');" aria-label="Pages intérieures"></div>
-    
     <div class="img-ph ph-sm" style="background-image: url('chemin/vers/image-impress.webp');" aria-label="Détail d'impression"></div>
   </div>
 </section>
-</section>
 
-
-<!-- ── PROJET SUIVANT ── -->
 <a href="personnalisation.html" class="next-project">
   <div>
     <span class="next-label">Projet suivant</span>
@@ -410,126 +359,132 @@
 <footer><p>Alexane &mdash; <span id="year"></span></p></footer>
 <button class="scroll-top" title="Revenir en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-
-  document.getElementById('year').textContent = new Date().getFullYear();
-  fetch('./includes/header.html')
-    .then(r => r.text())
-    .then(d => { document.getElementById('header-placeholder').innerHTML = d; if (typeof initBurger === 'function') initBurger(); })
-    .catch(() => {});
-
-(function () {
-  // ── À MODIFIER ──────────────────────────────────────────
-  const PDF_URL = 'assets/pdf/specimen-compagnon.pdf';
-  // ────────────────────────────────────────────────────────
-
-  pdfjsLib.GlobalWorkerOptions.workerSrc =
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-  let pdfDoc     = null;
-  let current    = 0;
-  let numSpreads = 0;
-
-  const bookEl    = document.getElementById('book');
-  const loadingEl = document.getElementById('flipLoading');
-  const pL        = document.getElementById('pageLeft');
-  const pR        = document.getElementById('pageRight');
-  const counter   = document.getElementById('flipCounter');
-  const btnPrev   = document.getElementById('btnPrev');
-  const btnNext   = document.getElementById('btnNext');
-
-  async function renderPage(pageNum) {
-    const page     = await pdfDoc.getPage(pageNum);
-    const viewport = page.getViewport({ scale: 1 });
-    const containerW = bookEl.offsetWidth / 2;
-    const scale      = containerW / viewport.width;
-    const vp         = page.getViewport({ scale });
-
-    const canvas = document.createElement('canvas');
-    canvas.width  = vp.width;
-    canvas.height = vp.height;
-    canvas.style.cssText = 'width:100%; height:100%; object-fit:contain; display:block;';
-
-    await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
-    return canvas;
-  }
-
-async function showSpread(idx, dir = 0) {
-  pL.style.opacity = pR.style.opacity = '0';
-  pL.style.transform = pR.style.transform =
-    dir > 0 ? 'translateX(6px)' : dir < 0 ? 'translateX(-6px)' : 'none';
-
-  // Décalage d'une page : spread 0 → gauche vide / droite = page 1
-  const leftNum  = idx * 2;       // 0 = vide, 2, 4, 6...
-  const rightNum = idx * 2 + 1;   // 1, 3, 5...
-  const total    = pdfDoc.numPages;
-
-  const [cL, cR] = await Promise.all([
-    leftNum  >= 1 && leftNum  <= total ? renderPage(leftNum)  : Promise.resolve(null),
-    rightNum >= 1 && rightNum <= total ? renderPage(rightNum) : Promise.resolve(null),
-  ]);
-
-  pL.innerHTML = '';
-  pR.innerHTML = '';
-  if (cL) pL.appendChild(cL);
-  if (cR) pR.appendChild(cR);
-
-  if (idx === 0) {
-    counter.textContent = 'Couverture';
-  } else if (rightNum > total) {
-    counter.textContent = `Page ${leftNum}`;
-  } else {
-    counter.textContent = `${leftNum} — ${rightNum}`;
-  }
-
-  setTimeout(() => {
-    pL.style.transition = pR.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
-    pL.style.opacity = pR.style.opacity = '1';
-    pL.style.transform = pR.style.transform = 'translateX(0)';
-  }, 30);
-
-  btnPrev.disabled = idx === 0;
-  btnNext.disabled = idx >= numSpreads - 1;
-}
-
-  function flipPage(dir) {
-    const next = Math.max(0, Math.min(numSpreads - 1, current + dir));
-    if (next === current) return;
-    current = next;
-    showSpread(current, dir);
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') flipPage(1);
-    if (e.key === 'ArrowLeft')  flipPage(-1);
-  });
-
-  let tx0 = 0;
-  bookEl.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
-  bookEl.addEventListener('touchend',   e => {
-    const dx = e.changedTouches[0].clientX - tx0;
-    if (Math.abs(dx) > 40) flipPage(dx < 0 ? 1 : -1);
-  });
-
-  btnPrev.onclick = () => flipPage(-1);
-  btnNext.onclick = () => flipPage(1);
-
-  pdfjsLib.getDocument(PDF_URL).promise.then(pdf => {
-    pdfDoc     = pdf;
-    numSpreads = Math.ceil((pdf.numPages + 1) / 2);
-    loadingEl.style.display = 'none';
-    bookEl.style.display    = 'grid';
-    btnPrev.disabled = false;
-    btnNext.disabled = false;
-    showSpread(0);
-  }).catch(err => {
-    loadingEl.textContent = 'Impossible de charger le PDF.';
-    console.error(err);
-  });
-})();
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="./main.js"></script>
 
 <script>
-const from = new URLSearchParams(window.location.search).get("from");
-if (from === "print") document.getElementById("back-btn").href = "print.html";
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  fetch('./includes/header.html')
+    .then(r => r.text())
+    .then(d => {
+      document.getElementById('header-placeholder').innerHTML = d;
+      if (typeof initBurger === 'function') initBurger();
+    })
+    .catch(() => {});
+
+  // Bouton retour
+  const from = new URLSearchParams(window.location.search).get('from');
+  if (from === 'print') document.getElementById('back-btn').href = 'print.html';
+
+  // Flipbook PDF
+  (function () {
+    const PDF_URL = 'assets/pdf/specimen-compagnon.pdf';
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    let pdfDoc     = null;
+    let current    = 0;
+    let numSpreads = 0;
+
+    const bookEl    = document.getElementById('book');
+    const loadingEl = document.getElementById('flipLoading');
+    const pL        = document.getElementById('pageLeft');
+    const pR        = document.getElementById('pageRight');
+    const counter   = document.getElementById('flipCounter');
+    const btnPrev   = document.getElementById('btnPrev');
+    const btnNext   = document.getElementById('btnNext');
+
+    async function renderPage(pageNum) {
+      const page     = await pdfDoc.getPage(pageNum);
+      const viewport = page.getViewport({ scale: 1 });
+      const containerW = bookEl.offsetWidth / 2;
+      const scale      = containerW / viewport.width;
+      const vp         = page.getViewport({ scale });
+
+      const canvas = document.createElement('canvas');
+      canvas.width  = vp.width;
+      canvas.height = vp.height;
+      canvas.style.cssText = 'width:100%; height:100%; object-fit:contain; display:block;';
+
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
+      return canvas;
+    }
+
+    async function showSpread(idx, dir = 0) {
+      pL.style.opacity = pR.style.opacity = '0';
+      pL.style.transform = pR.style.transform =
+        dir > 0 ? 'translateX(6px)' : dir < 0 ? 'translateX(-6px)' : 'none';
+
+      const leftNum  = idx * 2;
+      const rightNum = idx * 2 + 1;
+      const total    = pdfDoc.numPages;
+
+      const [cL, cR] = await Promise.all([
+        leftNum  >= 1 && leftNum  <= total ? renderPage(leftNum)  : Promise.resolve(null),
+        rightNum >= 1 && rightNum <= total ? renderPage(rightNum) : Promise.resolve(null),
+      ]);
+
+      pL.innerHTML = '';
+      pR.innerHTML = '';
+      if (cL) pL.appendChild(cL);
+      if (cR) pR.appendChild(cR);
+
+      if (idx === 0) {
+        counter.textContent = 'Couverture';
+      } else if (rightNum > total) {
+        counter.textContent = `Page ${leftNum}`;
+      } else {
+        counter.textContent = `${leftNum} — ${rightNum}`;
+      }
+
+      setTimeout(() => {
+        pL.style.transition = pR.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+        pL.style.opacity = pR.style.opacity = '1';
+        pL.style.transform = pR.style.transform = 'translateX(0)';
+      }, 30);
+
+      btnPrev.disabled = idx === 0;
+      btnNext.disabled = idx >= numSpreads - 1;
+    }
+
+    function flipPage(dir) {
+      const next = Math.max(0, Math.min(numSpreads - 1, current + dir));
+      if (next === current) return;
+      current = next;
+      showSpread(current, dir);
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') flipPage(1);
+      if (e.key === 'ArrowLeft')  flipPage(-1);
+    });
+
+    let tx0 = 0;
+    bookEl.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, { passive: true });
+    bookEl.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - tx0;
+      if (Math.abs(dx) > 40) flipPage(dx < 0 ? 1 : -1);
+    });
+
+    btnPrev.onclick = () => flipPage(-1);
+    btnNext.onclick = () => flipPage(1);
+
+    pdfjsLib.getDocument(PDF_URL).promise.then(pdf => {
+      pdfDoc     = pdf;
+      numSpreads = Math.ceil((pdf.numPages + 1) / 2);
+      loadingEl.style.display = 'none';
+      bookEl.style.display    = 'grid';
+      btnPrev.disabled = false;
+      btnNext.disabled = false;
+      showSpread(0);
+    }).catch(err => {
+      loadingEl.textContent = 'Impossible de charger le PDF.';
+      console.error(err);
+    });
+  })();
 </script>
+
 </body>
 </html>
