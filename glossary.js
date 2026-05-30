@@ -14,7 +14,7 @@
 const GLOSSARY = {
   Polypap: {
     label: "Polypap",
-    def: "Entreprise spécialisée dans la fabrication et l'impression d'emballages destinés majoritairement aux fleuristes professionnels, de modèle donc B2B."
+    def: "Entreprise spécialisée dans l'impression et l'envoi d'emballages destinés majoritairement aux fleuristes professionnels, de modèle donc B2B. L'entreprise est basée près de Valence, dans la Drôme, et c'est aussi mon entreprise d'alternanceun contexte industriel où l'atelier jouxte les bureaux, ce qui m'a appris à concevoir en tenant compte des réalités de production dès le départ."
   },
   flexographie: {
     label: "flexographie",
@@ -39,8 +39,23 @@ const GLOSSARY = {
     Le_Vivant: {
     label: "Le Vivant",
     def: "Média de proximité local écologique, centré sur quatre départements : La Vienne, la Charente-Maritime, la Charente et les Deux-Sèvres. Il met en avant les initiatives solidaires-écologiques à l'échelle individuelle, communautaire et municipale."
-  }
+  },
+      Répétition: {
+    label: "Répétition de motifs",
+    def: "En flexographie, le motif se répète en continu sur le support. Deux types de plaques existent : le cliché, un morceau de tampon collé sur le cylindre — (ses bords doivent être invisibles à l'impression donc le motif doit avoir des espaces vides (voir image, les angeroses)) ; et le manchon, un cylindre en polyester sur lequel le motif est directement gravé, qui s'enfile sur le cylindre de la presse sans jointure. Le manchon est plus coûteux mais adapté aux motifs qui ne comportent pas d'espaces vides (voir les images, les plantes)."
+  },
+  Prépresse: {
+    label: "Prépresse",
+    def: "Phase de préparation avant l'impression, où les éléments sont mis en place et ajustés d'après les normes techniques, en fonction des contraintes et des consignes."
+  },
+   Anamorphose: {
+    label: "Anamorphose",
+    def: "En impression, technique de déformation appliquée volontairement sur les fichiers d'impression pour compenser la distorsion faite par la surface ronde du cylindre sur lequel le motif sera placé pour être imprimé. Sans ça, le motif imprimé serait plus étiré que le motif original."
+  },
 
+
+
+  
 };
 
 
