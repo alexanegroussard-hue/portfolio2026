@@ -14,7 +14,7 @@
 const GLOSSARY = {
   Polypap: {
     label: "Polypap",
-    def: "Entreprise spécialisée dans l'impression et l'envoi d'emballages destinés majoritairement aux fleuristes professionnels, de modèle donc B2B. L'entreprise est basée près de Valence, dans la Drôme, et c'est aussi mon entreprise d'alternanceun contexte industriel où l'atelier jouxte les bureaux, ce qui m'a appris à concevoir en tenant compte des réalités de production dès le départ."
+    def: "Entreprise spécialisée dans l'impression d'emballages pour fleuristes professionnels (B2B), basée près de Valence dans la Drôme. Mon entreprise d'alternance — un environnement industriel où l'atelier jouxte les bureaux et où les contraintes de production sont présentes dès la conception."
   },
   flexographie: {
     label: "flexographie",
@@ -24,7 +24,7 @@ const GLOSSARY = {
     label: "jet d'encre",
     def: "Technique d'impression numérique où des microgouttelettes d'encre sont projetées directement sur le support. Sans plaque ni contact, elle s'adapte à chaque tirage différemment — idéale pour la personnalisation et les petites quantités."
   },
-  spécimen: {
+  Spécimen: {
     label: "spécimen",
     def: "Travail éditoral qui consite à présenter sous une forme imprimée une police d'écriture - l'idée étant de la mettre en valeur."
   },

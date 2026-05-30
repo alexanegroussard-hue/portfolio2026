@@ -14,9 +14,8 @@
       --dark:   #1a1a1a;
       --light:  #ffffff;
       --rule:   rgba(26,26,26,0.1);
-  --ph-bg-color: #f0ede8;
-}
-    
+      --ph-bg-color: #f0ede8;
+    }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -182,16 +181,23 @@
       grid-auto-rows: min-content;
       gap: 1.5rem;
     }
+
+    /* — images : le bloc de règles unifié, sans doublon — */
     .img-ph {
+      display: block;
       background-color: var(--ph-bg-color);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
       border-radius: 4px;
+      overflow: hidden;
       width: 100%;
     }
+    .img-ph img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .ph-main { grid-row: span 2; min-height: 400px; }
-    .ph-sm { aspect-ratio: 4/3; }
+    .ph-sm   { aspect-ratio: 4/3; }
 
     a.next-project {
       display: grid; grid-template-columns: 1fr auto;
@@ -290,7 +296,7 @@
   </div>
   <div class="intro-right">
     <p class="intro-body">
-      Le sujet était <strong>Compagnon, une famille de police</strong> réalisée par Juliette Duhé, Léa Pradine, Valentin Papon, Chloé Lozano et Sébastien Sanfilippo, visant une audience de designers et de professionnels utilisant régulièrement des typographies. Il s'agissait de la réalisation d'un <strong>spécimen</strong> — un objet éditorial créé dans le but de présenter et mettre en valeur une typographie.
+      Le sujet était <strong>Compagnon, une famille de police</strong> réalisée par Juliette Duhé, Léa Pradine, Valentin Papon, Chloé Lozano et Sébastien Sanfilippo, visant une audience de designers et de professionnels utilisant régulièrement des typographies. Il s'agissait de la réalisation d'un <span class="term" data-key="Spécimen">spécimen</span>.
     </p>
   </div>
 </section>
@@ -340,11 +346,21 @@
 
 <section class="photos-section">
   <div class="photos-grid">
-    <div class="img-ph ph-main" style="background-image: url('assets/images/mockup-1-specimen.webp');" aria-label="Vue d'ensemble de face"></div>
-    <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-2-specimen.webp');" aria-label="Détail de la tranche"></div>
-    <div class="img-ph ph-sm" style="background-image: url('assets/images/mockup-3-specimen.webp');" aria-label="Illustration rouge"></div>
-    <div class="img-ph ph-sm" style="background-image: url('assets/images/proposition-rouge.webp');" aria-label="Pages intérieures"></div>
-    <div class="img-ph ph-sm" style="background-image: url('chemin/vers/image-impress.webp');" aria-label="Détail d'impression"></div>
+    <a href="assets/images/mockup-1-specimen.webp" class="glightbox img-ph ph-main">
+      <img src="assets/images/mockup-1-specimen.webp" alt="Vue d'ensemble de face">
+    </a>
+    <a href="assets/images/mockup-2-specimen.webp" class="glightbox img-ph ph-sm">
+      <img src="assets/images/mockup-2-specimen.webp" alt="Détail de la tranche">
+    </a>
+    <a href="assets/images/mockup-3-specimen.webp" class="glightbox img-ph ph-sm">
+      <img src="assets/images/mockup-3-specimen.webp" alt="Illustration rouge">
+    </a>
+    <a href="assets/images/page1.jpg" class="glightbox img-ph ph-sm">
+      <img src="assets/images/page1.jpg" alt="Pages intérieures">
+    </a>
+    <a href="assets/images/page2.jpg" class="glightbox img-ph ph-sm">
+      <img src="assets/images/page2.jpg" alt="Détail d'impression">
+    </a>
   </div>
 </section>
 
@@ -486,6 +502,8 @@
   })();
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>const lightbox = GLightbox({ selector: ".glightbox" });</script>
 <script src="glossary.js" defer></script>
 </body>
 </html>
