@@ -298,9 +298,7 @@
         <label class="form-label" for="message">Message</label>
         <textarea class="form-input" id="message" name="message" placeholder="Décrivez votre projet ou votre demande…" required></textarea>
       </div>
-
-<input type="hidden" name="_next" value="https://alexane-folio.fr/contact.html?sent=1">
-
+      
       <button class="form-btn" type="submit">
         <span>↗</span> Envoyer
       </button>
@@ -346,17 +344,45 @@
   </footer>
 
 <script src="./main.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    if (window.location.search.includes('sent=1')) {
-      const btn = document.querySelector('.form-btn');
-      btn.textContent = 'Message envoyé';
-      btn.style.background = '#888';
-      btn.style.borderColor = '#888';
-      btn.style.cursor = 'default';
+  const form = document.querySelector('.contact-form');
+  const btn = document.querySelector('.form-btn');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault(); // empêche la soumission normale et la redirection Formspree
+
+    btn.textContent = 'Envoi en cours…';
+    btn.disabled = true;
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        btn.textContent = 'Message envoyé';
+        btn.style.background = '#888';
+        btn.style.borderColor = '#888';
+        btn.style.cursor = 'default';
+        form.reset();
+      } else {
+        btn.textContent = 'Erreur, réessayez';
+        btn.disabled = false;
+        btn.style.background = 'var(--orange)';
+        btn.style.borderColor = 'var(--orange)';
+      }
+    } catch {
+      btn.textContent = 'Erreur, réessayez';
+      btn.disabled = false;
     }
-  </script>
+  });
+</script>
 
 </body>
 </html>
