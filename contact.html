@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Alexane</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo.webp">
+
+  <style>
+    :root {
+      --orange: #ff6600;
+      --dark:   #1a1a1a;
+      --light:  #ffffff;
+      --rule:   rgba(26,26,26,0.06);
+    }
+
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 3rem;
+      background: rgba(245,244,240,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .contact-hero {
+      margin-top: 80px;
+      padding: 8vh 6vw 5vh;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .contact-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-tag::before {
+      content: '';
+      width: 18px;
+      height: 1px;
+      background: var(--orange);
+      flex-shrink: 0;
+    }
+
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      margin-bottom: 2rem;
+    }
+
+    .contact-title em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    .contact-subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #555;
+      max-width: 520px;
+      line-height: 1.75;
+    }
+
+    .contact-body {
+      padding: 6vh 6vw;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 6vw;
+      align-items: start;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    .form-input {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--dark);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(26,26,26,0.15);
+      padding: 0.6rem 0;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      border-bottom-color: var(--orange);
+    }
+
+    .form-input::placeholder {
+      color: #bbb;
+    }
+
+    textarea.form-input {
+      resize: none;
+      min-height: 120px;
+    }
+
+    .form-btn {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.8rem 1.8rem;
+      background: var(--dark);
+      color: var(--light);
+      border: 1px solid var(--dark);
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .form-btn:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+
+    .contact-aside {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      padding-top: 0.5rem;
+    }
+
+    .aside-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .aside-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    .aside-value {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--dark);
+    }
+
+    .aside-rule {
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .aside-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.65rem 1.2rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 0.88rem;
+      font-weight: 400;
+      width: fit-content;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .aside-link:hover {
+      background: var(--dark);
+      color: var(--light);
+      border-color: var(--dark);
+    }
+
+    .aside-links-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 0.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #bbb;
+      border-top: 1px solid var(--rule);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: revealUp 0.6s ease forwards;
+    }
+    .reveal-1 { animation-delay: 0.05s; }
+    .reveal-2 { animation-delay: 0.18s; }
+    .reveal-3 { animation-delay: 0.32s; }
+
+    @keyframes revealUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.4rem; }
+
+      .contact-hero {
+        padding: 10vh 5vw 5vh;
+      }
+
+      .contact-body {
+        grid-template-columns: 1fr;
+        padding: 5vh 5vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div id="header-placeholder"></div>
+  </nav>
+
+  <section class="contact-hero">
+    <div class="contact-tag reveal reveal-1">Contact</div>
+    <h1 class="contact-title reveal reveal-2">Travaillons<br><em>ensemble</em></h1>
+    <p class="contact-subtitle reveal reveal-3">
+      Une collaboration, un projet freelance ou simplement une question — n'hésitez pas à écrire.
+    </p>
+  </section>
+
+  <div class="contact-body">
+
+    <form class="contact-form" action="https://formspree.io/f/mwvzjrgp" method="POST">
+
+      <div class="form-field">
+        <label class="form-label" for="name">Nom</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Votre nom" required>
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="votre@email.com" required>
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="subject">Sujet</label>
+        <input class="form-input" type="text" id="subject" name="subject" placeholder="Collaboration, question…">
+      </div>
+
+      <div class="form-field">
+        <label class="form-label" for="message">Message</label>
+        <textarea class="form-input" id="message" name="message" placeholder="Décrivez votre projet ou votre demande…" required></textarea>
+      </div>
+
+<input type="hidden" name="_next" value="https://alexane-folio.fr/contact.html?sent=1">
+
+      <button class="form-btn" type="submit">
+        <span>↗</span> Envoyer
+      </button>
+
+    </form>
+
+    <aside class="contact-aside">
+
+      <div class="aside-block">
+        <span class="aside-label">Email</span>
+        <span class="aside-value">alexane.groussard@gmail.com</span>
+      </div>
+
+      <div class="aside-rule"></div>
+
+      <div class="aside-block">
+        <span class="aside-label">Disponibilité</span>
+        <span class="aside-value">
+          Ouverte aux collaborations<br>à partir de septembre 2026
+        </span>
+      </div>
+
+      <div class="aside-rule"></div>
+
+      <div class="aside-block">
+        <span class="aside-label">Réseaux</span>
+        <div class="aside-links-group">
+          <a href="https://www.linkedin.com/in/alexane-groussard-a2aa34236" target="_blank" rel="noopener" class="aside-link">
+            <span>in</span> LinkedIn
+          </a>
+          <a href="https://www.instagram.com/made.throughh/" target="_blank" rel="noopener" class="aside-link">
+            <span>@</span> Instagram
+          </a>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <footer>
+    <p>Alexane &mdash; <span id="year"></span></p>
+  </footer>
+
+<script src="./main.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    if (window.location.search.includes('sent=1')) {
+      const btn = document.querySelector('.form-btn');
+      btn.textContent = 'Message envoyé';
+      btn.style.background = '#888';
+      btn.style.borderColor = '#888';
+      btn.style.cursor = 'default';
+    }
+  </script>
+
+</body>
+</html>
