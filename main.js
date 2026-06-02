@@ -16,6 +16,7 @@ function initBurger() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
   fetch('./includes/header.html')
     .then(res => {
       if (!res.ok) throw new Error("Header introuvable");
@@ -23,7 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(data => {
       document.getElementById('header-placeholder').innerHTML = data;
-      initBurger(); // ✅ Appelé après injection du header
+      initBurger();
     })
     .catch(err => console.error('Erreur header:', err));
+
+  fetch('./includes/footer.html')
+    .then(res => {
+      if (!res.ok) throw new Error("Footer introuvable");
+      return res.text();
+    })
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    })
+    .catch(err => console.error('Erreur footer:', err));
+
 });
