@@ -338,6 +338,7 @@
     .bat-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.6rem, 3vw, 2.4rem);
+      padding: 3vh 0vw;
       font-weight: 900;
       line-height: 1.1;
     }
@@ -352,6 +353,7 @@
       line-height: 1.75;
       font-weight: 300;
       color: #444;
+      padding: 0vh 0vw 3vh;
     }
 
     .bat-body strong { font-weight: 500; color: var(--dark); }
@@ -378,23 +380,6 @@
       line-height: 1.5;
     }
 
-    /* Specs techniques */
-    .spec-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-top: 1rem;
-    }
-
-    .spec-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding: 0.85rem 0;
-      border-bottom: 1px solid var(--rule);
-      font-size: 0.88rem;
-    }
-
-    .spec-row:last-child { border-bottom: none; }
 
     .spec-key {
       font-size: 0.68rem;
@@ -428,10 +413,11 @@
     }
 
     .context-block p {
-      font-size: 0.87rem;
+      font-size: 1.1rem;
       line-height: 1.75;
       color: #555;
     }
+
 
     /* ════ PROJET SUIVANT ════ */
     a.next-project {
@@ -707,14 +693,12 @@
         </p>
       </div>
 
-<section class="hidden">
+<section class="bat-right">
   <!-- tout ton contenu -->
 
       <div class="bat-right">
-        <p class="section-label">Exemple de bon à tirer</p>
         <!-- Remplace src par ton vrai BAT anonymisé, format paysage -->
-        <a href="assets/images/TON-BAT.webp" class="glightbox"><img src="assets/images/TON-BAT.webp" alt="Exemple de bon à tirer" class="bat-img"></a>
-        <p class="bat-caption">Bon à tirer · Étiquette adhésive 60×30mm · Papier couché 80g · Vernis brillant</p>
+        <a href="perso.jpg" class="glightbox"><img src="perso.jpg" alt="Exemple de bon à tirer" class="bat-img"></a>
       </div>
 
       </section>
