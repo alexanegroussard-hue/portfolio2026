@@ -427,19 +427,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <script>
-    
-
-    fetch('./includes/header.html')
-      .then(res => res.text())
-      .then(data => {
-        const placeholder = document.getElementById('header-placeholder');
-        if (placeholder) {
-          placeholder.innerHTML = data;
-          if (typeof initBurger === 'function') initBurger();
-        }
-      })
-      .catch(err => console.error('Erreur Header :', err));
-
     gsap.registerPlugin(ScrollTrigger);
     const gallery = document.getElementById('gallery');
 
@@ -483,5 +470,6 @@
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script>const lightbox = GLightbox({ selector: ".glightbox" });</script>
 <script src="glossary.js" defer></script>
+<script src="./main.js"></script>
 </body>
 </html>
