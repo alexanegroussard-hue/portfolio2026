@@ -31,7 +31,14 @@
   .toggle-track { position: relative; display: flex; background: var(--light); border-radius: 999px; padding: 5px; border: 1.5px solid rgba(0,0,0,0.1); cursor: pointer; width: fit-content; }
   .toggle-option { padding: 0.55rem 2rem; font-size: 0.95rem; font-weight: 500; border: none; background: none; cursor: pointer; color: var(--orange); position: relative; z-index: 2; }
   .toggle-option.active { color: var(--white); }
-  .toggle-thumb { position: absolute; top: 5px; left: 5px; height: calc(100% - 10px); border-radius: 999px; background: var(--dark); transition: transform 0.4s; z-index: 1; }
+  .toggle-thumb { position: absolute;
+     top: 5px;
+    left: 5px;
+    height: calc(100% - 10px);
+    border-radius: 999px;
+    background: var(--dark);
+    transition: transform 0.4s;
+    z-index: 1; }
 
   /* ── GRILLE & CARTES ── */
   .projects-section { padding: 2rem 3rem 5rem; }
@@ -275,6 +282,7 @@
 
 <link rel="icon" type="image/png" href="assets/images/logo.webp">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+  <link rel="stylesheet" href="includes/header.css">
 </head>
 
 <body>
@@ -285,9 +293,7 @@
   </svg>
 
   <!-- NAV -->
-  <nav>
-    <div id="header-placeholder"></div>
-  </nav>
+  <div id="header-placeholder"></div>
 
   <!-- TOGGLE -->
   <div class="toggle-section">
@@ -460,9 +466,7 @@ Projets sélectionnés
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <p>Alexane &mdash; <span id="year"></span></p>
-  </footer>
+  <div id="footer-placeholder"></div>
 
   <script src="./main.js"></script>
 

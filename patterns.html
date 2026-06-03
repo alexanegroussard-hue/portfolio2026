@@ -26,36 +26,7 @@
       overflow-x: hidden;
     }
 
-    /* ════ NAV ════ */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.7rem 3rem;
-      background: rgba(245,244,240,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--dark);
-      font-size: 1rem;
-      font-weight: 400;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--orange); }
+    
 
     /* ════ BACK ════ */
     .back-wrapper { padding: 100px 6vw 0; }
@@ -445,13 +416,12 @@
   </style>
   <link rel="icon" type="image/png" href="assets/images/logo.webp">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+  <link rel="stylesheet" href="includes/header.css">
 </head>
 <body>
 
   <!-- ── NAV ── -->
-  <nav>
-    <div id="header-placeholder"></div>
-  </nav>
+  <div id="header-placeholder" style="height: 90px"></div>
 
   <!-- ── BACK ── -->
   <div class="back-wrapper">
@@ -601,26 +571,14 @@
 
 
   <!-- ── FOOTER ── -->
-  <footer>
-    <p>Alexane &mdash; <span id="year"></span></p>
-  </footer>
+  <div id="footer-placeholder"></div>
 
   <button class="scroll-top" title="Revenir en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 
   <!-- ── SCRIPTS ── -->
   <script src="./main.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
 
-    fetch('./includes/header.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        if (typeof initBurger === 'function') initBurger();
-      })
-      .catch(err => console.error('Erreur Header :', err));
-  </script>
 
   <script>
     const from = new URLSearchParams(window.location.search).get("from");

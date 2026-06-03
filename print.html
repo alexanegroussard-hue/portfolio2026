@@ -15,7 +15,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--dark); }
+    body { font-family: 'DM Sans', sans-serif !important; background: var(--white); color: var(--dark); }
 
     /* ── TOGGLE ── */
     
@@ -322,6 +322,7 @@
 
 <link rel="icon" type="image/png" href="assets/images/logo.webp">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+  <link rel="stylesheet" href="includes/header.css">
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute;">
@@ -330,7 +331,7 @@
     </filter>
   </svg>
 
-  <nav><div id="header-placeholder"></div></nav>
+  <div id="header-placeholder"></div>
 
   <div class="toggle-section">
     <div class="toggle-track" id="toggleTrack">
@@ -424,13 +425,13 @@
   </div>
 </section>
 
-  <footer><p>Alexane &mdash; <span id="year"></span></p></footer>
+  <div id="footer-placeholder"></div>
   <script src="./main.js"></script>
 
 <script src="./main.js"></script>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  
   const thumb = document.getElementById('toggleThumb');
   const btnPrint = document.getElementById('btnPrint');
   const btnPhysique = document.getElementById('btnPhysique');

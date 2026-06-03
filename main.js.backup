@@ -1,3 +1,4 @@
+// main.js
 function initBurger() {
   const burger = document.getElementById('burger');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -25,16 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('header-placeholder').innerHTML = data;
       initBurger();
     })
-    .then(() => fetch('./includes/footer.html'))
+    .catch(err => console.error('Erreur header:', err));
+
+  fetch('./includes/footer.html')
     .then(res => {
       if (!res.ok) throw new Error("Footer introuvable");
       return res.text();
     })
     .then(data => {
       document.getElementById('footer-placeholder').innerHTML = data;
-      const y = document.getElementById('footer-year');
-      if (y) y.textContent = new Date().getFullYear();
     })
-    .catch(err => console.error('Erreur:', err));
+    .catch(err => console.error('Erreur footer:', err));
 
 });
