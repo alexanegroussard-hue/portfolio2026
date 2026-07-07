@@ -298,8 +298,8 @@
   <!-- TOGGLE -->
   <div class="toggle-section">
     <div class="toggle-track" id="toggleTrack">
-      <button class="toggle-option active" id="btndigital" onclick="window.location.href='digital.html'">Digital</button>
-      <button class="toggle-option" id="btnPhysique" onclick="window.location.href='digital.html'">Impression</button>
+      <button class="toggle-option active" id="btndigital" onclick="window.location.href='#'">Digital</button>
+      <button class="toggle-option" id="btnPhysique" onclick="window.location.href='index.html'">Impression</button>
       <div class="toggle-thumb" id="toggleThumb"></div>
     </div>
   </div>
@@ -477,25 +477,20 @@ Projets sélectionnés
 
   const thumb = document.getElementById('toggleThumb');
   const btndigital = document.getElementById('btndigital');
+  const btnPhysique = document.getElementById('btnPhysique');
 
   function updateToggle() {
-    if (thumb && btndigital) {
+    const currentPage = window.location.pathname.split("/").pop();
+    if (currentPage === 'digital.html') {
+      thumb.style.transform = `translateX(${btndigital.offsetWidth}px)`;
+      thumb.style.width = btnPhysique.offsetWidth + 'px';
+    } else {
       thumb.style.transform = 'translateX(0)';
       thumb.style.width = btndigital.offsetWidth + 'px';
     }
   }
 
-  window.addEventListener('load', () => {
-    updateToggle();
-
-    document.querySelectorAll('.project-card').forEach(card => {
-      const bg = card.style.backgroundImage;
-      if (bg && bg !== '' && !bg.includes('ton-image')) {
-        card.classList.add('has-image');
-      }
-    });
-  });
-
+  window.addEventListener('load', updateToggle);
   window.addEventListener('resize', updateToggle);
 </script>
 

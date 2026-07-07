@@ -336,7 +336,7 @@
   <div class="toggle-section">
     <div class="toggle-track" id="toggleTrack">
       <button class="toggle-option" id="btndigital" onclick="window.location.href='digital.html'">Digital</button>
-      <button class="toggle-option active" id="btnPhysique" onclick="window.location.href='digital.html'">Impression</button>
+      <button class="toggle-option active" id="btnPhysique" onclick="window.location.href='#'">Impression</button>
       <div class="toggle-thumb" id="toggleThumb"></div>
     </div>
   </div>
@@ -438,9 +438,12 @@
 
   function updateToggle() {
     const currentPage = window.location.pathname.split("/").pop();
-    if (currentPage === 'digital.html' || currentPage.includes('digital')) {
+    if (currentPage === 'digital.html') {
       thumb.style.transform = `translateX(${btndigital.offsetWidth}px)`;
       thumb.style.width = btnPhysique.offsetWidth + 'px';
+    } else {
+      thumb.style.transform = 'translateX(0)';
+      thumb.style.width = btndigital.offsetWidth + 'px';
     }
   }
 
