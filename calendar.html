@@ -25,7 +25,7 @@
       overflow-x: hidden;
     }
 
-    /* ── NAV identique à index ── */
+    /* ── NAV identique à digital ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -92,7 +92,7 @@
 
     .hero-content { display: flex; flex-direction: column; gap: 1.6rem; }
 
-    /* tag catégorie — même style que les stat-label de index */
+    /* tag catégorie — même style que les stat-label de digital */
     .hero-tag {
       display: inline-flex;
       align-items: center;
@@ -112,7 +112,7 @@
       flex-shrink: 0;
     }
 
-    /* titre principal — même famille que les h3 de index */
+    /* titre principal — même famille que les h3 de digital */
     .hero-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(3rem, 7vw, 6rem);
@@ -129,7 +129,7 @@
       color: var(--orange);
     }
 
-    /* métadonnées — même style que les stat-row de index */
+    /* métadonnées — même style que les stat-row de digital */
     .hero-meta {
       display: flex;
       gap: 0;
@@ -271,7 +271,7 @@
 
     .context-block:last-child { border-right: none; }
 
-    /* titre de bloc — cohérent avec la typo index */
+    /* titre de bloc — cohérent avec la typo digital */
     .context-block h3 {
       font-family: 'Playfair Display', serif;
       font-size: 1.15rem;
@@ -323,7 +323,7 @@
 
     a.next-project:hover .next-arrow { transform: translateX(10px); }
 
-    /* ── FOOTER identique à index ── */
+    /* ── FOOTER identique à digital ── */
     footer {
       text-align: center;
       padding: 2rem;
@@ -372,12 +372,12 @@
 </head>
 <body>
 
-  <!-- NAV identique à index -->
+  <!-- NAV identique à digital -->
 <div id="header-placeholder"></div>
 
   <!-- HERO -->
   <div class="back-wrapper">
-    <a id="back-btn" href="index.html" class="back-btn">← Retour</a>
+    <a id="back-btn" href="digital.html" class="back-btn">← Retour</a>
   </div>
   <header class="hero">
     <div class="hero-number reveal reveal-1">01</div>
@@ -507,7 +507,7 @@
 
 <script>
 const from = new URLSearchParams(window.location.search).get("from");
-if (from === "print") document.getElementById("back-btn").href = "print.html";
+if (from === "digital") document.getElementById("back-btn").href = "digital.html";
 </script>
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script>const lightbox = GLightbox({ selector: ".glightbox" });</script>

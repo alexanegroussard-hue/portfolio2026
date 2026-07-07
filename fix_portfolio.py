@@ -28,9 +28,9 @@ def fix_file(path):
 
     if text != original:
         pathlib.Path(path).write_text(text, encoding='utf-8')
-        print(f"[OK] {path}")
+        digital(f"[OK] {path}")
     else:
-        print(f"[INCHANGÉ] {path}")
+        digital(f"[INCHANGÉ] {path}")
 
 if __name__ == '__main__':
     for p in sys.argv[1:]:

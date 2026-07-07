@@ -298,8 +298,8 @@
   <!-- TOGGLE -->
   <div class="toggle-section">
     <div class="toggle-track" id="toggleTrack">
-      <button class="toggle-option active" id="btnPrint" onclick="window.location.href='index.html'">Digital</button>
-      <button class="toggle-option" id="btnPhysique" onclick="window.location.href='print.html'">Impression</button>
+      <button class="toggle-option active" id="btndigital" onclick="window.location.href='digital.html'">Digital</button>
+      <button class="toggle-option" id="btnPhysique" onclick="window.location.href='digital.html'">Impression</button>
       <div class="toggle-thumb" id="toggleThumb"></div>
     </div>
   </div>
@@ -308,7 +308,7 @@
   <section class="projects-section" id="travail">
 
     <!-- Digital -->
-    <div class="category-view visible" id="view-print">
+    <div class="category-view visible" id="view-digital">
       <div class="section-title">
 <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
 Projets sélectionnés
@@ -412,7 +412,7 @@ Projets sélectionnés
       <div>
     <div>
 
-    <!-- Print -->
+    <!-- digital -->
     <div class="category-view" id="view-physique">
       <div class="section-title">
         <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
@@ -476,12 +476,12 @@ Projets sélectionnés
   }
 
   const thumb = document.getElementById('toggleThumb');
-  const btnPrint = document.getElementById('btnPrint');
+  const btndigital = document.getElementById('btndigital');
 
   function updateToggle() {
-    if (thumb && btnPrint) {
+    if (thumb && btndigital) {
       thumb.style.transform = 'translateX(0)';
-      thumb.style.width = btnPrint.offsetWidth + 'px';
+      thumb.style.width = btndigital.offsetWidth + 'px';
     }
   }
 
