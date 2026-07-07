@@ -26,29 +26,70 @@
     color: var(--dark);
   }
 
-  /* ── TOGGLE & SECTION ── */
-  .toggle-section { margin-top: 100px; 
-    padding: 0 4vw; }
-    
-  .toggle-track { position: relative;
-    display: flex; 
-    background: var(--light); 
-    border-radius: 999px; 
-    padding: 5px; 
-    border: 1.5px solid rgba(0,0,0,0.1); 
-    cursor: pointer; 
-    width: fit-content; }
+  /* ── LAYOUT DEUX COLONNES ── */
+  .page-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 0 3rem;
+    margin-top: 60px;
+  }
 
-  .toggle-option { padding: 0.55rem 2rem; 
-    font-size: 0.95rem; 
-    font-weight: 500; 
-    border: none; 
-    background: none; 
-    cursor: pointer; 
-    color: var(--orange); 
-    position: relative; 
-    z-index: 2; }
+  .sidebar {
+    position: sticky;
+    top: 100px;
+    flex: 600px;
+    max-width: 600px;
+    padding: 2rem 7;
+  }
 
+  .sidebar h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    padding: 1.5rem 3rem 0rem;
+  }
+
+  .sidebar p {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: #555;
+    margin-bottom: 1.5rem;
+    padding: 1rem 5rem 2.4rem; 
+  }
+
+
+  .sidebar .sidebar-links a {
+    font-size: 0.85rem;
+    color: var(--orange);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 0.4rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .sidebar .sidebar-links a:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+  }
+
+  .main-content {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* ── TOGGLE & SECTION (sticky, à droite en haut de main-content) ── */
+  .toggle-section {
+    position: sticky;
+    top: 100px;
+    z-index: 20;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+    background: none;
+  }
+  .toggle-track { position: relative; display: flex; background: var(--light); border-radius: 999px; padding: 5px; border: 1.5px solid rgba(0,0,0,0.1); cursor: pointer; width: fit-content; }
+  .toggle-option { padding: 0.55rem 2rem; font-size: 0.95rem; font-weight: 500; border: none; background: none; cursor: pointer; color: var(--orange); position: relative; z-index: 2; }
   .toggle-option.active { color: var(--white); }
   .toggle-thumb { position: absolute;
      top: 5px;
@@ -60,14 +101,14 @@
     z-index: 1; }
 
   /* ── GRILLE & CARTES ── */
-  .projects-section { padding: 2rem 3rem 5rem; }
+  .projects-section { padding: 0 0 5rem; }
   .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900; margin-bottom: 0.2rem; display: flex; align-items: center; justify-content: center; gap: 1.2rem; }
   .arrow-deco { animation: bounce 1.8s infinite; }
   @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
   .section-subtitle { text-align: center; color: #888; margin-bottom: 0.5rem; font-size: 1.3rem }
   .label-subtitle { text-align: center; color: #dadada; font-family: 'DM Sans', serif; margin-bottom: 3rem; font-size: 0.7rem; }
 
-  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 0 auto; }
 
   .project-card {
     border-radius: 20px; overflow: hidden; background-color: var(--light); background-size: cover; background-position: center;
@@ -120,10 +161,10 @@
   
   .stat-label { font-weight: 500; }
 
-  /* ── LE BOUTON (ENFIN !) ── */
+  /* ── LE BOUTON ── */
   .project-btn {
     display: inline-flex;
-    width: fit-content !important; /* Force la largeur courte */
+    width: fit-content !important;
     padding: 0.6rem 1.4rem;
     border-radius: 999px;
     font-size: 0.85rem;
@@ -157,7 +198,7 @@
 
   .category-view { display: none; }
   .category-view.visible { display: block; }
-  footer { text-align: center; padding: 2rem; color: #bbb; font-size: 0.8rem; }
+  footer { position: sticky; text-align: center; padding: 2rem; color: #bbb; font-size: 0.8rem; }
 
   .project-stats {
   width: 100% !important;
@@ -168,42 +209,49 @@
   padding: 12px 16px;
 }
 
-  /* ── MOBILE (NETTOYÉ) ── */
-/* ── MOBILE (SANS AUCUN ASSOMBRISSEMENT) ── */
-@media (max-width: 768px) {
+  /* ── MOBILE ── */
+@media (max-width: 900px) {
+      .page-layout {
+        flex-direction: column;
+        padding: 0 1.2rem;
+      }
 
+      .sidebar {
+        position: static;
+        flex: unset;
+        max-width: 100%;
+        padding: 1rem 0;
+      }
+
+      .toggle-section {
+        position: static;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+}
+
+@media (max-width: 768px) {
 
       nav {
         padding: 1rem 1.4rem;
       }
 
-      .toggle-section {
-        margin-top: 70px;
-        padding: 0 1.2rem;
-      }
-
       .projects-section {
-        padding: 2rem 1.2rem 2rem;
+        padding: 2rem 0 2rem;
       }
 
 .section-title {
-    /* On permet au titre de revenir sur deux lignes si besoin pour ne pas pousser les flèches dehors */
     white-space: normal !important; 
-    /* On ajoute de l'espace sur les côtés pour que les flèches ne touchent pas le bord de l'écran */
     padding: 0 15px;
-    /* On réduit un peu l'écart entre les flèches et le texte pour gagner de la place */
     gap: 0.7rem !important; 
-    font-size: 1.6rem; /* Optionnel : réduit légèrement la taille du texte pour aider */
+    font-size: 1.6rem;
 }
 
 .arrow-deco {
-    /* On réduit la taille des flèches en mobile pour qu'elles respirent */
     height: 60px !important; 
     width: auto;
-    /* On s'assure qu'elles ne rétrécissent pas */
     flex-shrink: 0;
 }
-      /* Colonne unique */
       .projects-grid {
         grid-template-columns: 1fr;
       }
@@ -213,7 +261,6 @@
         align-items: stretch;
       }
 
-      /* Overlay clair de gauche à droite, comme le desktop */
   .project-card::before { 
  content: '';
  position: absolute;
@@ -222,22 +269,19 @@
  background: linear-gradient(to right,
  var(--overlay-color, rgba(255, 255, 255, 0.945)) 0%, transparent 100%); 
  z-index: 1;
- border-radius: 20px; /* Pour bien suivre l'arrondi de ta carte */
+ border-radius: 20px;
  }
 
-  /* Pour être sûr que le texte reste lisible sur ta couleur */
   .project-card-content {
     z-index: 2;
     position: relative;
   }
-      /* Contenu pleine largeur */
       .project-card-content {
         flex: unset;
         max-width: 100%;
         padding: 1.8rem 1.6rem;
       }
 
-      /* Texte sombre */
       .project-card-content h3 {
         font-size: 1.5rem;
         white-space: normal;
@@ -257,7 +301,6 @@
         color: #000 !important;
       }
 
-      /* Remplace ton .project-stats existant dans la media query par : */
 .project-stats {
   width: 100% !important;
   margin-top: auto;
@@ -269,21 +312,19 @@
 
 .stat-row {
   display: flex !important;
-  justify-content: space-between !important; /* Année à gauche, 2026 à droite */
+  justify-content: space-between !important;
   width: 100% !important;
   padding: 0.5rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* 2. On cache les lignes 2 et 3 (Partenaire et Outils) */
 .stat-row:nth-child(3) {
   display: none !important;
 }
 
-      /* Bouton orange standard */
 .project-card.has-image .project-btn {
     display: inline-flex;
-    width: fit-content !important; /* Force la largeur courte */
+    width: fit-content !important;
     padding: 0.6rem 1.4rem;
     border-radius: 999px;
     font-size: 0.85rem;
@@ -314,175 +355,135 @@
   <!-- NAV -->
   <div id="header-placeholder"></div>
 
-  <!-- TOGGLE -->
-  <div class="toggle-section">
-    <div class="toggle-track" id="toggleTrack">
-      <button class="toggle-option" id="btnImpression" onclick="window.location.href='index.html'">Impression</button>
-      <button class="toggle-option active" id="btnDigital" onclick="window.location.href='#'">Digital</button>
-      <div class="toggle-thumb" id="toggleThumb"></div>
+  <!-- LAYOUT DEUX COLONNES -->
+  <div class="page-layout">
+
+    <!-- SIDEBAR GAUCHE (STICKY) -->
+    <aside class="sidebar">
+      <h1>Quelques mots</h1>
+      <p>Bonjour, je m'appelle Alexane. Graphiste orientée digital, motion et web. J'aime construire des interfaces claires, animer des identités et donner du rythme à des contenus qui, sur papier, resteraient statiques.
+        <br><br>
+        Curieuse et à l'aise avec les outils numériques, je souhaite rejoindre un studio ou une équipe créative pour concevoir des projets digitaux qui allient sens, mouvement et clarté.</p>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="main-content">
+
+      <!-- TOGGLE (STICKY, aligné à droite) -->
+      <div class="toggle-section">
+        <div class="toggle-track" id="toggleTrack">
+          <button class="toggle-option" id="btnImpression" onclick="window.location.href='index.html'">Impression</button>
+          <button class="toggle-option active" id="btnDigital" onclick="window.location.href='#'">Digital</button>
+          <div class="toggle-thumb" id="toggleThumb"></div>
+        </div>
+      </div>
+
+      <!-- PROJETS -->
+      <section class="projects-section" id="travail">
+
+        <div class="category-view visible" id="view-digital">
+          <div class="section-title">
+            <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
+            Projets sélectionnés
+            <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
+          </div>
+          <p class="section-subtitle">motion · figma · web</p>
+          <p class="label-subtitle">SCO (scolaire) · PERSO (personnel) · PRO (professionnel)</p>
+
+          <div class="projects-grid">
+
+            <!-- LE CHEMIN -->
+            <div class="project-card has-image"
+              style="background-image: url('assets/images/cover-vivant.webp'); --overlay-color: hsl(51, 100%, 90%);">
+              <div class="bookmark-wrap">
+                <div class="bookmark-body">Sco</div>
+              </div>
+              <div class="project-card-content">
+                <div>
+                  <h3>Le chemin</h3>
+                  <p>Refonte de la carte d'un média de proximité écologique, Le Vivant, en équipe étudiante avec des développeurs de l'école Polytech.</p>
+                  <div class="project-stats">
+                    <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2026</span></div>
+                    <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">Vivant Le Média</span></div>
+                    <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Figma · Illustrator</span></div>
+                    <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Groupe</span></div>
+                  </div>
+                </div>
+                <a href="le-chemin.html" class="project-btn">→ Monter sur le vélo</a>
+              </div>
+            </div>
+
+            <!-- BRANDING -->
+            <div class="project-card has-image"
+              style="background-image: url('assets/images/cover-carroussel.webp') !important; --overlay-color: rgb(255, 205, 230);">
+              <div class="bookmark-wrap">
+                <div class="bookmark-body">Perso</div>
+              </div>
+              <div class="project-card-content">
+                <div>
+                  <h3>Carroussel <br> de marques</h3>
+                  <p>Projets d'identité de marque sur la base de briefs fictifs. Création ensuite d'un support de présentation sous la forme d'un carroussel instagram.</p>
+                  <div class="project-stats">
+                    <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2026</span></div>
+                    <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator</span></div>
+                    <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Solo</span></div>
+                  </div>
+                </div>
+                <a href="branding.html" class="project-btn">→ Faire un tour</a>
+              </div>
+            </div>
+
+            <!-- TROC EN STOCK -->
+            <div class="project-card"
+              style="background-image: url('assets/images/cover-mobi.webp'); --overlay-color: rgba(209, 252, 255, 0.815);">
+              <div class="bookmark-wrap">
+                <div class="bookmark-body">Sco</div>
+              </div>
+              <div class="project-card-content">
+                <div>
+                  <h3>Troc en Stock</h3>
+                  <p>Création d'une application de troc pour aider les jeunes à rentrer et dans la vie active et dans le monde des assurances.</p>
+                  <div class="project-stats">
+                    <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2025</span></div>
+                    <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">CNP Assurance</span></div>
+                    <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Figma · Illustrator</span></div>
+                    <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Groupe</span></div>
+                  </div>
+                </div>
+                <a href="mobi.html" class="project-btn">→ Go Troc ?</a>
+              </div>
+            </div>
+
+            <!-- SURF -->
+            <div class="project-card has-image" style="--overlay-color: rgba(255, 211, 191, 0.959);">
+              <video autoplay loop muted playsinline
+                style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
+                <source src="assets/images/cover-surf.mp4" type="video/mp4">
+              </video>
+              <div class="bookmark-wrap">
+                <div class="bookmark-body">Sco</div>
+              </div>
+              <div class="project-card-content">
+                <div>
+                  <h3>Surf</h3>
+                  <p>Travail de Rotoscopie sur l'énergie sportive.</p>
+                  <div class="project-stats">
+                    <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2022</span></div>
+                    <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Photoshop</span></div>
+                    <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Solo</span></div>
+                  </div>
+                </div>
+                <a href="surf.html" class="project-btn">→ Sur la vague</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
     </div>
   </div>
-
-  <!-- PROJETS -->
-  <section class="projects-section" id="travail">
-
-    <!-- Digital -->
-    <div class="category-view visible" id="view-digital">
-      <div class="section-title">
-<img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
-Projets sélectionnés
-<img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
-  </div>
-      <p class="section-subtitle">motion · figma · web</p>
-      <p class="label-subtitle">SCO (scolaire) · PERSO (personnel) · PRO (professionnel)</p>
-      <div class="projects-grid">
-      </div>
- 
-  <div class="projects-grid">
-
-        <!-- LE CHEMIN -->
-        <div class="project-card has-image"
-          style="background-image: url('assets/images/cover-vivant.webp'); --overlay-color: hsl(51, 100%, 90%);">
-          <div class="bookmark-wrap tag-group">
-            <div class="bookmark-body">Sco</div>
-          </div>
-          <div class="project-card-content">
-            <div>
-              <h3>Le chemin</h3>
-              <p>Refonte de la carte d'un média de proximité écologique, Le Vivant, en équipe étudiante avec des développeurs de l'école Polytech.</p>
-              <div class="project-stats">
-                <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2026</span></div>
-                <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">Vivant Le Média</span></div>
-                <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Figma · Illustrator</span></div>
-                <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Groupe</span></div>
-              </div>
-            </div>
-            <a href="le-chemin.html" class="project-btn">→ Monter sur le vélo</a>
-            
-          </div>
-        </div>
-
-                <!-- BRANDING -->
-        <div class="project-card has-image"
-          style="background-image: url('assets/images/cover-carroussel.webp') !important; --overlay-color: rgb(255, 205, 230);">
-          <div class="bookmark-wrap">
-            <div class="bookmark-body">Perso</div>
-          </div>
-          <div class="project-card-content">
-            <div>
-              <h3>Carroussel <br> de marques</h3>
-              <p>Projets d'identité de marque sur la base de briefs fictifs. Création ensuite d'un support de présentation sous la forme d'un carroussel instagram.</p>
-             <div class="project-stats">
-                <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2026</span></div>
-                <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator</span></div>
-                <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Solo</span></div>
-              </div>
-            </div>
-            <a href="branding.html" class="project-btn">→ Faire un tour</a>
-          </div>
-        </div>
-
-
-        <!-- TROC EN STOCK -->
-        <div class="project-card"
-          style="background-image: url('assets/images/cover-mobi.webp'); --overlay-color: rgba(209, 252, 255, 0.815);">
-          <div class="bookmark-wrap">
-            <div class="bookmark-body">Sco</div>
-          </div>
-          <div class="project-card-content">
-            <div>
-              <h3>Troc en Stock</h3>
-              <p>Création d'une application de troc pour aider les jeunes à rentrer et dans la vie active et dans le monde des assurances.</p>
-              <div class="project-stats">
-                <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2025</span></div>
-                <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">CNP Assurance</span></div>
-                <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Figma · Illustrator</span></div>
-                <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Groupe</span></div>
-              </div>
-            </div>
-            <a href="mobi.html" class="project-btn">→ Go Troc ?</a>
-          </div>
-        </div>
-
-                <!-- SURF -->
-        <div class="project-card has-image" style="--overlay-color: rgba(255, 211, 191, 0.959);">
-  <video autoplay loop muted playsinline
-    style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
-    <source src="assets/images/cover-surf.mp4" type="video/mp4">
-  </video>
-  <div class="bookmark-wrap">
-    <div class="bookmark-body">Sco</div>
-  </div>
-  <div class="project-card-content">
-    <div>
-      <h3>Surf</h3>
-      <p>Travail de Rotoscopie sur l'énergie sportive.</p>
-      <div class="project-stats">
-        <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2022</span></div>
-        <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Photoshop</span></div>
-        <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Solo</span></div>
-      </div>
-    </div>
-    <a href="surf.html" class="project-btn">→ Sur la vague</a>
-  </div>
-</div>
-
-
-      <div>
-    <div>
-
-    <!-- digital -->
-    <div class="category-view" id="view-physique">
-      <div class="section-title">
-        <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
-        Projets sélectionnés
-        <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
-      </div>
-      <p class="section-subtitle">édition · identité visuelle · typographie</p>
-      <div class="projects-grid">
-
-        <!-- COLLECTION DE MOTIFS -->
-        <div class="project-card"
-          style="background-image: url('assets/images/cover-patterpolypap.webp'); --overlay-color: rgba(255, 145, 250, 0.945);">
-          <div class="bookmark-wrap">
-            <div class="bookmark-body">Pro</div>
-          </div>
-          <div class="project-card-content">
-            <div>
-              <h3>Collection de motifs</h3>
-              <p>Courte description du projet...</p>
-              <div class="project-stats">
-                <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2025</span></div>
-                <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">Polypap</span></div>
-                <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator</span></div>
-                <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Solo</span></div>
-              </div>
-            </div>
-            <a href="cover-patterpolypap.webp" class="project-btn">→ Voir le projet</a>
-          </div>
-        </div>
-
-        <!-- PROJET 6 -->
-        <div class="project-card"
-          style="background-image: url('ton-image-6.webp'); --overlay-color: rgba(0, 100, 255, 0.8);">
-          <div class="project-card-content">
-            <div>
-              <h3>Nom du projet</h3>
-              <p>Courte description du projet — contexte, intention, résultat.</p>
-              <div class="project-stats">
-                <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2024</span></div>
-                <div class="stat-row"><span class="stat-label">Format</span><span class="stat-value">Motion</span></div>
-                <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">After Effects</span></div>
-              </div>
-            </div>
-            <a href="#" class="project-btn">→ Voir le projet</a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </section>
 
   <!-- FOOTER -->
   <div id="footer-placeholder"></div>
@@ -490,10 +491,6 @@ Projets sélectionnés
   <script src="./main.js"></script>
 
 <script>
-  if (document.getElementById('year')) {
-    
-  }
-
   const thumb = document.getElementById('toggleThumb');
   const btnDigital = document.getElementById('btnDigital');
   const btnImpression = document.getElementById('btnImpression');
@@ -511,6 +508,15 @@ Projets sélectionnés
 
   window.addEventListener('load', () => setTimeout(updateToggle, 50));
   window.addEventListener('resize', updateToggle);
+
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.project-card').forEach(card => {
+      const bg = card.style.backgroundImage;
+      if (bg && bg !== '' && !bg.includes('ton-image')) {
+        card.classList.add('has-image');
+      }
+    });
+  });
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
