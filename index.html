@@ -1,78 +1,102 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
+  <title>Portfolio - Print</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #ff6600;
+      --dark: #1a1a1a;
+      --light: #f5f4f0;
+      --white: #ffffff;
+    }
 
-    <style>
-  :root {
-    --orange: #ff6600;
-    --dark: #1a1a1a;
-    --light: #f5f4f0;
-    --white: #ffffff;
-  }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'DM Sans', sans-serif !important; background: var(--white); color: var(--dark); }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* ── TOGGLE ── */
+    
+    .toggle-section { 
+      margin-top: 100px;
+      display: flex;
+      align-items: left;
+      justify-content: left;
+      padding: 3rem 2rem 1rem;
+      padding: 0 4vw;
+    }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--dark);
-  }
-
-  /* ── TOGGLE & SECTION ── */
-  .toggle-section { margin-top: 100px; padding: 0 4vw; }
-  .toggle-track { position: relative; display: flex; background: var(--light); border-radius: 999px; padding: 5px; border: 1.5px solid rgba(0,0,0,0.1); cursor: pointer; width: fit-content; }
-  .toggle-option { padding: 0.55rem 2rem; font-size: 0.95rem; font-weight: 500; border: none; background: none; cursor: pointer; color: var(--orange); position: relative; z-index: 2; }
-  .toggle-option.active { color: var(--white); }
-  .toggle-thumb { position: absolute;
-     top: 5px;
-    left: 5px;
-    height: calc(100% - 10px);
-    border-radius: 999px;
-    background: var(--dark);
-    transition: transform 0.4s;
-    z-index: 1; }
-
-  /* ── GRILLE & CARTES ── */
-  .projects-section { padding: 2rem 3rem 5rem; }
-  .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900; margin-bottom: 0.2rem; display: flex; align-items: center; justify-content: center; gap: 1.2rem; }
-  .arrow-deco { animation: bounce 1.8s infinite; }
-  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
-  .section-subtitle { text-align: center; color: #888; margin-bottom: 0.5rem; font-size: 1.3rem }
-  .label-subtitle { text-align: center; color: #dadada; font-family: 'DM Sans', serif; margin-bottom: 3rem; font-size: 0.7rem; }
-
-  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
-
-  .project-card {
-    border-radius: 20px; overflow: hidden; background-color: var(--light); background-size: cover; background-position: center;
-    position: relative; min-height: 450px; display: flex; transition: transform 0.35s;
-  }
-  .project-card:hover { transform: translateY(-4px); }
-
-    .project-card-content { 
+    .toggle-track {
       position: relative;
-     z-index: 2;
-      flex: 0 0 60%;
-       padding: 2.6rem 2.8rem 2.4rem; 
-        display: flex;
-         flex-direction: column;
-          justify-content: space-between;
-         }
+      display: flex;
+      background: var(--light);
+      border-radius: 999px;
+      padding: 5px;
+      border: 1.5px solid rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
 
-  .project-card-content h3 { 
-    font-family: 'Playfair Display', serif; 
-    font-size: 2rem; 
-    margin-bottom: 0.8rem; 
-    white-space: nowrap;
-    color: rgb(34, 34, 34)
-  }
+    .toggle-option {
+      position: relative;
+      z-index: 2;
+      padding: 0.55rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #ff6600;
+      transition: color 0.35s ease;
+      border-radius: 999px;
+    }
+
+    .toggle-option.active {
+      color: var(--white);
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      height: calc(100% - 10px);
+      border-radius: 999px;
+      background: var(--dark);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease;
+      z-index: 1;
+    }
+
+    /* ── TITRES (C'est ce qui manquait) ── */
+    .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 900; margin-bottom: 0.4rem; display: flex; align-items: center; justify-content: center; gap: 1.2rem;  }
+    .arrow-deco { animation: bounce 1.8s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+   .section-subtitle { text-align: center; color: #888; margin-bottom: 0.5rem; font-size: 1.3rem }
+   .label-subtitle { text-align: center; color: #dadada; font-family: 'DM Sans', serif; margin-bottom: 3rem; font-size: 0.7rem; }
+
+
+    /* ── SECTION PROJETS ── */
+    .projects-section { padding: 0 3rem 5rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 1100px; margin: 0 auto; }
+
+    /* ── CARTE ── */
+    .project-card { 
+      border-radius: 20px; 
+      overflow: hidden; 
+      background-color: var(--light); 
+      background-size: cover; 
+      background-position: center; 
+      position: relative; 
+      display: flex; 
+      align-items: stretch; 
+      min-height: 450px; 
+      transition: transform 0.35s ease; 
+    }
+    
+    .project-card:hover { 
+      transform: translateY(-4px); 
+    }
 
   .project-card::before { 
  content: '';
@@ -83,64 +107,78 @@
  var(--overlay-color, rgba(255, 255, 255, 0.945)) 0%, transparent 100%); 
 }
 
-  .project-card-content p { 
-    font-size: 0.88rem;
-     color: rgb(34, 34, 34);
-      line-height: 1.6;
-       margin-bottom: 1.4rem; }
-
-  /* ── STATS ── */
-  .stat-row { 
-    display: flex; 
-    align-items: center;
-    justify-content: space-between; 
-    padding: 0.5rem 0; 
-    border-bottom: 1px solid rgba(0,0,0,0.1); 
-    font-size: 0.85rem; }
-
-  
-  .stat-label { font-weight: 500; }
-
-  /* ── LE BOUTON (ENFIN !) ── */
-  .project-btn {
-    display: inline-flex;
-    width: fit-content !important; /* Force la largeur courte */
-    padding: 0.6rem 1.4rem;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    text-decoration: none;
-    transition: 0.3s ease;
-    background: rgba(255, 255, 255, 0.3) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
-    backdrop-filter: blur(8px);
-    color: #000 !important;
+    .project-card-content { 
+      position: relative; 
+      z-index: 2; 
+      flex: 0 0 60%; 
+      max-width: 60%; 
+      padding: 2.6rem 2.8rem 2.4rem; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between; 
+    }
+    
+  .project-card-content h3 { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 2rem; 
+    margin-bottom: 0.8rem; 
+    white-space: nowrap;
+    color: rgb(34, 34, 34)
+    
   }
 
-  .project-btn:hover {
-    background: #ff6600!important;
-    color: #fff !important;
-    transform: translateY(-2px);
-  }
+    .project-card-content p { 
+      font-size: 0.88rem;
+       color: rgb(34, 34, 34);
+        line-height: 1.65;
+         margin-bottom: 2rem; 
+        }
 
-  /* ── BOOKMARK ── */
-  .bookmark-wrap { position: absolute; top: 0; right: 2rem; z-index: 10; filter: drop-shadow(0 4px 3px rgba(0,0,0,0.2)); }
-  .bookmark-body { 
-    background: #ffffff; 
-    width: 52px; height: 28px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% calc(100% - 12px), 0% 100%); 
-    transition: 0.4s; color: transparent; font-size: 0.7rem; font-weight: 700; 
-    text-transform: uppercase;
-  }
-  .project-card:hover .bookmark-body { height: 60px; color: rgb(0, 0, 0); align-items: flex-end; padding-bottom: 18px; }
+    .stat-row { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      padding: 0.5rem 0; 
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+      font-size: 0.85rem; }
+    
+    .stat-label { font-weight: 500; color: var(--dark); }
 
-  .category-view { display: none; }
-  .category-view.visible { display: block; }
-  footer { text-align: center; padding: 2rem; color: #bbb; font-size: 0.8rem; }
+    .project-btn { 
+      display: inline-flex; 
+      width: fit-content !important;
+      align-items: center; 
+      gap: 0.45rem; 
+      background: var(--orange); 
+      color: rgb(0, 0, 0); 
+      border-radius: 999px; 
+      padding: 0.58rem 1.4rem; 
+      font-size: 0.82rem; 
+      text-decoration: none; 
+      transition: background 0.2s; }
 
-  .project-stats {
+    .project-btn:hover { background: var(--dark); color: #ffffff; 
+    }
+
+        .project-card.has-image .project-btn {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(4px);
+    }
+
+    .project-card.has-image .project-btn:hover {
+      background: #ff6600;
+      border-color: #ff6600;
+    }
+
+    /* ── BOOKMARK ── */
+    .bookmark-wrap { position: absolute; top: 0; right: 2rem; z-index: 10; filter: url(#shadow-bookmark); }
+    .bookmark-body { background: #ffffff; color: transparent; width: 52px; height: 28px; display: flex; align-items: center; justify-content: center; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 50% calc(100% - 12px), 0% 100%); transition: all 0.4s; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+    .project-card:hover .bookmark-body { height: 60px; color: rgb(0, 0, 0); align-items: flex-end; padding-bottom: 18px; }
+
+    footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #bbb; }
+
+      .project-stats {
   width: 100% !important;
   margin-top: auto;
   margin-bottom: 1rem;
@@ -148,11 +186,8 @@
   border-radius: 12px;
   padding: 12px 16px;
 }
-
-  /* ── MOBILE (NETTOYÉ) ── */
-/* ── MOBILE (SANS AUCUN ASSOMBRISSEMENT) ── */
+  
 @media (max-width: 768px) {
-
 
       nav {
         padding: 1rem 1.4rem;
@@ -166,6 +201,15 @@
       .projects-section {
         padding: 2rem 1.2rem 2rem;
       }
+
+      .project-stats {
+  width: 100% !important;
+  margin-top: auto;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 12px 16px;
+}
 
 .section-title {
     /* On permet au titre de revenir sur deux lignes si besoin pour ne pas pousser les flèches dehors */
@@ -184,6 +228,7 @@
     /* On s'assure qu'elles ne rétrécissent pas */
     flex-shrink: 0;
 }
+
       /* Colonne unique */
       .projects-grid {
         grid-template-columns: 1fr;
@@ -222,12 +267,13 @@
       .project-card-content h3 {
         font-size: 1.5rem;
         white-space: normal;
-        color: rgb(34, 34, 34) !important;
+        margin-bottom: 15px;
+        color: #1a1a1a !important;
       }
 
       .project-card-content p {
         max-width: 60% !important;
-        color: rgb(34, 34, 34) !important;
+        color: #000000 !important;
       }
 
       .stat-label {
@@ -238,22 +284,15 @@
         color: #000 !important;
       }
 
-      /* Remplace ton .project-stats existant dans la media query par : */
-.project-stats {
-  width: 100% !important;
-  margin-top: auto;
-  margin-bottom: 1rem;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
-  padding: 12px 16px;
-}
+      .stat-row,
+      .stat-row:first-child {
+        border-color: rgba(0, 0, 0, 0.1) !important;
+      }
 
-.stat-row {
-  display: flex !important;
-  justify-content: space-between !important; /* Année à gauche, 2026 à droite */
-  width: 100% !important;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      .stat-row,
+.stat-row:first-child {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  margin-bottom: 5px;
 }
 
 /* 2. On cache les lignes 2 et 3 (Partenaire et Outils) */
@@ -270,13 +309,14 @@
     font-size: 0.85rem;
     text-decoration: none;
     transition: 0.3s ease;
-    background: rgba(255, 255, 255, 0.7) !important;
+    background: rgba(255, 255, 255, 0.3) !important;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
     backdrop-filter: blur(8px);
     color: #000 !important;
   }
-}
-</style>
+  }
+
+  </style>
 
 
 
@@ -284,7 +324,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
   <link rel="stylesheet" href="includes/header.css">
 </head>
-
 <body>
   <svg width="0" height="0" style="position:absolute;">
     <filter id="shadow-bookmark" x="-50%" y="-50%" width="200%" height="200%">
@@ -292,216 +331,126 @@
     </filter>
   </svg>
 
-  <!-- NAV -->
   <div id="header-placeholder"></div>
 
-  <!-- TOGGLE -->
   <div class="toggle-section">
     <div class="toggle-track" id="toggleTrack">
-      <button class="toggle-option active" id="btnPrint" onclick="window.location.href='index.html'">Digital</button>
-      <button class="toggle-option" id="btnPhysique" onclick="window.location.href='print.html'">Impression</button>
+      <button class="toggle-option" id="btnPrint" onclick="window.location.href='index.html'">Digital</button>
+      <button class="toggle-option active" id="btnPhysique" onclick="window.location.href='print.html'">Impression</button>
       <div class="toggle-thumb" id="toggleThumb"></div>
     </div>
   </div>
 
-  <!-- PROJETS -->
-  <section class="projects-section" id="travail">
-
-    <!-- Digital -->
-    <div class="category-view visible" id="view-print">
-      <div class="section-title">
-<img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
-Projets sélectionnés
-<img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
+  <section class="projects-section">
+  <div class="section-title">
+    <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
+    Projets sélectionnés
+    <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
   </div>
-      <p class="section-subtitle">motion · figma · web</p>
+      <p class="section-subtitle">édition · identité visuelle · typographie</p>
       <p class="label-subtitle">SCO (scolaire) · PERSO (personnel) · PRO (professionnel)</p>
       <div class="projects-grid">
       </div>
  
   <div class="projects-grid">
 
-        <!-- LE CHEMIN -->
-        <div class="project-card has-image"
-          style="background-image: url('assets/images/cover-vivant.webp'); --overlay-color: hsl(51, 100%, 90%);">
-          <div class="bookmark-wrap tag-group">
-            <div class="bookmark-body">Sco</div>
-          </div>
-          <div class="project-card-content">
-            <div>
-              <h3>Le chemin</h3>
-              <p>Refonte de la carte d'un média de proximité écologique, Le Vivant, en équipe étudiante avec des développeurs de l'école Polytech.</p>
-              <div class="project-stats">
-                <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2026</span></div>
-                <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">Vivant Le Média</span></div>
-                <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Figma · Illustrator</span></div>
-                <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Groupe</span></div>
-              </div>
-            </div>
-            <a href="le-chemin.html" class="project-btn">→ Monter sur le vélo</a>
-            
+    <!-- Calendriers -->
+    <div class="project-card has-image" style="background-image: url('assets/images/cover-calendar.webp'); --overlay-color: rgb(129, 215, 255);">
+      <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
+      <div class="project-card-content">
+        <div>
+          <h3>Conception de calendriers</h3>
+          <p>Création d'une trentaine de calendriers, puis pré-sélection et impression, vente en gros aux fleuristes partenaires.</p>
+          <div class="project-stats">
+            <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2024-26</span></div>
+            <div class="stat-row"><span class="stat-label">Format</span><span class="stat-value">Edition</span></div>
+            <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator · InDesign</span></div>
           </div>
         </div>
-
-                <!-- BRANDING -->
-        <div class="project-card has-image"
-          style="background-image: url('assets/images/cover-carroussel.webp') !important; --overlay-color: rgb(255, 205, 230);">
-          <div class="bookmark-wrap">
-            <div class="bookmark-body">Perso</div>
-          </div>
-          <div class="project-card-content">
-            <div>
-              <h3>Carroussel <br> de marques</h3>
-              <p>Projets d'identité de marque sur la base de briefs fictifs. Création ensuite d'un support de présentation sous la forme d'un carroussel instagram.</p>
-             <div class="project-stats">
-                <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2026</span></div>
-                <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator</span></div>
-                <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Solo</span></div>
-              </div>
-            </div>
-            <a href="branding.html" class="project-btn">→ Faire un tour</a>
-          </div>
-        </div>
-
-
-        <!-- TROC EN STOCK -->
-        <div class="project-card"
-          style="background-image: url('assets/images/cover-mobi.webp'); --overlay-color: rgba(209, 252, 255, 0.815);">
-          <div class="bookmark-wrap">
-            <div class="bookmark-body">Sco</div>
-          </div>
-          <div class="project-card-content">
-            <div>
-              <h3>Troc en Stock</h3>
-              <p>Création d'une application de troc pour aider les jeunes à rentrer et dans la vie active et dans le monde des assurances.</p>
-              <div class="project-stats">
-                <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2025</span></div>
-                <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">CNP Assurance</span></div>
-                <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Figma · Illustrator</span></div>
-                <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Groupe</span></div>
-              </div>
-            </div>
-            <a href="mobi.html" class="project-btn">→ Go Troc ?</a>
-          </div>
-        </div>
-
-                <!-- SURF -->
-        <div class="project-card has-image" style="--overlay-color: rgba(255, 211, 191, 0.959);">
-  <video autoplay loop muted playsinline
-    style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;">
-    <source src="assets/images/cover-surf.mp4" type="video/mp4">
-  </video>
-  <div class="bookmark-wrap">
-    <div class="bookmark-body">Sco</div>
-  </div>
-  <div class="project-card-content">
-    <div>
-      <h3>Surf</h3>
-      <p>Travail de Rotoscopie sur l'énergie sportive.</p>
-      <div class="project-stats">
-        <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2022</span></div>
-        <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Photoshop</span></div>
-        <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Solo</span></div>
-      </div>
-    </div>
-    <a href="surf.html" class="project-btn">→ Sur la vague</a>
-  </div>
-</div>
-
-
-      <div>
-    <div>
-
-    <!-- Print -->
-    <div class="category-view" id="view-physique">
-      <div class="section-title">
-        <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
-        Projets sélectionnés
-        <img src="assets/images/fleche.webp" alt="" class="arrow-deco" style="height:60px; width:auto;">
-      </div>
-      <p class="section-subtitle">édition · identité visuelle · typographie</p>
-      <div class="projects-grid">
-
-        <!-- COLLECTION DE MOTIFS -->
-        <div class="project-card"
-          style="background-image: url('assets/images/cover-patterpolypap.webp'); --overlay-color: rgba(255, 145, 250, 0.945);">
-          <div class="bookmark-wrap">
-            <div class="bookmark-body">Pro</div>
-          </div>
-          <div class="project-card-content">
-            <div>
-              <h3>Collection de motifs</h3>
-              <p>Courte description du projet...</p>
-              <div class="project-stats">
-                <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2025</span></div>
-                <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">Polypap</span></div>
-                <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator</span></div>
-                <div class="stat-row"><span class="stat-label">Type</span><span class="stat-value">Solo</span></div>
-              </div>
-            </div>
-            <a href="cover-patterpolypap.webp" class="project-btn">→ Voir le projet</a>
-          </div>
-        </div>
-
-        <!-- PROJET 6 -->
-        <div class="project-card"
-          style="background-image: url('ton-image-6.webp'); --overlay-color: rgba(0, 100, 255, 0.8);">
-          <div class="project-card-content">
-            <div>
-              <h3>Nom du projet</h3>
-              <p>Courte description du projet — contexte, intention, résultat.</p>
-              <div class="project-stats">
-                <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2024</span></div>
-                <div class="stat-row"><span class="stat-label">Format</span><span class="stat-value">Motion</span></div>
-                <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">After Effects</span></div>
-              </div>
-            </div>
-            <a href="#" class="project-btn">→ Voir le projet</a>
-          </div>
-        </div>
-
+        <a href="calendar.html?from=print" class="project-btn">→ Aujourd'hui</a>
       </div>
     </div>
 
-  </section>
+    <!-- Collection de motifs -->
+    <div class="project-card has-image" style="background-image: url('assets/images/cover-patterpolypap.webp'); --overlay-color: rgb(255, 117, 255);">
+      <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
+      <div class="project-card-content">
+        <div>
+          <h3>Collection de motifs</h3>
+          <p>Création d'une gamme de motifs sur le thème de la St-Valentin et de la fête des Mères.</p>
+          <div class="project-stats">
+            <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2025</span></div>
+            <div class="stat-row"><span class="stat-label">Partenaire</span><span class="stat-value">Polypap</span></div>
+            <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">Illustrator · InDesign</span></div>
+          </div>
+        </div>
+        <a href="patterns.html?from=print" class="project-btn">→ Découvrir</a>
+      </div>
+    </div>
 
-  <!-- FOOTER -->
+    <!-- Création de spécimen -->
+    <div class="project-card has-image" style="background-image: url('assets/images/cover-specimen.webp'); --overlay-color: rgb(255, 238, 160);">
+      <div class="bookmark-wrap"><div class="bookmark-body">Sco</div></div>
+      <div class="project-card-content">
+        <div>
+          <h3>Compagnon de route</h3>
+          <p>Création et mise en page d'un spécimen (livret présentant une typographie), sur la police Compagnon.</p>
+          <div class="project-stats">
+            <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2024</span></div>
+            <div class="stat-row"><span class="stat-label">Format</span><span class="stat-value">Edition</span></div>
+            <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">InDesign</span></div>
+          </div>
+        </div>
+        <a href="specimen.html?from=print" class="project-btn">→ Vers Compagnon</a>
+      </div>
+    </div>
+
+    <!-- PERSO -->
+    <div class="project-card has-image" style="background-image: url('assets/images/cover-perso.webp'); --overlay-color: rgb(155, 155, 155);">
+      <div class="bookmark-wrap"><div class="bookmark-body">Pro</div></div>
+      <div class="project-card-content">
+        <div>
+          <h3>Personnalisation de supports</h3>
+          <p>Création de fichiers pour l'impression sur supports personnalisés à partir d'un devis et de la charte d'un client.</p>
+          <div class="project-stats">
+            <div class="stat-row"><span class="stat-label">Année</span><span class="stat-value">2024-26</span></div>
+            <div class="stat-row"><span class="stat-label">Format</span><span class="stat-value">Edition</span></div>
+            <div class="stat-row"><span class="stat-label">Outils</span><span class="stat-value">InDesign · Photoshop</span></div>
+          </div>
+        </div>
+        <a href="personnalisation.html?from=print" class="project-btn">→ Voir le projet</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
   <div id="footer-placeholder"></div>
-
   <script src="./main.js"></script>
 
-<script>
-  if (document.getElementById('year')) {
-    
-  }
+<script src="./main.js"></script>
 
+<script>
+  
   const thumb = document.getElementById('toggleThumb');
   const btnPrint = document.getElementById('btnPrint');
+  const btnPhysique = document.getElementById('btnPhysique');
 
   function updateToggle() {
-    if (thumb && btnPrint) {
-      thumb.style.transform = 'translateX(0)';
-      thumb.style.width = btnPrint.offsetWidth + 'px';
+    const currentPage = window.location.pathname.split("/").pop();
+    if (currentPage === 'print.html' || currentPage.includes('print')) {
+      thumb.style.transform = `translateX(${btnPrint.offsetWidth}px)`;
+      thumb.style.width = btnPhysique.offsetWidth + 'px';
     }
   }
 
-  window.addEventListener('load', () => {
-    updateToggle();
-
-    document.querySelectorAll('.project-card').forEach(card => {
-      const bg = card.style.backgroundImage;
-      if (bg && bg !== '' && !bg.includes('ton-image')) {
-        card.classList.add('has-image');
-      }
-    });
-  });
-
+  window.addEventListener('load', updateToggle);
   window.addEventListener('resize', updateToggle);
 </script>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script>const lightbox = GLightbox({ selector: ".glightbox" });</script>
 </body>
-
-
 </html>
