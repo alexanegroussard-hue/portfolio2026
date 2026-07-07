@@ -30,7 +30,7 @@
   .toggle-section { margin-top: 100px; padding: 0 4vw; }
   .toggle-track { position: relative; display: flex; background: var(--light); border-radius: 999px; padding: 5px; border: 1.5px solid rgba(0,0,0,0.1); cursor: pointer; width: fit-content; }
   .toggle-option { padding: 0.55rem 2rem; font-size: 0.95rem; font-weight: 500; border: none; background: none; cursor: pointer; color: var(--orange); position: relative; z-index: 2; }
-  .toggle-option.active { color: var(--white); }
+  .toggle-option.active { color: var(--dark); }
   .toggle-thumb { position: absolute;
      top: 5px;
     left: 5px;
@@ -298,8 +298,8 @@
   <!-- TOGGLE -->
   <div class="toggle-section">
     <div class="toggle-track" id="toggleTrack">
-      <button class="toggle-option active" id="btndigital" onclick="window.location.href='#'">Digital</button>
-      <button class="toggle-option" id="btnPhysique" onclick="window.location.href='index.html'">Impression</button>
+      <button class="toggle-option active" id="btndigital" onclick="window.location.href='#'">Impression</button>
+      <button class="toggle-option" id="btnPhysique" onclick="window.location.href='index.html'">Digital</button>
       <div class="toggle-thumb" id="toggleThumb"></div>
     </div>
   </div>
