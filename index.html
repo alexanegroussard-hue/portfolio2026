@@ -41,9 +41,8 @@
     .toggle-option {
       position: relative;
       z-index: 2;
-      padding: 0.55rem 2rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
+      padding: 0.55rem 2rem; 
+      font-size: 0.95rem; 
       font-weight: 500;
       border: none;
       background: none;
@@ -54,7 +53,7 @@
     }
 
     .toggle-option.active {
-      color: var(--dark);
+      color: var(--white);
     }
 
     .toggle-thumb {
@@ -447,7 +446,7 @@
     }
   }
 
-  window.addEventListener('load', updateToggle);
+  window.addEventListener('load', () => setTimeout(updateToggle, 50));
   window.addEventListener('resize', updateToggle);
 </script>
 
