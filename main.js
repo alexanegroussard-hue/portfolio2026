@@ -14,6 +14,19 @@ function initBurger() {
   });
 }
 
+function initGTranslate() {
+  window.gtranslateSettings = {
+    "default_language": "fr",
+    "languages": ["fr", "en", "es", "ca"],
+    "wrapper_selector": ".gtranslate_wrapper"
+  };
+
+  const script = document.createElement('script');
+  script.src = 'https://cdn.gtranslate.net/widgets/latest/dwf.js';
+  script.defer = true;
+  document.body.appendChild(script);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   fetch('./includes/header.html')
@@ -24,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       document.getElementById('header-placeholder').innerHTML = data;
       initBurger();
+      initGTranslate();
     })
     .then(() => fetch('./includes/footer.html'))
     .then(res => {
