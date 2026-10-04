@@ -76,6 +76,7 @@ html[lang="nl"] .profile-bio, html[lang="nl"] .contact-subtitle { line-height: 1
 
 @media (max-width: 768px) {
   nav { height: 58px; padding: 0 5vw; }
+  .mobile-menu { top: 58px; } /* collé sous le header mobile */
   .brand-name { font-size: 1.1rem; }
   .brand-sub { display: none; }
   .logo-img { height: 40px !important; }
