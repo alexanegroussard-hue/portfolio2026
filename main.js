@@ -39,6 +39,98 @@ function initLangSwitch() {
   refresh();
 }
 
+// Corrections des traductions néerlandaises de Google (faux sens sur les mots courts et le
+// vocabulaire de l'imprimé). Actif seulement quand la page est traduite en néerlandais.
+const NL_EXACT = {          // texte entier d'un nœud
+  'vriendelijk': 'Type',            // « Type » traduit par « gentil »
+  'band': 'Groep',                  // « Groupe » traduit par « groupe de musique »
+  'personeel': 'Persoonlijk',       // « Personnel » traduit par « le personnel »
+  'indruk': 'Drukwerk',             // bouton « Impression »
+  'problematisch': 'Vraagstuk',     // « Problématique »
+  'deken': 'Omslag',                // « Couverture » du spécimen
+  'editie': 'Redactioneel',         // « Édition »
+  'hulpmiddelen': 'Tools',          // « Outils »
+  'voorpersen': 'Prepress',         // « Mise en prépresse »
+  'webafbeeldingen': 'Webdesign',   // « Graphisme web »
+  'bestandsbeheer': 'Bestandscontrole',
+  'bat-client': 'Drukproef voor de klant',
+  'directe tonen': 'Steunkleuren',
+  'superpositie en trapping': 'Overdruk en trapping',
+  'aanpassing van media': 'Personalisatie van drukdragers',
+  'het bewijs versturen': 'De drukproef versturen',
+  'overzicht van de behaalde resultaten': 'Overzicht van het werk',
+  'bekijk het exemplaar': 'Blader door het specimen',
+  'het laden van het testexemplaar…': 'Specimen laden…',
+  'start het experiment ↗': 'Start de ervaring ↗',
+};
+const NL_PHRASES = [         // fragments à l'intérieur d'un texte
+  ['(personeel)', '(persoonlijk)'],
+  ['Een standpunt,', 'Een vacature,'],
+  ['Het definitieve bewijs:', 'De drukproef:'],
+  ['uitgeverij & drukkerij', 'redactie & drukwerk'],
+  ['tijdelijke bloemstukken', 'tijdelijke bloemmotieven'],
+  ['postzegels', 'stempels'],
+  ['type ondersteuning', 'type drager'],
+  ['verkoopbrief', 'commerciële briefing'],
+  ['Ondersteunend materiaal werd', 'Het drukwerk werd'],
+  ['typografisch voorbeeld', 'typografisch specimen'],
+  ['vormgeving van een voorbeeld (', 'vormgeving van een specimen ('],
+  ['Dit was het maken van een proefdruk', 'Het ging om het maken van een specimen'],
+];
+
+// Titres coupés par <br> (plusieurs nœuds de texte) : on compare le texte complet de l'élément
+const NL_ELEMENTS = {
+  'aanpassing van media': 'Personalisatie van drukdragers',
+  'naar een metgezel': 'Naar Compagnon',
+  '→ naar een metgezel': '→ Naar Compagnon',
+  '→ richting compagnon': '→ Naar Compagnon',
+};
+
+const normalize = t => t.replace(/[\s​]+/g, ' ').trim().toLowerCase();
+
+function fixDutchNode(node) {
+  const raw = node.textContent;
+  const key = normalize(raw);
+  let out = raw;
+  if (NL_EXACT[key]) {
+    const fix = NL_EXACT[key];
+    const isUpper = raw.trim() === raw.trim().toUpperCase() && /[A-Z]/.test(raw);
+    out = raw.replace(raw.trim(), isUpper ? fix.toUpperCase() : fix);
+  } else {
+    NL_PHRASES.forEach(([from, to]) => { if (out.includes(from)) out = out.split(from).join(to); });
+  }
+  if (out !== raw) node.textContent = out;
+}
+
+function fixDutchElement(el) {
+  const fix = NL_ELEMENTS[normalize(el.textContent)];
+  if (!fix) return;
+  // on modifie les nœuds de texte existants (GTranslate garde l'original pour revenir au français)
+  const nodes = [];
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  while (walker.nextNode()) if (walker.currentNode.textContent.trim()) nodes.push(walker.currentNode);
+  nodes.forEach((n, i) => { n.textContent = i === 0 ? fix : ''; });
+}
+
+function initDutchFixes() {
+  const isDutch = () => document.documentElement.lang.startsWith('nl');
+  let pending = null;
+  const pass = () => {
+    pending = null;
+    if (!isDutch()) return;
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) fixDutchNode(walker.currentNode);
+    document.querySelectorAll('h1, h2, h3, h4, a, button, .next-title').forEach(fixDutchElement);
+  };
+  const schedule = () => { if (!pending) pending = setTimeout(pass, 150); };
+  new MutationObserver(() => { if (isDutch()) schedule(); })
+    .observe(document.body, { subtree: true, childList: true, characterData: true });
+  new MutationObserver(schedule)
+    .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+}
+
+initDutchFixes();
+
 function initGTranslate() {
   window.gtranslateSettings = {
     "default_language": "fr",
