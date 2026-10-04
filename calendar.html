@@ -90,6 +90,16 @@
       align-items: end;
     }
 
+    /* calendrier détouré à gauche du titre (comme les images des autres projets) */
+    .hero-image {
+      height: clamp(10rem, 19vw, 18rem);
+      width: auto;
+      display: block;
+      align-self: end;
+      transform: rotate(-3deg);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1);
+    }
+
     /* grand numéro en filigrane à gauche */
     .hero-number {
       font-family: var(--font-title);
@@ -394,7 +404,7 @@
     <a id="back-btn" href="index.html#projets" class="back-btn">← Retour</a>
   </div>
   <header class="hero">
-    <div class="hero-number reveal reveal-1">01</div>
+    <img src="assets/images/calendrier-brin-nature.webp" class="hero-image reveal reveal-1" alt="Calendrier 2027 « Le langage des fleurs » personnalisé pour la fleuriste Brin d'Nature">
     <div class="hero-content">
       <span class="hero-tag reveal reveal-1">Graphisme · Impression</span>
       <h1 class="hero-title reveal reveal-2">Conception<br><em>de Calendriers</em></h1>
