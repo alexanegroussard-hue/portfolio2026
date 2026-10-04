@@ -17,7 +17,7 @@ function initBurger() {
 function initGTranslate() {
   window.gtranslateSettings = {
     "default_language": "fr",
-    "languages": ["fr", "en", "es", "ca"],
+    "languages": ["fr", "en", "nl"],
     "wrapper_selector": ".gtranslate_wrapper"
   };
 
