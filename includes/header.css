@@ -1,7 +1,7 @@
 /* ── TYPOGRAPHIE (commune à tout le site) ──
-   Titres : Playfair Display · Header (nom + menu) : Averia Serif Libre · Texte : DM Sans · Interface (boutons, formulaires, labels) : DM Sans */
+   Titres et header : Averia Serif Libre · Texte : DM Sans · Interface (boutons, formulaires, labels) : DM Sans */
 :root {
-  --font-title: 'Playfair Display', Georgia, serif;
+  --font-title: 'Averia Serif Libre', Georgia, serif;
   --font-brand: 'Averia Serif Libre', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
   --font-ui: 'DM Sans', system-ui, sans-serif;
