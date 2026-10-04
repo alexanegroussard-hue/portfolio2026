@@ -25,8 +25,8 @@ nav {
 .logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #000; }
 .logo-img { height: 60px !important; width: auto !important; }
 .brand-text { display: flex; flex-direction: column; gap: 2px; line-height: 1.1; }
-.brand-name { font-family: var(--font-brand); font-weight: 700; font-size: 1.35rem; }
-.brand-sub { font-family: var(--font-ui); font-size: 0.75rem; color: #777; }
+.brand-name { font-family: var(--font-brand); font-weight: 700; font-size: 1.7rem; }
+.brand-sub { font-family: var(--font-ui); font-size: 0.9rem; color: #777; }
 .nav-right-group { display: flex; align-items: center; gap: 30px; margin-left: auto; }
 .social-links-header { display: flex; gap: 15px; align-items: center; }
 .social-links-header a { color: #000; display: flex; }
