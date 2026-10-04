@@ -78,9 +78,10 @@ const NL_PHRASES = [         // fragments à l'intérieur d'un texte
   ['Dit was het maken van een proefdruk', 'Het ging om het maken van een specimen'],
 ];
 
-// Titres coupés par <br> (plusieurs nœuds de texte) : on compare le texte complet de l'élément
+// Titres coupés par <br> (plusieurs nœuds de texte) : on compare le texte complet de l'élément.
+// « | » marque le retour à la ligne : chaque partie va dans un nœud, dans l'ordre.
 const NL_ELEMENTS = {
-  'aanpassing van media': 'Personalisatie van drukdragers',
+  'aanpassing van media': 'Personalisatie|van drukdragers',
   'naar een metgezel': 'Naar Compagnon',
   '→ naar een metgezel': '→ Naar Compagnon',
   '→ richting compagnon': '→ Naar Compagnon',
@@ -109,7 +110,9 @@ function fixDutchElement(el) {
   const nodes = [];
   const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
   while (walker.nextNode()) if (walker.currentNode.textContent.trim()) nodes.push(walker.currentNode);
-  nodes.forEach((n, i) => { n.textContent = i === 0 ? fix : ''; });
+  let parts = fix.split('|');
+  if (parts.length > nodes.length) parts = [...parts.slice(0, nodes.length - 1), parts.slice(nodes.length - 1).join(' ')];
+  nodes.forEach((n, i) => { n.textContent = parts[i] !== undefined ? parts[i] : ''; });
 }
 
 function initDutchFixes() {
