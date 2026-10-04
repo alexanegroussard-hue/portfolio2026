@@ -63,7 +63,7 @@
        HERO PROFIL
     ════════════════════════════════ */
     .profile-hero {
-      margin-top: 80px;
+      margin-top: 0;
       padding: 8vh 6vw 6vh;
       display: grid;
       grid-template-columns: 1fr 1.6fr;
@@ -351,6 +351,12 @@
       }
     }
 
+
+    /* ── BOUTON RETOUR (même style que les pages projets) ── */
+    .back-wrapper { padding: 100px 6vw 0; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.7rem 1.2rem; border: 1px solid var(--orange); border-radius: 999px; background: var(--orange); color: var(--light) !important; text-decoration: none; font-size: 0.88rem; font-weight: 400; transition: background 0.2s, border-color 0.2s; }
+    .back-btn:hover { background: var(--dark); border-color: var(--dark); }
+
   </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
   <link rel="stylesheet" href="includes/header.css">
@@ -359,6 +365,10 @@
 
   <!-- NAV -->
   <div id="header-placeholder"></div>
+
+  <div class="back-wrapper">
+    <a href="index.html" class="back-btn" onclick="if (document.referrer.startsWith(location.origin)) { history.back(); return false; }">← Retour</a>
+  </div>
 
 
   <!-- HERO PROFIL -->
