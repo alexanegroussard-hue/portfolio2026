@@ -573,10 +573,10 @@ sans s'encombrer de couleurs.
 </section>
 
   <!-- ── PROJET SUIVANT ── -->
-  <a href="le-chemin.html" class="next-project">
+  <a href="personnalisation.html" class="next-project">
     <div>
       <span class="next-label">Projet suivant</span>
-      <div class="next-title"><span class="notranslate" translate="no">Le Chemin</span></div>
+      <div class="next-title">Personnalisation<br>de supports</div>
     </div>
     <div class="next-arrow">→</div>
   </a>
@@ -609,7 +609,7 @@ sans s'encombrer de couleurs.
     gsap.registerPlugin(ScrollTrigger);
     const gallery = document.getElementById('gallery');
 
-    gsap.to(gallery, {
+    if (gallery) gsap.to(gallery, { // (pas de galerie horizontale sur cette page pour l'instant)
       x: () => -(gallery.scrollWidth - window.innerWidth + window.innerWidth * 0.2),
       ease: 'none',
       scrollTrigger: {
