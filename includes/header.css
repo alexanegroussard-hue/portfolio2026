@@ -5,6 +5,7 @@
   --font-brand: 'Averia Serif Libre', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
   --font-ui: 'DM Sans', system-ui, sans-serif;
+  --orange-text: #cc4400; /* orange des petits textes (contraste ≈ 4,8:1) ; l'orange vif reste pour les aplats */
 }
 body { font-family: var(--font-body); }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-title); }
@@ -17,10 +18,10 @@ button, input, select, textarea { font-family: var(--font-ui); }
 @keyframes twBlink { 50% { box-shadow: 2px 0 0 transparent; } }
 .tw-skippable { cursor: pointer; }
 @media (max-width: 900px) { .tw-skippable { position: relative; top: auto; } }
-.tw-hint { position: absolute; color: var(--orange, #ff6600); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
+.tw-hint { position: absolute; color: var(--orange-text); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
 .tw-hint.tw-hint-on { opacity: 0.85; }
 .tw-hint { display: flex; flex-direction: column; align-items: center; }
-.tw-hint-label { display: none; margin-top: 3px; font-family: var(--font-brand); font-size: 0.7rem; line-height: 1; color: var(--orange, #ff6600); }
+.tw-hint-label { display: none; margin-top: 3px; font-family: var(--font-brand); font-size: 0.7rem; line-height: 1; color: var(--orange-text); }
 html[lang="en"] .tw-hint-label, html[lang="nl"] .tw-hint-label { display: block; } /* « trad » : cliquer donne le texte traduit */
 .tw-hint .tw-hint-btn { animation: twClick 1.4s ease-in-out infinite; }
 @keyframes twClick { 0%, 55%, 100% { opacity: 0; } 65%, 85% { opacity: 1; } }
@@ -47,8 +48,8 @@ nav {
 .social-links-header a { color: #000; display: flex; }
 .nav-links { display: flex; gap: 30px; }
 .nav-links a { text-decoration: none; color: #000; font-size: 1.6rem; font-weight: 600; transition: color 0.2s; }
-.nav-links a:hover { color: var(--orange, #ff6600); }
-.nav-links a.active, .mobile-menu a.active { color: var(--orange, #ff6600); } /* page en cours */
+.nav-links a:hover { color: var(--orange-text); }
+.nav-links a.active, .mobile-menu a.active { color: var(--orange-text); } /* page en cours */
 .burger { display: none; }
 
 /* ── BOUTONS RETOUR : toujours alignés à droite ── */
@@ -75,7 +76,7 @@ html[lang="nl"] .profile-bio, html[lang="nl"] .contact-subtitle { line-height: 1
 .mobile-menu.open { display: flex; }
 .mobile-menu .lang-switch { display: flex; }
 .mobile-menu a { font-family: var(--font-brand); text-decoration: none; color: #000; font-size: 1.3rem; font-weight: 600; transition: color 0.2s; }
-.mobile-menu a:hover { color: var(--orange, #ff6600); }
+.mobile-menu a:hover { color: var(--orange-text); }
 
 @media (max-width: 768px) {
   nav { height: 58px; padding: 0 5vw; }
