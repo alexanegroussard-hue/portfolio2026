@@ -6,7 +6,7 @@
   <title>Compagnon | Alexane</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,900;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -20,7 +20,7 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-body);
       background: var(--light);
       color: var(--dark);
       overflow-x: hidden;
@@ -69,7 +69,7 @@
     }
     .hero-tag::before { content: ''; width: 18px; height: 1px; background: var(--orange); flex-shrink: 0; }
     .hero-title {
-      font-family: 'Averia Serif Libre', serif;
+      font-family: var(--font-title);
       font-size: clamp(3rem, 7vw, 6rem); font-weight: 900; line-height: 0.92;
     }
     .hero-title em { font-style: italic; font-weight: 700; color: var(--orange); }
@@ -171,7 +171,7 @@
     }
     .context-block { padding: 5vh 3.5vw; border-right: 1px solid var(--rule); }
     .context-block:last-child { border-right: none; }
-    .context-block h3 { font-family: 'Averia Serif Libre', serif; font-size: 1.15rem; font-weight: 800; margin-bottom: 0.9rem; }
+    .context-block h3 { font-family: var(--font-title); font-size: 1.15rem; font-weight: 800; margin-bottom: 0.9rem; }
     .context-block p { font-size: 1.1rem; line-height: 1.75; color: #555; }
 
     .photos-section { padding: 6vh 6vw; }
@@ -207,7 +207,7 @@
     }
     a.next-project:hover { background: var(--orange); }
     .next-label { font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(245,244,240,0.4); display: block; margin-bottom: 0.5rem; }
-    .next-title { font-family: 'Averia Serif Libre', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1; }
+    .next-title { font-family: var(--font-title); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1; }
     .next-arrow { font-size: 2.5rem; transition: transform 0.3s ease; }
     a.next-project:hover .next-arrow { transform: translateX(10px); }
 

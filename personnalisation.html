@@ -6,7 +6,7 @@
   <title>Personnalisation de supports | Alexane</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -19,7 +19,7 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-body);
       background: var(--light);
       color: var(--dark);
       overflow-x: hidden;
@@ -114,7 +114,7 @@
     }
 
     .hero-title {
-      font-family: 'Averia Serif Libre', serif;
+      font-family: var(--font-title);
       font-size: clamp(3rem, 7vw, 6rem);
       font-weight: 900;
       line-height: 0.92;
@@ -206,7 +206,7 @@
     .stat-block:last-child { border-right: none; }
 
     .stat-number {
-      font-family: 'Averia Serif Libre', serif;
+      font-family: var(--font-title);
       font-size: clamp(2.2rem, 4vw, 3.5rem);
       font-weight: 900;
       color: var(--orange);
@@ -259,7 +259,7 @@
     }
 
     .step-num {
-      font-family: 'Averia Serif Libre', serif;
+      font-family: var(--font-title);
       font-size: 0.72rem;
       font-weight: 900;
       color: var(--orange);
@@ -336,7 +336,7 @@
     }
 
     .bat-title {
-      font-family: 'Averia Serif Libre', serif;
+      font-family: var(--font-title);
       font-size: clamp(1.6rem, 3vw, 2.4rem);
       padding: 3vh 0vw;
       font-weight: 900;
@@ -406,7 +406,7 @@
     .context-block:last-child { border-right: none; }
 
     .context-block h3 {
-      font-family: 'Averia Serif Libre', serif;
+      font-family: var(--font-title);
       font-size: 1.15rem;
       font-weight: 800;
       margin-bottom: 0.9rem;
@@ -443,7 +443,7 @@
     }
 
     .next-title {
-      font-family: 'Averia Serif Libre', serif;
+      font-family: var(--font-title);
       font-size: clamp(2rem, 4vw, 3.5rem);
       font-weight: 900;
       line-height: 1;

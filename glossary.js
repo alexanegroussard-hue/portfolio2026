@@ -92,7 +92,7 @@ style.textContent = `
     box-sizing: border-box;
     transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-body);
   }
 
   #gloss-panel.open {

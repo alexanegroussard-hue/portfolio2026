@@ -1,4 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@400;700&display=swap');
+/* ── TYPOGRAPHIE (commune à tout le site) ──
+   Titres : Averia Serif Libre · Texte : DM Sans · Interface (boutons, formulaires, labels) : DM Sans */
+:root {
+  --font-title: 'Averia Serif Libre', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-ui: 'DM Sans', system-ui, sans-serif;
+}
+body { font-family: var(--font-body); }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-title); }
+button, input, select, textarea { font-family: var(--font-ui); }
 
 nav {
   height: 90px;
@@ -10,7 +19,7 @@ nav {
   top: 0; left: 0; right: 0;
   z-index: 1000;
   border-bottom: 1px solid #f0f0f0;
-  font-family: 'Averia Serif Libre', serif;
+  font-family: var(--font-title);
 }
 .logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #000; }
 .logo-img { height: 60px !important; width: auto !important; }
