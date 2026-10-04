@@ -199,7 +199,6 @@
       display: flex;
       flex-direction: column;
       gap: 2.5rem;
-      padding-top: 0.5rem;
     }
 
     .profile-tag {
@@ -362,8 +361,7 @@
       /* bloc centré dans la fenêtre ; colonnes alignées par le bas pour que
          les boutons CV soient sur la même ligne que LinkedIn / Instagram */
       .profile-hero { padding: 104px 6vw 56px; align-content: start; align-items: stretch; }
-      /* texte centré verticalement, boutons CV en bas (même ligne que LinkedIn / Instagram) */
-      .profile-right > :first-child { margin-top: auto; }
+      /* texte calé sur le haut de la photo, boutons CV en bas (même ligne que LinkedIn / Instagram) */
       .profile-cvs { margin-top: auto; }
       .profile-photo { max-height: calc(100svh - 340px); } /* laisse la place aux boutons LinkedIn / Instagram */
     }
@@ -415,7 +413,6 @@
     <!-- colonne droite -->
     <div class="profile-right">
 
-      <span class="profile-tag reveal reveal-1">Graphiste éditoriale &amp; prépresse</span>
 
       <h1 class="profile-name reveal reveal-2">
         Alexane Groussard
