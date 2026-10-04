@@ -110,6 +110,8 @@ function fixDutchNode(node) {
   } else {
     NL_PHRASES.forEach(([from, to]) => { if (out.includes(from)) out = out.split(from).join(to); });
   }
+  // Google ajoute une espace avant la ponctuation qui suit un mot en gras (« uitgeven , »)
+  out = out.replace(/^\s+(?=[,.;:!?])/, '').replace(/\s+([,.;:!?])(\s|$)/g, '$1$2');
   if (out !== raw) node.textContent = out;
 }
 
