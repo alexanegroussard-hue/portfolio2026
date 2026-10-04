@@ -82,9 +82,19 @@ const NL_PHRASES = [         // fragments à l'intérieur d'un texte
 // « | » marque le retour à la ligne : chaque partie va dans un nœud, dans l'ordre.
 const NL_ELEMENTS = {
   'aanpassing van media': 'Personalisatie|van drukdragers',
+  'kalenderontwerp': 'Ontwerp|van kalenders',
+  'patrooncollectie': 'Collectie|van patronen',
+  'collectiepatronen': 'Collectie|van patronen',
+  'kalender maken': 'Ontwerp van kalenders',
   'naar een metgezel': 'Naar Compagnon',
   '→ naar een metgezel': '→ Naar Compagnon',
   '→ richting compagnon': '→ Naar Compagnon',
+};
+
+// Titres protégés de Google (classe notranslate) qu'on traduit nous-mêmes en néerlandais ;
+// le HTML français est gardé dans data-fr-html et remis au retour en français.
+const NL_OWN = {
+  'compagnon de route': 'Reisgenoot<br>Compagnon',
 };
 
 const normalize = t => t.replace(/[\s​]+/g, ' ').trim().toLowerCase();
@@ -115,15 +125,44 @@ function fixDutchElement(el) {
   nodes.forEach((n, i) => { n.textContent = parts[i] !== undefined ? parts[i] : ''; });
 }
 
+// Un titre traduit par un seul mot laisse son <br> devant une ligne vide : on le masque
+// (classe utilisée seulement en néerlandais, voir header.css).
+function hideEmptyLineBreaks(el) {
+  el.querySelectorAll('br').forEach(br => {
+    const hasText = dir => {
+      let n = br;
+      while ((n = dir === 'after' ? n.nextSibling : n.previousSibling)) if (/[^\s\u200b]/.test(n.textContent)) return true;
+      return false;
+    };
+    br.classList.toggle('nl-empty-line', !hasText('after') || !hasText('before'));
+  });
+}
+
+function translateOwn(el) {
+  const html = NL_OWN[normalize(el.dataset.frHtml ? el.dataset.frText : el.innerText)];
+  if (!html) return;
+  if (!el.dataset.frHtml) { el.dataset.frHtml = el.innerHTML; el.dataset.frText = el.innerText; }
+  if (el.innerHTML !== html) el.innerHTML = html;
+}
+
+function restoreOwn() {
+  document.querySelectorAll('[data-fr-html]').forEach(el => {
+    el.innerHTML = el.dataset.frHtml;
+    delete el.dataset.frHtml; delete el.dataset.frText;
+  });
+}
+
 function initDutchFixes() {
   const isDutch = () => document.documentElement.lang.startsWith('nl');
   let pending = null;
   const pass = () => {
     pending = null;
-    if (!isDutch()) return;
+    if (!isDutch()) return restoreOwn();
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     while (walker.nextNode()) fixDutchNode(walker.currentNode);
     document.querySelectorAll('h1, h2, h3, h4, a, button, .next-title').forEach(fixDutchElement);
+    document.querySelectorAll('.notranslate h1, h1.notranslate, h3.notranslate, .next-title.notranslate').forEach(translateOwn);
+    document.querySelectorAll('h1, h2, h3, .next-title').forEach(hideEmptyLineBreaks);
   };
   const schedule = () => { if (!pending) pending = setTimeout(pass, 150); };
   new MutationObserver(() => { if (isDutch()) schedule(); })
