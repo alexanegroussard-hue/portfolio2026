@@ -80,8 +80,8 @@ function initTypewriter() {
     caret = step.span;
     caret.classList.add('tw-on', 'tw-caret');
     const c = caret.textContent;
-    let delay = step.title ? 90 : 16;
-    if (c === ' ') delay = step.title ? 90 : 10;
+    let delay = step.title ? 90 : 28;
+    if (c === ' ') delay = step.title ? 90 : 18;
     else if (/[.,;:!?—]/.test(c)) delay += 120;
     timer = setTimeout(tick, delay);
   };
