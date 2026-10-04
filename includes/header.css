@@ -60,3 +60,7 @@ nav {
   .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .burger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 }
+
+
+/* ── GRAIN DE PAPIER (fond très léger, voir assets/images/paper-grain.png) ── */
+body, nav, .mobile-menu { background-image: url('../assets/images/paper-grain.png'); background-size: 256px; }
