@@ -100,6 +100,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: 50% 15%; /* cadrage sur le visage */
       border-radius: 16px;
     }
 
@@ -332,14 +333,16 @@
 
       .profile-hero {
         grid-template-columns: 1fr;
-        padding: 10vh 5vw 5vh;
-        gap: 2.5rem;
+        padding: 1.5rem 5vw 5vh;
+        gap: 2rem;
       }
 
       .profile-photo {
-        aspect-ratio: 1 / 1;
-        max-width: 240px;
+        aspect-ratio: 4 / 5;
+        max-width: 300px;
       }
+
+      .back-wrapper { padding-bottom: 0 !important; }
 
       .skills-section {
         grid-template-columns: 1fr;
@@ -356,6 +359,16 @@
     .back-wrapper { padding: 100px 6vw 0; }
     .back-btn { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.7rem 1.2rem; border: 1px solid var(--orange); border-radius: 999px; background: var(--orange); color: var(--light) !important; text-decoration: none; font-size: 0.88rem; font-weight: 400; transition: background 0.2s, border-color 0.2s; }
     .back-btn:hover { background: var(--dark); border-color: var(--dark); }
+
+    /* Ordinateur : le bouton retour flotte en haut, le bloc photo + texte est centré dans la fenêtre */
+    @media (min-width: 769px) {
+      .back-wrapper { position: absolute; top: 100px; left: 0; padding: 0 6vw; z-index: 5; }
+      .profile-hero { min-height: 100vh; min-height: 100svh; padding: 150px 6vw 40px; align-items: center; }
+      .profile-photo { max-height: calc(100svh - 290px); } /* laisse la place aux boutons LinkedIn / Instagram */
+    }
+    @media (min-width: 769px) and (max-height: 820px) {
+      .profile-right { gap: 1.4rem; }
+    }
 
   </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
