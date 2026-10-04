@@ -48,7 +48,8 @@ nav {
 .burger { display: none; }
 
 /* ── NÉERLANDAIS : interlignage un peu resserré (textes plus longs une fois traduits) ── */
-html[lang="nl"] .sidebar p { line-height: 1.2; }
+html[lang="nl"] .sidebar p { line-height: 1.25; }
+@media (min-width: 901px) and (max-height: 720px) { html[lang="nl"] .sidebar p { line-height: 1.15; } }
 html[lang="nl"] br.nl-empty-line { display: none; } /* titre traduit par un seul mot */
 html[lang="nl"] .project-card-content p { line-height: 1.5; }
 html[lang="nl"] .profile-bio, html[lang="nl"] .contact-subtitle { line-height: 1.6; }

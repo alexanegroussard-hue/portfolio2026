@@ -221,13 +221,12 @@
   padding: 12px 16px;
 }
 
-  /* ── ÉCRANS D'ORDINATEUR PEU HAUTS (portables) : colonne plus compacte
-     pour que les icônes réseaux restent visibles sans défiler ── */
-  @media (min-width: 901px) and (max-height: 820px) {
-    .sidebar { top: 96px; }
-    .sidebar h1 { font-size: 2.4rem; padding-top: 0.5rem; margin-bottom: 0.6rem; }
-    .sidebar p { font-size: 1.05rem; padding-top: 0.4rem; margin-bottom: 1rem; }
-    .social-links-sidebar { margin-top: 0.4rem; }
+  /* ── PORTABLES (fenêtre de moins de 720px de haut, ex. 1366×768) : colonne un peu
+     resserrée pour que les icônes réseaux restent visibles sans défiler ── */
+  @media (min-width: 901px) and (max-height: 720px) {
+    .sidebar h1 { font-size: 2.6rem; padding-top: 0.5rem; margin-bottom: 0.6rem; }
+    .sidebar p { font-size: 1.12rem; padding-top: 0.5rem; padding-bottom: 0.4rem; margin-bottom: 0.6rem; }
+    .social-links-sidebar { margin-top: 0.2rem; }
   }
 
   /* ── MOBILE ── */
@@ -371,7 +370,7 @@
 
 <link rel="icon" type="image/png" href="assets/images/logo.webp">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-  <link rel="stylesheet" href="includes/header.css?v=6">
+  <link rel="stylesheet" href="includes/header.css?v=7">
 </head>
 
 <body>
