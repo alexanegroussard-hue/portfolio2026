@@ -24,6 +24,8 @@ button, input, select, textarea { font-family: var(--font-ui); }
 .tw-hint-label { display: none; margin-top: 3px; font-family: var(--font-brand); font-size: 0.7rem; line-height: 1; color: var(--orange-text); }
 html[lang="en"] .tw-hint-label, html[lang="nl"] .tw-hint-label { display: block; } /* « trad » : cliquer donne le texte traduit */
 .tw-hint .tw-hint-btn { animation: twClick 1.4s ease-in-out infinite; }
+.tw-hint-hand { animation: twTap 1.4s ease-in-out infinite; transform-origin: 40% 20%; }
+@keyframes twTap { 0%, 55%, 100% { transform: translateY(0) scale(1); } 70% { transform: translateY(3px) scale(0.9); } }
 @keyframes twClick { 0%, 55%, 100% { opacity: 0; } 65%, 85% { opacity: 1; } }
 
 nav {

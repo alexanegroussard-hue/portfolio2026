@@ -265,31 +265,53 @@ function initTypewriter() {
 
   let index = 0, timer = null, caret = null;
 
-  // Petite souris qui invite à cliquer pour passer l'animation
+  // Petite icône qui invite à passer l'animation : une souris sur ordinateur (à côté des
+  // icônes réseaux), une main qui tapote sur mobile (à droite du titre, visible sans défiler)
   const sidebar = targets[0].closest('.sidebar');
   const para = targets.find(el => el.tagName === 'P');
-  const hint = document.createElement('div');
-  hint.className = 'tw-hint';
-  hint.setAttribute('role', 'img');
-  hint.setAttribute('aria-label', 'Cliquer pour afficher tout le texte');
-  hint.title = 'Cliquer pour afficher tout le texte';
-  hint.innerHTML = '<svg viewBox="0 0 24 36" width="22" height="33" aria-hidden="true">'
+  const title = targets.find(el => el.tagName === 'H1');
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+  const MOUSE = '<svg viewBox="0 0 24 36" width="22" height="33" aria-hidden="true">'
     + '<rect x="1.5" y="1.5" width="21" height="33" rx="10.5" fill="none" stroke="currentColor" stroke-width="2"/>'
     + '<path class="tw-hint-btn" d="M12 1.5 A10.5 10.5 0 0 0 1.5 12 V14 H12 Z" fill="currentColor"/>'
     + '<line x1="12" y1="1.5" x2="12" y2="14" stroke="currentColor" stroke-width="2"/>'
     + '<line x1="1.5" y1="14" x2="22.5" y2="14" stroke="currentColor" stroke-width="2"/>'
-    + '</svg>'
+    + '</svg>';
+  const HAND = '<svg class="tw-hint-hand" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+    + '<path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2 2 2 0 0 0-2 2"/>'
+    + '<path d="M14 10V9a2 2 0 0 0-2-2 2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2 2 2 0 0 0-2 2v10"/>'
+    + '<path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>'
+    + '</svg>';
+  const label = isMobile ? 'Toucher pour afficher tout le texte' : 'Cliquer pour afficher tout le texte';
+  const hint = document.createElement('div');
+  hint.className = 'tw-hint' + (isMobile ? ' tw-hint-mobile' : '');
+  hint.setAttribute('role', 'img');
+  hint.setAttribute('aria-label', label);
+  hint.title = label;
+  hint.innerHTML = (isMobile ? HAND : MOUSE)
     + '<span class="tw-hint-label notranslate" translate="no">trad</span>'; // visible en anglais / néerlandais
   if (sidebar && para) {
     sidebar.classList.add('tw-skippable');
-    // Placée sur la ligne des icônes réseaux, alignée sur le bord droit du texte :
-    // elle ne peut jamais chevaucher le paragraphe.
     const social = sidebar.querySelector('.social-links-sidebar');
     const place = () => {
-      const ref = (social || para).getBoundingClientRect();
-      const top = social ? ref.top + (ref.height - 33) / 2 : ref.bottom + 8;
-      hint.style.top = (top - sidebar.getBoundingClientRect().top) + 'px';
-      hint.style.right = getComputedStyle(para).paddingRight;
+      const box = sidebar.getBoundingClientRect();
+      if (isMobile && title) {
+        // juste après la fin de la dernière ligne du titre, centrée sur cette ligne
+        const range = document.createRange();
+        range.selectNodeContents(title);
+        const lines = range.getClientRects();
+        const last = lines[lines.length - 1] || title.getBoundingClientRect();
+        const maxLeft = window.innerWidth - box.left - 30; // ne sort pas de l'écran
+        hint.style.right = 'auto';
+        hint.style.left = Math.min(last.right - box.left + 10, maxLeft) + 'px';
+        hint.style.top = (last.top - box.top + last.height / 2 - 13) + 'px';
+      } else {
+        // ordinateur : sur la ligne des icônes réseaux, alignée sur le bord droit du texte
+        const ref = (social || para).getBoundingClientRect();
+        const top = social ? ref.top + (ref.height - 33) / 2 : ref.bottom + 8;
+        hint.style.top = (top - box.top) + 'px';
+        hint.style.right = getComputedStyle(para).paddingRight;
+      }
     };
     place();
     if (document.fonts) document.fonts.ready.then(place); // la police du titre change sa hauteur
