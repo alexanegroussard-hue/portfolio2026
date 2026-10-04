@@ -72,7 +72,7 @@
       gap: 4vw;
       align-items: end;
     }
-    .hero-deco { height: clamp(8rem, 14vw, 13rem); width: clamp(8rem, 14vw, 13rem); align-self: end; }
+    .hero-deco { height: clamp(10rem, 19vw, 18rem); width: auto; display: block; align-self: end; box-shadow: 0 4px 12px rgba(0,0,0,0.12); } /* couverture du spécimen */
     .hero-content { display: flex; flex-direction: column; gap: 1.6rem; }
     .hero-tag {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -253,39 +253,19 @@
   </style>
   <link rel="icon" type="image/png" href="assets/images/logo.webp">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-  <link rel="stylesheet" href="includes/header.css?v=16">
-  <link rel="stylesheet" href="includes/header.css?v=16">
+  <link rel="stylesheet" href="includes/header.css?v=17">
+  <link rel="stylesheet" href="includes/header.css?v=17">
 </head>
 <body>
 
 <div id="header-placeholder"></div>
 
 <div class="back-wrapper">
-  <a id="back-btn" href="index.html#projets" class="back-btn">← Retour</a>
+  <a id="back-btn" href="index.html#projets" class="back-btn" aria-label="Retour" title="Retour"><span aria-hidden="true">←</span></a>
 </div>
 
 <header class="hero">
-  <div class="hero-deco reveal reveal-1">
-    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="200" height="200" rx="12" fill="#f0ede8"/>
-      <rect x="0"   y="0"   width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="100" y="0"   width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="50"  y="50"  width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="150" y="50"  width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="0"   y="100" width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="100" y="100" width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="50"  y="150" width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <rect x="150" y="150" width="50" height="50" rx="3" fill="#1a1a1a"/>
-      <text x="25"  y="35"  text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">C</text>
-      <text x="125" y="35"  text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">O</text>
-      <text x="75"  y="85"  text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">M</text>
-      <text x="175" y="85"  text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">P</text>
-      <text x="25"  y="135" text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">A</text>
-      <text x="125" y="135" text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">G</text>
-      <text x="75"  y="185" text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">N</text>
-      <text x="175" y="185" text-anchor="middle" fill="white" font-family="Georgia,serif" font-size="22" font-style="italic">O</text>
-    </svg>
-  </div>
+  <img src="assets/images/specimen-pages/page-01.webp" class="hero-deco reveal reveal-1" alt="Couverture du spécimen Compagnon">
 
   <div class="hero-content">
     <span class="hero-tag reveal reveal-1">Typographie · Édition</span>
