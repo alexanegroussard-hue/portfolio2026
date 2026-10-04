@@ -48,7 +48,7 @@ nav {
 .burger { display: none; }
 
 /* ── BOUTONS RETOUR : toujours alignés à droite ── */
-.back-wrapper { display: flex; justify-content: flex-end; }
+.back-wrapper { display: flex; justify-content: flex-end; padding-right: 4vw !important; } /* même marge droite que le header : aligné sous « Contact » */
 
 /* ── NÉERLANDAIS : interlignage un peu resserré (textes plus longs une fois traduits) ── */
 html[lang="nl"] .sidebar h1 { line-height: 1.05; } /* « Een paar woorden » sur deux lignes */
@@ -84,7 +84,7 @@ html[lang="nl"] .profile-bio, html[lang="nl"] .contact-subtitle { line-height: 1
   .nav-right-group .lang-switch { display: none; }
   .mobile-menu .lang-switch { margin-top: 0.5rem; gap: 0.9rem; }
   .mobile-menu .lang-switch button { width: 32px; height: 32px; }
-  .back-wrapper { padding-top: 70px !important; padding-bottom: 20px !important; }
+  .back-wrapper { padding-top: 70px !important; padding-bottom: 20px !important; padding-right: 5vw !important; }
   .burger { display: flex; flex-direction: column; justify-content: space-between; width: 24px; height: 18px; background: none; border: none; cursor: pointer; z-index: 1001; padding: 0; }
   .burger span { display: block; height: 2px; width: 100%; background: #000; transition: transform 0.3s, opacity 0.3s; transform-origin: center; }
   .burger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
