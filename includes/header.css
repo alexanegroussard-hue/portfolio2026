@@ -1,7 +1,8 @@
 /* ── TYPOGRAPHIE (commune à tout le site) ──
-   Titres : Averia Serif Libre · Texte : DM Sans · Interface (boutons, formulaires, labels) : DM Sans */
+   Titres : Playfair Display · Header (nom + menu) : Averia Serif Libre · Texte : DM Sans · Interface (boutons, formulaires, labels) : DM Sans */
 :root {
-  --font-title: 'Averia Serif Libre', Georgia, serif;
+  --font-title: 'Playfair Display', Georgia, serif;
+  --font-brand: 'Averia Serif Libre', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
   --font-ui: 'DM Sans', system-ui, sans-serif;
 }
@@ -19,12 +20,12 @@ nav {
   top: 0; left: 0; right: 0;
   z-index: 1000;
   border-bottom: 1px solid #f0f0f0;
-  font-family: var(--font-title);
+  font-family: var(--font-brand);
 }
 .logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #000; }
 .logo-img { height: 60px !important; width: auto !important; }
 .brand-text { display: flex; flex-direction: column; gap: 2px; line-height: 1.1; }
-.brand-name { font-family: var(--font-title); font-weight: 700; font-size: 1.35rem; }
+.brand-name { font-family: var(--font-brand); font-weight: 700; font-size: 1.35rem; }
 .brand-sub { font-family: var(--font-ui); font-size: 0.75rem; color: #777; }
 .nav-right-group { display: flex; align-items: center; gap: 30px; margin-left: auto; }
 .social-links-header { display: flex; gap: 15px; align-items: center; }
