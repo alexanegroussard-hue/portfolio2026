@@ -273,7 +273,8 @@ function initTypewriter() {
     + '<path class="tw-hint-btn" d="M12 1.5 A10.5 10.5 0 0 0 1.5 12 V14 H12 Z" fill="currentColor"/>'
     + '<line x1="12" y1="1.5" x2="12" y2="14" stroke="currentColor" stroke-width="2"/>'
     + '<line x1="1.5" y1="14" x2="22.5" y2="14" stroke="currentColor" stroke-width="2"/>'
-    + '</svg>';
+    + '</svg>'
+    + '<span class="tw-hint-label notranslate" translate="no">trad</span>'; // visible en anglais / néerlandais
   if (sidebar && para) {
     sidebar.classList.add('tw-skippable');
     // Placée sur la ligne des icônes réseaux, alignée sur le bord droit du texte :

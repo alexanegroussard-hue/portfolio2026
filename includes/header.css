@@ -19,6 +19,9 @@ button, input, select, textarea { font-family: var(--font-ui); }
 @media (max-width: 900px) { .tw-skippable { position: relative; top: auto; } }
 .tw-hint { position: absolute; color: var(--orange, #ff6600); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
 .tw-hint.tw-hint-on { opacity: 0.85; }
+.tw-hint { display: flex; flex-direction: column; align-items: center; }
+.tw-hint-label { display: none; margin-top: 3px; font-family: var(--font-brand); font-size: 0.7rem; line-height: 1; color: var(--orange, #ff6600); }
+html[lang="en"] .tw-hint-label, html[lang="nl"] .tw-hint-label { display: block; } /* « trad » : cliquer donne le texte traduit */
 .tw-hint .tw-hint-btn { animation: twClick 1.4s ease-in-out infinite; }
 @keyframes twClick { 0%, 55%, 100% { opacity: 0; } 65%, 85% { opacity: 1; } }
 
