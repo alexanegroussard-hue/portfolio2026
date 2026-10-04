@@ -47,6 +47,9 @@ nav {
 .nav-links a:hover { color: var(--orange, #ff6600); }
 .burger { display: none; }
 
+/* ── BOUTONS RETOUR : toujours alignés à droite ── */
+.back-wrapper { display: flex; justify-content: flex-end; }
+
 /* ── NÉERLANDAIS : interlignage un peu resserré (textes plus longs une fois traduits) ── */
 html[lang="nl"] .sidebar h1 { line-height: 1.05; } /* « Een paar woorden » sur deux lignes */
 html[lang="nl"] .sidebar p { line-height: 1.3; }
