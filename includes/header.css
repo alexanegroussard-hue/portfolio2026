@@ -23,20 +23,24 @@ nav {
 }
 .logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #000; }
 .logo-img { height: 60px !important; width: auto !important; }
-.brand-name { font-weight: 900; font-size: 2.5rem; }
+.brand-text { display: flex; flex-direction: column; gap: 2px; line-height: 1.1; }
+.brand-name { font-family: var(--font-title); font-weight: 700; font-size: 1.35rem; }
+.brand-sub { font-family: var(--font-ui); font-size: 0.75rem; color: #777; }
 .nav-right-group { display: flex; align-items: center; gap: 30px; margin-left: auto; }
 .social-links-header { display: flex; gap: 15px; align-items: center; }
 .social-links-header a { color: #000; display: flex; }
 .nav-links { display: flex; gap: 30px; }
-.nav-links a { text-decoration: none; color: #000; font-size: 2rem; font-weight: 600; }
+.nav-links a { font-family: var(--font-ui); text-decoration: none; color: #000; font-size: 0.95rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; }
+.nav-links a:hover { color: var(--orange, #ff6600); }
 .burger { display: none; }
 .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: white; flex-direction: column; padding: 2rem 5vw; gap: 1.5rem; z-index: 1000; }
 .mobile-menu.open { display: flex; }
-.mobile-menu a { text-decoration: none; color: #000; font-size: 1.5rem; font-weight: 600; }
+.mobile-menu a { font-family: var(--font-ui); text-decoration: none; color: #000; font-size: 1.1rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.14em; }
 
 @media (max-width: 768px) {
   nav { height: 58px; padding: 0 5vw; }
-  .brand-name { font-size: 1.5rem; }
+  .brand-name { font-size: 1.1rem; }
+  .brand-sub { display: none; }
   .logo-img { height: 40px !important; }
   .social-links-header { display: flex; gap: 5px; align-items: center; }
   .social-links-header a img { width: 28px !important; height: 28px !important; }
