@@ -10,6 +10,12 @@ body { font-family: var(--font-body); }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-title); }
 button, input, select, textarea { font-family: var(--font-ui); }
 
+/* ── EFFET MACHINE À ÉCRIRE (texte introductif, voir main.js) ── */
+.tw-char { opacity: 0; }
+.tw-char.tw-on { opacity: 1; }
+.tw-char.tw-caret { box-shadow: 2px 0 0 currentColor; animation: twBlink 0.8s steps(1) infinite; }
+@keyframes twBlink { 50% { box-shadow: 2px 0 0 transparent; } }
+
 nav {
   height: 90px;
   background: white;
