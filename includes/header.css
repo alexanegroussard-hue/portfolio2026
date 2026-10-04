@@ -67,6 +67,18 @@ nav {
 .scroll-top { right: 4vw !important; } /* même marge droite que le bouton retour et « Contact » */
 @media (max-width: 768px) { .back-wrapper .back-btn, .scroll-top { width: 46px !important; height: 46px !important; } .scroll-top { right: 5vw !important; } }
 
+/* Pages projets (mobile) : pas d'image de couverture, bouton retour flottant, contenu remonté */
+@media (max-width: 768px) {
+  header.hero .hero-image, header.hero .hero-deco { display: none !important; }
+  .back-wrapper:has(+ header.hero) { position: absolute; top: 70px; left: 0; right: 0; padding: 0 !important; padding-right: 5vw !important; z-index: 5; }
+  .back-wrapper + header.hero { margin-top: 58px; padding-top: 22px !important; }
+  .back-wrapper + header.hero .hero-tag { max-width: calc(100% - 60px); }
+  /* le titre ne doit jamais dépasser de l'écran (sinon toute la page déborde) */
+  header.hero .hero-title { font-size: clamp(2rem, 10vw, 3rem) !important; overflow-wrap: break-word; }
+  header.hero .hero-meta { gap: 0.9rem 1.6rem !important; }
+  header.hero .meta-item { padding: 0 !important; border: none !important; }
+}
+
 /* Pages projets (ordinateur) : le bouton retour flotte en haut à droite, le contenu remonte sous le header */
 @media (min-width: 769px) {
   .back-wrapper:has(+ header.hero) { position: absolute; top: 100px; left: 0; right: 0; padding: 0 6vw; z-index: 5; }
