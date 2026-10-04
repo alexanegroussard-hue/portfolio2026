@@ -389,7 +389,6 @@
 <div id="footer-placeholder"></div>
 <button class="scroll-top" title="Revenir en haut" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="./main.js?v=11"></script>
 
 <script>
@@ -398,16 +397,14 @@
   const from = new URLSearchParams(window.location.search).get('from');
   if (from === 'digital') document.getElementById('back-btn').href = 'digital.html';
 
-  // Flipbook PDF
+  // Flipbook : les pages du spécimen sont pré-rendues en images WebP (≈ 90 Ko chacune)
+  // au lieu de charger et dessiner un PDF de 10 Mo ; les doubles pages voisines sont
+  // préchargées pour que la page suivante s'affiche tout de suite.
   (function () {
-    const PDF_URL = 'assets/pdf/specimen-compagnon.pdf';
-
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-    let pdfDoc     = null;
-    let current    = 0;
-    let numSpreads = 0;
+    const TOTAL      = 41;
+    const numSpreads = Math.ceil((TOTAL + 1) / 2);
+    const pageSrc    = n => `assets/images/specimen-pages/page-${String(n).padStart(2, '0')}.webp`;
+    let current = 0;
 
     const bookEl    = document.getElementById('book');
     const loadingEl = document.getElementById('flipLoading');
@@ -417,20 +414,26 @@
     const btnPrev   = document.getElementById('btnPrev');
     const btnNext   = document.getElementById('btnNext');
 
-    async function renderPage(pageNum) {
-      const page     = await pdfDoc.getPage(pageNum);
-      const viewport = page.getViewport({ scale: 1 });
-      const containerW = bookEl.offsetWidth / 2;
-      const scale      = containerW / viewport.width;
-      const vp         = page.getViewport({ scale });
+    const cache = {};
+    function loadPage(n) {
+      if (n < 1 || n > TOTAL) return Promise.resolve(null);
+      if (!cache[n]) {
+        cache[n] = new Promise(resolve => {
+          const img = new Image();
+          img.alt = `Spécimen Compagnon, page ${n}`;
+          img.style.cssText = 'width:100%; height:100%; object-fit:contain; display:block;';
+          img.onload  = () => resolve(img);
+          img.onerror = () => resolve(null);
+          img.src = pageSrc(n);
+        });
+      }
+      return cache[n];
+    }
 
-      const canvas = document.createElement('canvas');
-      canvas.width  = vp.width;
-      canvas.height = vp.height;
-      canvas.style.cssText = 'width:100%; height:100%; object-fit:contain; display:block;';
-
-      await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
-      return canvas;
+    function preloadAround(idx) {
+      [idx + 1, idx - 1, idx + 2].forEach(i => {
+        if (i >= 0 && i < numSpreads) { loadPage(i * 2); loadPage(i * 2 + 1); }
+      });
     }
 
     async function showSpread(idx, dir = 0) {
@@ -440,21 +443,17 @@
 
       const leftNum  = idx * 2;
       const rightNum = idx * 2 + 1;
-      const total    = pdfDoc.numPages;
-
-      const [cL, cR] = await Promise.all([
-        leftNum  >= 1 && leftNum  <= total ? renderPage(leftNum)  : Promise.resolve(null),
-        rightNum >= 1 && rightNum <= total ? renderPage(rightNum) : Promise.resolve(null),
-      ]);
+      const [iL, iR] = await Promise.all([loadPage(leftNum), loadPage(rightNum)]);
+      if (idx !== current) return; // l'utilisateur a déjà tourné la page
 
       pL.innerHTML = '';
       pR.innerHTML = '';
-      if (cL) pL.appendChild(cL);
-      if (cR) pR.appendChild(cR);
+      if (iL) pL.appendChild(iL);
+      if (iR) pR.appendChild(iR);
 
       if (idx === 0) {
         counter.textContent = 'Couverture';
-      } else if (rightNum > total) {
+      } else if (rightNum > TOTAL) {
         counter.textContent = `Page ${leftNum}`;
       } else {
         counter.textContent = `${leftNum} — ${rightNum}`;
@@ -468,6 +467,7 @@
 
       btnPrev.disabled = idx === 0;
       btnNext.disabled = idx >= numSpreads - 1;
+      preloadAround(idx);
     }
 
     function flipPage(dir) {
@@ -492,29 +492,20 @@
     btnPrev.onclick = () => flipPage(-1);
     btnNext.onclick = () => flipPage(1);
 
-    // Le PDF (≈10 Mo) n'est chargé qu'à l'approche du feuilleteur, et page par page
-    // (requêtes partielles) plutôt qu'en entier.
-    const loadPdf = () => pdfjsLib.getDocument({ url: PDF_URL, disableAutoFetch: true, disableStream: true }).promise.then(pdf => {
-      pdfDoc     = pdf;
-      numSpreads = Math.ceil((pdf.numPages + 1) / 2);
+    // Démarrage à l'approche du feuilleteur (rien n'est téléchargé avant)
+    const start = () => {
       loadingEl.style.display = 'none';
       bookEl.style.display    = 'grid';
-      btnPrev.disabled = false;
-      btnNext.disabled = false;
       showSpread(0);
-    }).catch(err => {
-      loadingEl.textContent = 'Impossible de charger le PDF.';
-      console.error(err);
-    });
-
+    };
     const flipSection = document.querySelector('.flipbook-section');
     if ('IntersectionObserver' in window && flipSection) {
       const io = new IntersectionObserver(entries => {
-        if (entries.some(e => e.isIntersecting)) { io.disconnect(); loadPdf(); }
+        if (entries.some(e => e.isIntersecting)) { io.disconnect(); start(); }
       }, { rootMargin: '600px 0px' });
       io.observe(flipSection);
     } else {
-      loadPdf();
+      start();
     }
   })();
 </script>
