@@ -173,6 +173,15 @@ function initDutchFixes() {
 
 initDutchFixes();
 
+// Lien du menu de la page en cours en orange (Profil / Contact)
+function markCurrentPage() {
+  const page = location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
+  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
+    const target = a.getAttribute('href').replace(/\.html$/, '');
+    if (target === page) { a.classList.add('active'); a.setAttribute('aria-current', 'page'); }
+  });
+}
+
 function initGTranslate() {
   window.gtranslateSettings = {
     "default_language": "fr",
@@ -318,6 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       document.getElementById('header-placeholder').innerHTML = data;
       initBurger();
+      markCurrentPage();
       initLangSwitch();
       initGTranslate();
     })
