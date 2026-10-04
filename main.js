@@ -14,6 +14,31 @@ function initBurger() {
   });
 }
 
+// Sélecteur FR · EN · NL du header : il pilote le widget GTranslate (masqué en CSS).
+function initLangSwitch() {
+  const buttons = [...document.querySelectorAll('.lang-switch button')];
+  if (!buttons.length) return;
+
+  const current = () => {
+    const m = document.cookie.match(/googtrans=\/fr\/(\w+)/);
+    return m ? m[1] : (document.documentElement.lang || 'fr').slice(0, 2);
+  };
+  const refresh = () => {
+    const lang = current();
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  };
+
+  buttons.forEach(b => b.addEventListener('click', () => {
+    if (typeof window.doGTranslate !== 'function') return; // widget pas encore chargé
+    window.doGTranslate('fr|' + b.dataset.lang);
+    buttons.forEach(x => x.classList.toggle('active', x.dataset.lang === b.dataset.lang));
+  }));
+
+  // GTranslate change l'attribut lang de la page quand il traduit
+  new MutationObserver(refresh).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  refresh();
+}
+
 function initGTranslate() {
   window.gtranslateSettings = {
     "default_language": "fr",
@@ -76,10 +101,14 @@ function initTypewriter() {
     + '</svg>';
   if (sidebar && para) {
     sidebar.classList.add('tw-skippable');
+    // Placée sur la ligne des icônes réseaux, alignée sur le bord droit du texte :
+    // elle ne peut jamais chevaucher le paragraphe.
+    const social = sidebar.querySelector('.social-links-sidebar');
     const place = () => {
-      const firstLine = para.getBoundingClientRect().top - sidebar.getBoundingClientRect().top
-        + parseFloat(getComputedStyle(para).paddingTop);
-      hint.style.top = (firstLine - 6) + 'px';
+      const ref = (social || para).getBoundingClientRect();
+      const top = social ? ref.top + (ref.height - 33) / 2 : ref.bottom + 8;
+      hint.style.top = (top - sidebar.getBoundingClientRect().top) + 'px';
+      hint.style.right = getComputedStyle(para).paddingRight;
     };
     place();
     if (document.fonts) document.fonts.ready.then(place); // la police du titre change sa hauteur
@@ -134,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       document.getElementById('header-placeholder').innerHTML = data;
       initBurger();
+      initLangSwitch();
       initGTranslate();
     })
     .then(() => fetch('./includes/footer.html'))
