@@ -52,6 +52,26 @@ function initGTranslate() {
   document.body.appendChild(script);
 }
 
+// Retour depuis une page projet (lien …#projets) : sur mobile, on saute le texte
+// d'introduction et on arrive directement sur « Projets sélectionnés ».
+const jumpToProjects = location.hash === '#projets' && window.matchMedia('(max-width: 900px)').matches;
+
+function scrollToProjects() {
+  const section = document.getElementById('travail');
+  if (!section) return;
+  const nav = document.querySelector('nav');
+  const offset = (nav ? nav.offsetHeight : 60) + 12;
+  window.scrollTo(0, section.getBoundingClientRect().top + window.scrollY - offset);
+}
+
+if (jumpToProjects) {
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  scrollToProjects();
+  // nouveau calage une fois le header, les polices et les images chargés
+  window.addEventListener('load', () => setTimeout(scrollToProjects, 50));
+  if (document.fonts) document.fonts.ready.then(scrollToProjects);
+}
+
 // Effet machine à écrire sur le titre et le texte introductif (pages impression et digital).
 // Le texte garde sa place (lettres invisibles révélées une à une), puis le HTML d'origine
 // est remis à la fin pour que GTranslate puisse le traduire normalement.
@@ -60,6 +80,7 @@ function initTypewriter() {
   if (!targets.length) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (/googtrans=\/fr\/(?!fr)/.test(document.cookie)) return; // page déjà traduite
+  if (jumpToProjects) return; // retour d'un projet sur mobile : le texte n'est pas visible
 
   const originals = targets.map(el => el.innerHTML);
   const steps = [];

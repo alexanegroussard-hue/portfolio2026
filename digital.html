@@ -100,6 +100,7 @@
   .toggle-track { position: relative; display: flex; background: var(--light); border-radius: 999px; padding: 5px; border: 1.5px solid rgba(0,0,0,0.1); cursor: pointer; width: fit-content; }
   .toggle-option { padding: 0.55rem 2rem; font-size: 0.95rem; font-weight: 500; border: none; background: none; cursor: pointer; color: var(--orange); position: relative; z-index: 2; }
   .toggle-option.active { color: var(--white); }
+  html[lang="nl"] .toggle-option { padding: 0.55rem 2.4rem; } /* libellés néerlandais plus longs */
   .toggle-thumb { position: absolute;
      top: 5px;
     left: 5px;
@@ -495,18 +496,17 @@
   const btnImpression = document.getElementById('btnImpression');
 
   function updateToggle() {
-    const currentPage = window.location.pathname.split("/").pop();
-    if (currentPage === 'digital.html') {
-      thumb.style.transform = `translateX(${btnImpression.offsetWidth}px)`;
-      thumb.style.width = btnDigital.offsetWidth + 'px';
-    } else {
-      thumb.style.transform = 'translateX(0)';
-      thumb.style.width = btnImpression.offsetWidth + 'px';
-    }
+    // La pastille suit le bouton actif (sa largeur change quand la page est traduite)
+    const active = document.querySelector('.toggle-option.active');
+    thumb.style.transform = `translateX(${active.offsetLeft - 5}px)`;
+    thumb.style.width = active.offsetWidth + 'px';
   }
 
   window.addEventListener('load', () => setTimeout(updateToggle, 50));
   window.addEventListener('resize', updateToggle);
+  // Recalcul quand GTranslate remplace les libellés ou change la langue de la page
+  new MutationObserver(updateToggle).observe(document.getElementById('toggleTrack'), { subtree: true, childList: true, characterData: true });
+  new MutationObserver(() => setTimeout(updateToggle, 50)).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
   window.addEventListener('load', () => {
     document.querySelectorAll('.project-card').forEach(card => {
