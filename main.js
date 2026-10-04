@@ -161,7 +161,16 @@ function initDutchFixes() {
     pending = null;
     if (!isDutch()) return restoreOwn();
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    while (walker.nextNode()) fixDutchNode(walker.currentNode);
+    let prev = null;
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      fixDutchNode(node);
+      // espace laissée à la fin du nœud précédent quand celui-ci commence par une ponctuation
+      if (prev && /^[,.;:!?]/.test(node.textContent) && /\s$/.test(prev.textContent)) {
+        prev.textContent = prev.textContent.replace(/\s+$/, '');
+      }
+      if (node.textContent.trim()) prev = node;
+    }
     document.querySelectorAll('h1, h2, h3, h4, a, button, .next-title').forEach(fixDutchElement);
     document.querySelectorAll('.notranslate h1, h1.notranslate, h3.notranslate, .next-title.notranslate').forEach(translateOwn);
     document.querySelectorAll('h1, h2, h3, .next-title').forEach(hideEmptyLineBreaks);
