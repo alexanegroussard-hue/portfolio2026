@@ -126,7 +126,7 @@
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: #888;
+      color: #666; /* contraste ≈ 5,7:1 */
     }
 
     .form-input {
@@ -136,18 +136,19 @@
       color: var(--dark);
       background: transparent;
       border: none;
-      border-bottom: 1px solid rgba(26,26,26,0.15);
+      border-bottom: 1px solid rgba(26,26,26,0.5); /* trait visible (≥ 3:1) */
       padding: 0.6rem 0;
       outline: none;
       transition: border-color 0.2s;
     }
 
     .form-input:focus {
-      border-bottom-color: var(--orange);
+      border-bottom-color: var(--orange-text);
+      box-shadow: 0 1px 0 var(--orange-text); /* trait plus épais quand on écrit */
     }
 
     .form-input::placeholder {
-      color: #bbb;
+      color: #767676; /* contraste ≈ 4,5:1 */
     }
 
     textarea.form-input {
@@ -173,8 +174,8 @@
     }
 
     .form-btn:hover {
-      background: var(--orange);
-      border-color: var(--orange);
+      background: var(--orange-text); /* texte blanc lisible (≈ 4,7:1) */
+      border-color: var(--orange-text);
     }
 
     .contact-aside {
@@ -195,7 +196,7 @@
       font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #888;
+      color: #666;
     }
 
     .aside-value {
