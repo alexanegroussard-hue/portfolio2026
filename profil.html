@@ -338,7 +338,11 @@
         margin-inline: auto; /* centré sur mobile */
       }
 
-      .back-wrapper { padding-bottom: 0 !important; }
+      /* Mobile : pas de bouton retour, tout est centré */
+      .back-wrapper { display: none !important; }
+      .profile-hero { padding-top: 80px; text-align: center; }
+      .profile-left, .profile-right { align-items: center; }
+      .profile-links, .profile-cvs { justify-content: center; }
 
       .skills-section {
         grid-template-columns: 1fr;
