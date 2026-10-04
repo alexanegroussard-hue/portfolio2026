@@ -235,6 +235,11 @@ function initTypewriter() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (/googtrans=\/fr\/(?!fr)/.test(document.cookie)) return; // page déjà traduite
   if (jumpToProjects) return; // retour d'un projet sur mobile : le texte n'est pas visible
+  // Une seule fois par session : en revenant sur la page, le texte s'affiche directement
+  try {
+    if (sessionStorage.getItem('tw-done')) return;
+    sessionStorage.setItem('tw-done', '1');
+  } catch (e) { /* stockage indisponible : on joue l'animation */ }
 
   const originals = targets.map(el => el.innerHTML);
   const steps = [];

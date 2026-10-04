@@ -361,19 +361,19 @@
 <section class="photos-section">
   <div class="photos-grid">
     <a href="assets/images/mockup-1-specimen.webp" class="glightbox img-ph ph-main">
-      <img src="assets/images/mockup-1-specimen.webp" alt="Vue d'ensemble de face">
+      <img src="assets/images/mockup-1-specimen.webp" alt="Vue d'ensemble de face" loading="lazy" decoding="async">
     </a>
     <a href="assets/images/mockup-2-specimen.webp" class="glightbox img-ph ph-sm">
-      <img src="assets/images/mockup-2-specimen.webp" alt="Détail de la tranche">
+      <img src="assets/images/mockup-2-specimen.webp" alt="Détail de la tranche" loading="lazy" decoding="async">
     </a>
     <a href="assets/images/mockup-3-specimen.webp" class="glightbox img-ph ph-sm">
-      <img src="assets/images/mockup-3-specimen.webp" alt="Illustration rouge">
+      <img src="assets/images/mockup-3-specimen.webp" alt="Illustration rouge" loading="lazy" decoding="async">
     </a>
     <a href="assets/images/page1.webp" class="glightbox img-ph ph-sm">
-      <img src="assets/images/page1.webp" alt="Pages intérieures">
+      <img src="assets/images/page1.webp" alt="Pages intérieures" loading="lazy" decoding="async">
     </a>
     <a href="assets/images/page2.webp" class="glightbox img-ph ph-sm">
-      <img src="assets/images/page2.webp" alt="Détail d'impression">
+      <img src="assets/images/page2.webp" alt="Détail d'impression" loading="lazy" decoding="async">
     </a>
   </div>
 </section>
@@ -492,7 +492,9 @@
     btnPrev.onclick = () => flipPage(-1);
     btnNext.onclick = () => flipPage(1);
 
-    pdfjsLib.getDocument(PDF_URL).promise.then(pdf => {
+    // Le PDF (≈10 Mo) n'est chargé qu'à l'approche du feuilleteur, et page par page
+    // (requêtes partielles) plutôt qu'en entier.
+    const loadPdf = () => pdfjsLib.getDocument({ url: PDF_URL, disableAutoFetch: true, disableStream: true }).promise.then(pdf => {
       pdfDoc     = pdf;
       numSpreads = Math.ceil((pdf.numPages + 1) / 2);
       loadingEl.style.display = 'none';
@@ -504,6 +506,16 @@
       loadingEl.textContent = 'Impossible de charger le PDF.';
       console.error(err);
     });
+
+    const flipSection = document.querySelector('.flipbook-section');
+    if ('IntersectionObserver' in window && flipSection) {
+      const io = new IntersectionObserver(entries => {
+        if (entries.some(e => e.isIntersecting)) { io.disconnect(); loadPdf(); }
+      }, { rootMargin: '600px 0px' });
+      io.observe(flipSection);
+    } else {
+      loadPdf();
+    }
   })();
 </script>
 
