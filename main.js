@@ -60,8 +60,41 @@ function initTypewriter() {
 
   let index = 0, timer = null, caret = null;
 
+  // Petite souris qui invite à cliquer pour passer l'animation
+  const sidebar = targets[0].closest('.sidebar');
+  const para = targets.find(el => el.tagName === 'P');
+  const hint = document.createElement('div');
+  hint.className = 'tw-hint';
+  hint.setAttribute('role', 'img');
+  hint.setAttribute('aria-label', 'Cliquer pour afficher tout le texte');
+  hint.title = 'Cliquer pour afficher tout le texte';
+  hint.innerHTML = '<svg viewBox="0 0 24 36" width="22" height="33" aria-hidden="true">'
+    + '<rect x="1.5" y="1.5" width="21" height="33" rx="10.5" fill="none" stroke="currentColor" stroke-width="2"/>'
+    + '<path class="tw-hint-btn" d="M12 1.5 A10.5 10.5 0 0 0 1.5 12 V14 H12 Z" fill="currentColor"/>'
+    + '<line x1="12" y1="1.5" x2="12" y2="14" stroke="currentColor" stroke-width="2"/>'
+    + '<line x1="1.5" y1="14" x2="22.5" y2="14" stroke="currentColor" stroke-width="2"/>'
+    + '</svg>';
+  if (sidebar && para) {
+    sidebar.classList.add('tw-skippable');
+    const place = () => {
+      const firstLine = para.getBoundingClientRect().top - sidebar.getBoundingClientRect().top
+        + parseFloat(getComputedStyle(para).paddingTop);
+      hint.style.top = (firstLine - 6) + 'px';
+    };
+    place();
+    if (document.fonts) document.fonts.ready.then(place); // la police du titre change sa hauteur
+    window.addEventListener('resize', place);
+    hint.cleanup = () => window.removeEventListener('resize', place);
+    sidebar.appendChild(hint);
+    requestAnimationFrame(() => hint.classList.add('tw-hint-on'));
+  }
+
   const finish = () => {
     clearTimeout(timer);
+    hint.classList.remove('tw-hint-on');
+    if (hint.cleanup) hint.cleanup();
+    setTimeout(() => hint.remove(), 400);
+    if (sidebar) sidebar.classList.remove('tw-skippable');
     targets.forEach((el, i) => {
       el.innerHTML = originals[i];
       el.classList.remove('notranslate', 'tw-running');

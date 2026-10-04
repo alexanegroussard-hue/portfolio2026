@@ -15,6 +15,12 @@ button, input, select, textarea { font-family: var(--font-ui); }
 .tw-char.tw-on { opacity: 1; }
 .tw-char.tw-caret { box-shadow: 2px 0 0 currentColor; animation: twBlink 0.8s steps(1) infinite; }
 @keyframes twBlink { 50% { box-shadow: 2px 0 0 transparent; } }
+.tw-skippable { cursor: pointer; }
+@media (max-width: 900px) { .tw-skippable { position: relative; } }
+.tw-hint { position: absolute; right: 1.2rem; color: var(--orange, #ff6600); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
+.tw-hint.tw-hint-on { opacity: 0.85; }
+.tw-hint .tw-hint-btn { animation: twClick 1.4s ease-in-out infinite; }
+@keyframes twClick { 0%, 55%, 100% { opacity: 0; } 65%, 85% { opacity: 1; } }
 
 nav {
   height: 90px;
